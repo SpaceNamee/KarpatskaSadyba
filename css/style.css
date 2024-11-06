@@ -333,7 +333,7 @@ address {
 }
 
 .welcome_page {
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(12, 12, 12, 0.651)), URL("../photos/bg.jpg");
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(12, 12, 12, 0.651)), URL("../photo/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 750px;
@@ -957,7 +957,7 @@ address {
 }
 
 .contacts {
-  background: url("photos/IMG_5096.JPG");
+  background: url("photo/IMG_5096.JPG");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
