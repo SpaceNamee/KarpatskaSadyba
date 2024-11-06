@@ -957,7 +957,7 @@ address {
 }
 
 .contacts {
-  background: url("photo/IMG_5096.JPG");
+  background: URL("../photo/IMG_5096.JPG");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
