@@ -1717,9 +1717,11 @@ address {
 }
 
 .option_subtitle {
+  font-size: 20px; /* Менший розмір тексту */
   margin-left: 15px;
-  font-size: 20px;
-  font-family: "Overpass";
+  font-style: italic; /* Курсив для створення акценту, якщо доречно */
+  line-height: 1.4; /* Трохи зменшений міжрядковий інтервал */
+  margin-top: 5px; /* Відступ зверху, щоб відділити від основного тексту */
 }
 
 .list_item {
@@ -1734,7 +1736,7 @@ address {
   display: inline-block;
   position: absolute;
   border-radius: 50%;
-  top: 5px;
+  top: 10px;
   left: -10px;
 }
 
