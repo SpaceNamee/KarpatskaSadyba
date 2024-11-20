@@ -1689,9 +1689,9 @@ address {
 
 .remark {
   color: rgb(0, 152, 0);
-  font-family: "Overpass";
+  font-family: "Philosopher";
   font-weight: 700;
-  margin-bottom: -7px;
+  margin-bottom: -5px;
 }
 
 .detile_link {
@@ -1702,6 +1702,7 @@ address {
   text-align: center;
   border-radius: 500px;
   margin-left: 30px;
+  display: none;
 }
 
 .detile_link:hover {
