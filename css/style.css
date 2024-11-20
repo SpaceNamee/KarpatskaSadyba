@@ -1740,6 +1740,10 @@ address {
   left: -10px;
 }
 
+.subtitile_list{
+  margin-left: 50px;
+}
+
 /*---------Developer Page-----------------------------------------------------*/
 .develper {
   -ms-flex-item-align: center;
