@@ -780,6 +780,21 @@ address {
 
 }
 
+.item5 .menu_link{
+  color: grey;
+}
+.item2 .menu_link{
+  color: grey;
+}
+
+.item5 .menu_link:hover {
+  color: grey;
+  border-bottom: none;
+}
+.item2 .menu_link:hover {
+  color: grey;
+  border-bottom: none;
+} 
 /*-------Footer-------------------------------------------------------------*/
 
 .footer_container{
