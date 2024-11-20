@@ -782,9 +782,11 @@ address {
 
 .item5 .menu_link{
   color: grey;
+  pointer-events: none;
 }
 .item2 .menu_link{
   color: grey;
+  pointer-events: none;
 }
 
 .item5 .menu_link:hover {
