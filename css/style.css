@@ -573,6 +573,7 @@ address {
   .container{
     max-width: 750px;
   }
+  
 
 .welcome_page_block_2{
   display: none;
@@ -719,7 +720,7 @@ address {
 
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 1133px) {
 
   /* ----------------------Бургер меню ------------------------------------------------------------------------*/
   .menu_body {
@@ -776,6 +777,9 @@ address {
 }
 .header_body {
   min-height: 40px;
+}
+.welcome_container{
+  display: none;
 }
 
 }
