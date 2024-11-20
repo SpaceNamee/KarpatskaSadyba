@@ -721,8 +721,8 @@ address {
 }
 @media (max-width: 1485px) {
   .welcome_container{
-  display: none;
-}
+    display: none;
+  }
 }
 @media (max-width: 1133px) {
 
