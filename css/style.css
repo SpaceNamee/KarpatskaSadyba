@@ -908,6 +908,22 @@ address {
   position: relative;
 }
 
+.item2 .service_link{
+  pointer-events: none;
+  color: gray;
+}
+.item4 .service_link{
+  pointer-events: none;
+  color: gray;
+}
+
+.item2 .service_link:hover{
+  border-bottom: none;
+}
+.item4 .service_link:hover{
+  border-bottom: none;
+}
+
 .footer .service_link:hover {
   border-bottom: 1px solid white;
 }
