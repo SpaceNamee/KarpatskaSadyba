@@ -280,6 +280,12 @@
       }
       slides[slideIndex-1].style.display = "block";
       dots[slideIndex-1].className += " active";
+      
+	function toggleMenu() {
+   		const menuBody = document.querySelector('.menu_body');
+		menuBody.classList.toggle('active');
+	}
+
       }
    </script>
 </html>
