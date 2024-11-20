@@ -119,6 +119,7 @@ address {
   background-color: rgb(33, 237, 0);
   width: 254px;
   box-shadow: 1px 4px 10px rgb(34, 34, 34);
+  display: none;
 }
 
 .about1_row .about_text_block .button1 {
