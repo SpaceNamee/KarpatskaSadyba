@@ -719,7 +719,11 @@ address {
   }
 
 }
-
+@media (max-width: 1485px) {
+  .welcome_container{
+  display: none;
+}
+}
 @media (max-width: 1133px) {
 
   /* ----------------------Бургер меню ------------------------------------------------------------------------*/
@@ -778,9 +782,7 @@ address {
 .header_body {
   min-height: 40px;
 }
-.welcome_container{
-  display: none;
-}
+
 
 }
 
