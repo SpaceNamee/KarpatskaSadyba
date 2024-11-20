@@ -1036,6 +1036,10 @@ address {
   text-align: center; /* Центрує текст по горизонталі */
 }
 
+.contacts_subtitle .num {
+  color: white;
+}
+
 .contacts_contact {
   margin-left: 70px;
 }
