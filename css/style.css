@@ -1158,7 +1158,7 @@ address {
 }
 
 .ski_resorts {
-  padding-top: 50px;
+  padding-top: 55px;
   /* Slideshow container */
   /* Hide the images by default */
   /* Next & previous buttons */
@@ -1189,7 +1189,7 @@ address {
 
 .ski_resorts .slideshow-container {
   min-width: 992px;
-  height: 600px;
+  height: 95vh;
   position: relative;
   margin: auto;
 }
@@ -1199,7 +1199,7 @@ address {
 }
 
 .ski_resorts .mySlides img {
-  height: 600px;
+  height: 95vh;
   min-width: 992px;
   object-fit: cover;
 }
