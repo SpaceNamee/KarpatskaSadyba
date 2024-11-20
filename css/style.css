@@ -717,7 +717,6 @@ address {
   .list2 li:last-child {
     margin: 0 0 0 0;
   }
-
 }
 @media (max-width: 1485px) {
   .welcome_container{
@@ -729,7 +728,8 @@ address {
     display: none;
   }
 }
-
+@media (max-width: 1180px){
+  
   /* ----------------------Бургер меню ------------------------------------------------------------------------*/
   .menu_body {
     display: none; /* Ховаємо меню за замовчуванням */
