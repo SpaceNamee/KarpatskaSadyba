@@ -724,7 +724,11 @@ address {
     display: none;
   }
 }
-@media (max-width: 1133px) {
+@media (max-width: 1105px){
+  .button_for_hidden{
+    display: none;
+  }
+}
 
   /* ----------------------Бургер меню ------------------------------------------------------------------------*/
   .menu_body {
