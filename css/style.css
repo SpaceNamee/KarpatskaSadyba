@@ -1489,6 +1489,7 @@ address {
 .about3 .about_text_block {
   font-family: "Philosopher";
   margin-right: 100px;
+  line-height: 1.4; 
 }
 
 
@@ -1496,20 +1497,22 @@ address {
   font-size: 50px;
   font-family: "Philosopher";
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .about3 .about_title {
   font-size: 50px;
-  margin-bottom: 50px;
+  margin: 0;
 }
 
 .about3 .about_description {
   font-size: 30px;
+  margin: 0;
 }
 
 .about3 .about_list {
   font-size: 20px;
+  margin-left: 20px;
 }
 
 .about3 li {
