@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  href: string;
+  name: string;
+  areaM2: number;
+  capacityMax: number;
+  summary: string;
+  priceFrom: number;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '' } = Astro.props;
+---
+
+<article class="cottage-card">
+  {image && (
+    <a href={href} tabindex="-1" aria-hidden="true">
+      <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} />
+    </a>
+  )}
+  <div class="cottage-card__body">
+    <h3><a href={href}>{name}</a></h3>
+    <p class="cottage-card__meta">{areaM2} м² · до {capacityMax} осіб</p>
+    <p>{summary}</p>
+    <p class="cottage-card__price">
+      від <strong>{priceFrom.toLocaleString('uk-UA')} грн</strong> / доба
+    </p>
+  </div>
+</article>
+
+<style>
+  .cottage-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cottage-card__img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .cottage-card__body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cottage-card__body h3 a {
+    text-decoration: none;
+    color: var(--c-green-900);
+  }
+
+  .cottage-card__body h3 a:hover {
+    color: var(--c-green-700);
+  }
+
+  .cottage-card__meta {
+    font-weight: 700;
+    color: var(--c-green-700);
+  }
+
+  .cottage-card__price {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-size: 1.1rem;
+    color: var(--c-green-900);
+  }
+</style>

@@ -16,6 +16,24 @@ for (const [name, viewport] of [
   page.on('console', (msg) => msg.type() === 'error' && errors.push(msg.text()));
   page.on('pageerror', (err) => errors.push(String(err)));
   await page.goto(url, { waitUntil: 'networkidle' });
+  // Прокрутка донизу, щоб підвантажились lazy-зображення перед fullPage-знімком
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 600) {
+      window.scrollTo({ top: y, behavior: 'instant' });
+      await new Promise((r) => setTimeout(r, 60));
+    }
+    // instant, бо scroll-behavior:smooth анімує повернення і sticky-шапка потрапляє в кадр посеред сторінки
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    await new Promise((r) => setTimeout(r, 200));
+  });
+  await page.waitForLoadState('networkidle');
+  // Дочекатись завантаження й декодування зображень (не довше 5 с) та стабілізації sticky-елементів
+  await page.evaluate(async () => {
+    const timeout = new Promise((r) => setTimeout(r, 5000));
+    const decoded = Promise.all([...document.images].map((img) => img.decode().catch(() => {})));
+    await Promise.race([decoded, timeout]);
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  });
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth
   );

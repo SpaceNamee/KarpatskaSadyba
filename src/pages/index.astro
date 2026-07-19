@@ -1,71 +1,160 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import CottageCard from '../components/CottageCard.astro';
 import contacts from '../data/site/contacts.json';
+import services from '../data/site/services.json';
+
+import heroImg from '../assets/photos/cottage-2/exterior-01.jpg';
+import winterImg from '../assets/photos/cottage-2/exterior-02-winter.jpg';
+import summerImg from '../assets/photos/cottage-3/terrace-01.jpg';
 
 const title = 'Карпатська садиба — котеджі на 10–18 осіб біля ГК «Плай», с. Плав\'я';
 const description =
   'Три дерев\'яні котеджі для великих компаній та сімей у с. Плав\'я, за 5 км від гірськолижного комплексу «Плай». Басейн з підігрівом, чан, сауна, риболовля. Рейтинг 9.2 на Booking.com.';
 
-const cottages = [
-  {
-    name: 'Котедж 1',
-    area: '260 м²',
-    capacity: 'до 16 осіб',
-    highlights: 'Камін, власна альтанка, тепла підлога, 6 спалень',
-  },
-  {
-    name: 'Котедж 2',
-    area: '260 м²',
-    capacity: 'до 18 осіб',
-    highlights: 'Тераса з видом на басейн і гори, 7 спалень, 4 санвузли',
-  },
-  {
-    name: 'Котедж 3',
-    area: '120 м²',
-    capacity: 'до 15 осіб',
-    highlights: 'Тераса, балкон з видом на гори, 5 спалень',
-  },
-];
+const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
+
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/photos/**/*.{jpg,png,JPG,PNG}',
+  { eager: true }
+);
+
+const cardImage = (dir: string, file: string) =>
+  allPhotos[`../assets/photos/${dir}/${file}`]?.default;
 
 const mainPhone = contacts.phones[0];
+
+const amenities = [
+  ...services.wellness.map((s) => s.name.uk),
+  'Альтанки та мангал',
+  'Риболовля у власному ставку',
+  'Дитячий майданчик',
+  'Безкоштовний Wi-Fi і парковка',
+];
+
+const praises = [
+  'Дуже привітні господарі — допоможуть з раннім заїздом, розпалять камін, підкажуть маршрути',
+  'Нові дерев\'яні будинки з неперевершеним запахом дерева',
+  'Тепла вода в басейні та гарна підсвітка ввечері',
+  'Велика доглянута територія — місця вистачає навіть великій компанії',
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Карпатська садиба',
+  alternateName: 'Karpatska Sadyba — Carpathian Estate',
+  description,
+  url: 'https://karpatska-sadyba.com.ua',
+  telephone: mainPhone.tel,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'вул. Вадрусівка, 121',
+    addressLocality: "с. Плав'я",
+    addressRegion: 'Львівська область',
+    addressCountry: 'UA',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: contacts.coordinates.lat, longitude: contacts.coordinates.lng },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: 9.2, bestRating: 10, reviewCount: 100 },
+  checkinTime: contacts.checkIn,
+  checkoutTime: contacts.checkOut,
+  amenityFeature: amenities.map((name) => ({ '@type': 'LocationFeatureSpecification', name })),
+};
 ---
 
 <Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="hero">
-    <div class="container hero__inner">
-      <p class="hero__eyebrow">Сколівські Бескиди · с. Плав'я · 5 км до ГК «Плай»</p>
-      <h1>Три дерев'яні котеджі на 10–18 осіб — для вашої компанії чи родини</h1>
-      <p class="hero__sub">
-        Басейн з підігрівом, чан, сауна, риболовля та гори навколо.
-        Уся садиба вміщує до 49 гостей. Оцінка гостей на Booking.com — 9.2.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>
-          Зателефонувати: {mainPhone.display}
-        </a>
-        <a class="btn btn--ghost" href={contacts.instagram.url} rel="noopener">
-          Instagram {contacts.instagram.handle}
-        </a>
+    <Image class="hero__img" src={heroImg} alt="" width={1920} loading="eager" />
+    <div class="hero__content">
+      <div class="container">
+        <p class="hero__eyebrow">Сколівські Бескиди · с. Плав'я · 5 км до ГК «Плай»</p>
+        <h1>Три дерев'яні котеджі на 10–18 осіб — для вашої компанії чи родини</h1>
+        <p class="hero__sub">
+          Басейн з підігрівом, чан, сауна, риболовля та гори навколо.
+          Уся садиба вміщує до 49 гостей.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>
+            Забронювати: {mainPhone.display}
+          </a>
+          <a class="btn btn--ghost" href="#kotedzhi">Обрати котедж</a>
+        </div>
+        <p class="hero__rating">★ 9.2 — оцінка гостей на Booking.com</p>
       </div>
     </div>
   </section>
 
   <section id="kotedzhi" class="section">
     <div class="container">
-      <h2>Котеджі</h2>
+      <h2>Оберіть свій котедж</h2>
       <p class="section__note">
-        Детальні сторінки з фото, схемами спалень і календарем вільних дат — уже незабаром.
-        Поки що телефонуйте — з радістю все розкажемо.
+        Кожен котедж здається цілком — територія, альтанка й мангал лише для вашої компанії.
+        Можна орендувати і всю садибу: до 49 гостей.
       </p>
       <div class="cards">
         {cottages.map((cottage) => (
-          <article class="card">
-            <h3>{cottage.name}</h3>
-            <p class="card__meta">{cottage.area} · {cottage.capacity}</p>
-            <p>{cottage.highlights}</p>
-          </article>
+          <CottageCard
+            href={`/kotedzhi/${cottage.id}`}
+            name={cottage.data.name.uk}
+            areaM2={cottage.data.areaM2}
+            capacityMax={cottage.data.capacityMax}
+            summary={cottage.data.summary.uk}
+            priceFrom={cottage.data.prices.twoPlusNights}
+            image={cardImage(cottage.data.photosDir, cottage.data.cardPhoto)}
+            imageAlt={cottage.data.photos.find((p) => p.file === cottage.data.cardPhoto)?.alt.uk}
+          />
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <h2>Відпочинок на території</h2>
+      <ul class="amenities">
+        {amenities.map((amenity) => <li>{amenity}</li>)}
+      </ul>
+      <div class="seasons">
+        <article class="season">
+          <Image src={winterImg} alt="Котедж 2 взимку на тлі засніжених Карпат" width={800} />
+          <div class="season__body">
+            <h3>Взимку</h3>
+            <p>
+              ГК «Плай» за 5 км — 6 трас, крісельні витяги, прокат спорядження на території садиби.
+              Після катання — гарячий чан і сауна.
+            </p>
+          </div>
+        </article>
+        <article class="season">
+          <Image src={summerImg} alt="Тераса з видом на гори" width={800} />
+          <div class="season__body">
+            <h3>Влітку</h3>
+            <p>
+              Басейн з підігрівом і видом на гори, риболовля, квадроцикли, спортивне поле
+              та походи до водоспадів і на вершини Бескидів.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>За що нас люблять гості</h2>
+      <p class="rating-badge">★ 9.2 <span>на Booking.com</span></p>
+      <ul class="praises">
+        {praises.map((praise) => <li>{praise}</li>)}
+      </ul>
+      <p>
+        Більше фото й відгуків —
+        <a href={contacts.instagram.url} rel="noopener">в Instagram {contacts.instagram.handle}</a>
+      </p>
     </div>
   </section>
 
@@ -93,19 +182,32 @@ const mainPhone = contacts.phones[0];
 
 <style>
   .hero {
-    background:
-      radial-gradient(80rem 30rem at 110% -20%, rgb(176 111 46 / 0.25), transparent 60%),
-      linear-gradient(160deg, var(--c-green-900), var(--c-green-700));
+    position: relative;
+    min-height: clamp(28rem, 78vh, 44rem);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+  }
+
+  .hero__content {
+    position: relative;
+    width: 100%;
+    padding-block: var(--space-6) var(--space-5);
+    background: linear-gradient(transparent, rgb(29 53 36 / 0.55) 30%, rgb(29 53 36 / 0.92));
     color: var(--c-text-inverse);
-    padding-block: var(--space-6);
   }
 
-  .hero__inner {
-    max-width: 46rem;
-  }
-
-  .hero h1 {
+  .hero__content h1 {
     color: #fff;
+    max-width: 44rem;
   }
 
   .hero__eyebrow {
@@ -118,7 +220,8 @@ const mainPhone = contacts.phones[0];
 
   .hero__sub {
     font-size: 1.125rem;
-    color: rgb(247 245 238 / 0.9);
+    max-width: 38rem;
+    color: rgb(247 245 238 / 0.92);
   }
 
   .hero__actions {
@@ -126,6 +229,12 @@ const mainPhone = contacts.phones[0];
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-4);
+  }
+
+  .hero__rating {
+    margin-top: var(--space-3);
+    font-weight: 700;
+    color: var(--c-wood-100);
   }
 
   .section {
@@ -137,28 +246,78 @@ const mainPhone = contacts.phones[0];
   }
 
   .section__note {
-    max-width: 40rem;
+    max-width: 42rem;
     color: var(--c-text-muted);
   }
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
     gap: var(--space-4);
     margin-top: var(--space-4);
   }
 
-  .card {
+  .amenities {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .amenities li {
     background: var(--c-surface);
     border: 1px solid var(--c-border);
+    border-radius: 999px;
+    padding: var(--space-2) var(--space-3);
+    font-weight: 600;
+  }
+
+  .seasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .season {
+    background: var(--c-surface);
     border-radius: var(--radius-lg);
-    padding: var(--space-4);
+    overflow: hidden;
     box-shadow: var(--shadow);
   }
 
-  .card__meta {
+  .season img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .season__body {
+    padding: var(--space-4);
+  }
+
+  .rating-badge {
+    display: inline-block;
+    background: var(--c-green-700);
+    color: #fff;
     font-weight: 700;
-    color: var(--c-green-700);
+    font-size: 1.3rem;
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .rating-badge span {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  .praises {
+    max-width: 44rem;
+    display: grid;
+    gap: var(--space-2);
+    padding-left: 1.2em;
   }
 
   .contacts {

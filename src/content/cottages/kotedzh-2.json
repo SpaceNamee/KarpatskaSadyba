@@ -1,0 +1,78 @@
+{
+  "order": 2,
+  "name": { "uk": "Котедж 2", "en": "Cottage 2" },
+  "areaM2": 260,
+  "capacityBase": 14,
+  "capacityMax": 18,
+  "summary": {
+    "uk": "Найбільший за місткістю котедж садиби — 7 спалень і 4 санвузли на двох поверхах. Тераса з видом на басейн і гори та прибудинкова альтанка.",
+    "en": "The highest-capacity cottage of the estate — 7 bedrooms and 4 bathrooms over two floors. A terrace overlooking the pool and mountains, plus its own gazebo."
+  },
+  "floors": [
+    {
+      "uk": "1-й поверх: три двомісні кімнати, кухня, два санвузли (один з душем)",
+      "en": "Ground floor: three double rooms, kitchen, two bathrooms (one with shower)"
+    },
+    {
+      "uk": "2-й поверх: дві двомісні та дві чотиримісні кімнати, кухня, два санвузли (один з душем)",
+      "en": "First floor: two double and two quadruple rooms, kitchen, two bathrooms (one with shower)"
+    }
+  ],
+  "bedroomsCount": 7,
+  "bedrooms": [
+    { "uk": "Спальня 1: широке двоспальне ліжко", "en": "Bedroom 1: wide double bed" },
+    { "uk": "Спальня 2: широке двоспальне ліжко", "en": "Bedroom 2: wide double bed" },
+    { "uk": "Спальня 3: широке двоспальне ліжко", "en": "Bedroom 3: wide double bed" },
+    { "uk": "Спальня 4: широке двоспальне ліжко + диван-ліжко", "en": "Bedroom 4: wide double bed + sofa bed" },
+    { "uk": "Спальня 5: широке двоспальне ліжко + диван-ліжко", "en": "Bedroom 5: wide double bed + sofa bed" },
+    { "uk": "Спальня 6: широке двоспальне ліжко", "en": "Bedroom 6: wide double bed" },
+    { "uk": "Спальня 7: широке двоспальне ліжко", "en": "Bedroom 7: wide double bed" }
+  ],
+  "bathrooms": {
+    "uk": "4 санвузли (два з душем)",
+    "en": "4 bathrooms (two with shower)"
+  },
+  "features": [
+    { "uk": "Тераса з видом на басейн і гори", "en": "Terrace overlooking the pool and mountains" },
+    { "uk": "Прибудинкова альтанка", "en": "Own gazebo by the house" },
+    { "uk": "Шафа-гардероб", "en": "Wardrobe" },
+    { "uk": "Зона барбекю", "en": "BBQ area" }
+  ],
+  "kitchen": [
+    { "uk": "Дві кухні — на кожному поверсі", "en": "Two kitchens — one per floor" },
+    { "uk": "Плита та духова шафа", "en": "Stove and oven" },
+    { "uk": "Холодильник і мікрохвильова піч", "en": "Fridge and microwave" },
+    { "uk": "Посуд і пральна машина", "en": "Tableware and washing machine" }
+  ],
+  "view": { "uk": "Вид на басейн і гори", "en": "Pool and mountain view" },
+  "prices": {
+    "twoPlusNights": 12000,
+    "oneNight": 16000,
+    "includedGuests": 14,
+    "extraPersonUah": 500
+  },
+  "photosDir": "cottage-2",
+  "photos": [
+    { "file": "exterior-01.jpg", "alt": { "uk": "Дерев'яний Котедж 2 із басейном і садом на тлі карпатських лісів улітку", "en": "Wooden Cottage 2 with the pool and garden against Carpathian forests in summer" } },
+    { "file": "exterior-02-winter.jpg", "alt": { "uk": "Котедж 2 взимку на тлі засніжених Карпат із басейном та дитячим майданчиком", "en": "Cottage 2 in winter with snowy Carpathians, the pool and playground" } },
+    { "file": "kitchen-01.jpg", "alt": { "uk": "Кухня з газовою плитою та білими фасадами у Котеджі 2", "en": "Kitchen with a gas stove and white cabinets in Cottage 2" } },
+    { "file": "kitchen-02.jpg", "alt": { "uk": "Мансардна кухня з обіднім столом і плитою у Котеджі 2", "en": "Attic kitchen with a dining table and stove in Cottage 2" } },
+    { "file": "kitchen-03.jpg", "alt": { "uk": "Кухня на мансарді з холодильником і мікрохвильовою піччю у Котеджі 2", "en": "Attic kitchen with a fridge and microwave in Cottage 2" } },
+    { "file": "kitchen-04.jpg", "alt": { "uk": "Кухня-їдальня з великим столом і лавкою у Котеджі 2", "en": "Kitchen-dining room with a large table and bench in Cottage 2" } },
+    { "file": "bedroom-01.jpg", "alt": { "uk": "Мансардна спальня з шафою-купе у Котеджі 2", "en": "Attic bedroom with a sliding wardrobe in Cottage 2" } },
+    { "file": "bedroom-02.jpg", "alt": { "uk": "Мансардна спальня з виходом на балкон у Котеджі 2", "en": "Attic bedroom with balcony access in Cottage 2" } },
+    { "file": "bedroom-03.jpg", "alt": { "uk": "Спальня з дерев'яною обшивкою, телевізором та шафою-купе у Котеджі 2", "en": "Wood-panelled bedroom with TV and sliding wardrobe in Cottage 2" } },
+    { "file": "bedroom-04.jpg", "alt": { "uk": "Двоспальне ліжко з покривалом у сонячній дерев'яній спальні Котеджу 2", "en": "Double bed in a sunny wooden bedroom of Cottage 2" } },
+    { "file": "bedroom-05.jpg", "alt": { "uk": "Спальня з кріслом і телевізором на дерев'яній стіні у Котеджі 2", "en": "Bedroom with an armchair and wall-mounted TV in Cottage 2" } },
+    { "file": "bedroom-06.jpg", "alt": { "uk": "Спальня з двоспальним ліжком і фіолетовим покривалом у Котеджі 2", "en": "Bedroom with a double bed and purple bedspread in Cottage 2" } },
+    { "file": "bedroom-07.jpg", "alt": { "uk": "Спальня з шафою-купе та телевізором у Котеджі 2", "en": "Bedroom with a sliding wardrobe and TV in Cottage 2" } },
+    { "file": "bedroom-08.jpg", "alt": { "uk": "Сонячна спальня з двоспальним ліжком у Котеджі 2", "en": "Sunny bedroom with a double bed in Cottage 2" } },
+    { "file": "bedroom-09.jpg", "alt": { "uk": "Спальня з телевізором, шафою та фіолетовим покривалом у Котеджі 2", "en": "Bedroom with TV, wardrobe and purple bedspread in Cottage 2" } },
+    { "file": "bedroom-10.jpg", "alt": { "uk": "Затишна дерев'яна спальня з великим вікном у Котеджі 2", "en": "Cosy wooden bedroom with a large window in Cottage 2" } },
+    { "file": "bedroom-11.jpg", "alt": { "uk": "Спальня з шафою-купе біля вікна у Котеджі 2", "en": "Bedroom with a sliding wardrobe by the window in Cottage 2" } },
+    { "file": "bathroom-01.jpg", "alt": { "uk": "Ванна кімната з душем, умивальником і феном у Котеджі 2", "en": "Bathroom with a shower, washbasin and hairdryer in Cottage 2" } },
+    { "file": "interior-01.jpg", "alt": { "uk": "Хол із дерев'яними сходами та лавкою у Котеджі 2", "en": "Hall with wooden stairs and a bench in Cottage 2" } },
+    { "file": "interior-02.jpg", "alt": { "uk": "Коридор першого поверху з дзеркалом і сходами у Котеджі 2", "en": "Ground-floor corridor with a mirror and stairs in Cottage 2" } }
+  ],
+  "cardPhoto": "exterior-01.jpg"
+}

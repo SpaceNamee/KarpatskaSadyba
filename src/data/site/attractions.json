@@ -1,0 +1,114 @@
+{
+  "ski": [
+    {
+      "name": { "uk": "ГК «Плай»", "en": "Play ski resort" },
+      "distance": "5 км",
+      "description": {
+        "uk": "Найближчий до нас комплекс: 6 трас до 1200 м (сині, червоні, чорні та навчальні), 2 крісельні витяги, мультиліфт і бебі-ліфт. Працює і влітку.",
+        "en": "The closest resort: 6 slopes up to 1,200 m (blue, red, black and training runs), 2 chairlifts, multi-lift and baby lift. Open in summer too."
+      }
+    },
+    {
+      "name": { "uk": "«Звенів»", "en": "Zveniv" },
+      "distance": "≈15–20 км",
+      "description": {
+        "uk": "Невеликий курорт біля с. Орявчик: траси 400–1400 м, зона сноутюбінгу, прокати та інструктори. Гарний варіант для родин і початківців.",
+        "en": "A small resort near Oriavchyk: 400–1,400 m runs, snow-tubing area, rentals and instructors. Great for families and beginners."
+      }
+    },
+    {
+      "name": { "uk": "«Динамо-Тростян»", "en": "Dynamo-Trostian" },
+      "distance": "≈20 км",
+      "description": {
+        "uk": "Легендарна база у Славську на горі Тростян (1232 м): 11 трас по 1500–2000 м, крісельний підйомник 2750 м. Для впевнених лижників.",
+        "en": "The legendary Slavske base on Mt. Trostian (1,232 m): 11 runs of 1,500–2,000 m, a 2,750 m chairlift. For confident skiers."
+      }
+    },
+    {
+      "name": { "uk": "«Захар Беркут»", "en": "Zakhar Berkut" },
+      "distance": "≈25–30 км",
+      "description": {
+        "uk": "Сучасний комплекс у Волосянці: ~9 км доглянутих трас усіх рівнів і найдовша в Україні двокрісельна канатна дорога (2800 м).",
+        "en": "A modern resort in Volosianka: ~9 km of groomed runs of all levels and Ukraine's longest double chairlift (2,800 m)."
+      }
+    }
+  ],
+  "waterfalls": [
+    {
+      "name": { "uk": "Водоспад Кам'янка", "en": "Kamianka waterfall" },
+      "distance": "≈40 км",
+      "description": {
+        "uk": "Найпопулярніший водоспад Сколівських Бескидів (~7 м), розділений велетенською брилою надвоє. Рівна дорога — ідеально з дітьми.",
+        "en": "The most popular waterfall of the Skole Beskydy (~7 m), split in two by a giant boulder. Easy path — perfect with kids."
+      }
+    },
+    {
+      "name": { "uk": "Водоспад Гуркало", "en": "Hurkalo waterfall" },
+      "distance": "≈50 км",
+      "description": {
+        "uk": "Каскад ~5 м біля с. Корчин із «котлом» до 2 м глибиною. Назва — від гуркоту води під час паводків.",
+        "en": "A ~5 m cascade near Korchyn with a 2 m deep plunge pool. Named after the roar of high water."
+      }
+    },
+    {
+      "name": { "uk": "Водоспад Сопіт", "en": "Sopit waterfall" },
+      "distance": "≈60 км",
+      "description": {
+        "uk": "Найвищий із четвірки: вода збігає флішовою скелею з ~8 м у простору чашу.",
+        "en": "The tallest of the four: water slides down a flysch cliff from ~8 m into a wide bowl."
+      }
+    }
+  ],
+  "peaks": [
+    {
+      "name": { "uk": "г. Парашка (1268 м)", "en": "Mt. Parashka (1,268 m)" },
+      "distance": "≈30 км",
+      "description": {
+        "uk": "Найвища вершина Сколівських Бескидів. Маршрут ~19 км туди-назад, 4–5 год сходження, панорама долин Опору і Стрию.",
+        "en": "The highest peak of the Skole Beskydy. ~19 km round trip, 4–5 h ascent, panorama of the Opir and Stryi valleys."
+      }
+    },
+    {
+      "name": { "uk": "г. Пікуй (1408 м)", "en": "Mt. Pikui (1,408 m)" },
+      "distance": "≈30 км",
+      "description": {
+        "uk": "Найвища точка Львівщини на межі із Закарпаттям. Серйозніший похід; найкращий сезон — травень–жовтень.",
+        "en": "The highest point of Lviv region on the Zakarpattia border. A more serious hike; best May–October."
+      }
+    },
+    {
+      "name": { "uk": "г. Лопата (1211 м)", "en": "Mt. Lopata (1,211 m)" },
+      "distance": "≈30 км",
+      "description": {
+        "uk": "Одноденний маршрут ~8,5 км з набором ~800 м — посильний і початківцям. На вершині — пам'ятний хрест.",
+        "en": "A one-day ~8.5 km route with ~800 m gain — doable for beginners. A memorial cross on top."
+      }
+    }
+  ],
+  "culture": [
+    {
+      "name": { "uk": "Фортеця Тустань", "en": "Tustan fortress" },
+      "distance": "≈50 км",
+      "description": {
+        "uk": "Середньовічна наскельна фортеця IX–XVI ст. в с. Урич — одне із «7 чудес України». Скелі до 50 м із ~4000 вирубаних пазів.",
+        "en": "A medieval cliff-side fortress (9th–16th c.) in Urych — one of the \"7 Wonders of Ukraine\". Cliffs up to 50 m with ~4,000 carved grooves."
+      }
+    },
+    {
+      "name": { "uk": "Палац баронів Гредлів", "en": "Groedel Palace" },
+      "distance": "≈25 км",
+      "description": {
+        "uk": "Необароковий палац XIX ст. у Сколе — колишня штаб-квартира лісопромислової імперії Гредлів. Ефектна фотолокація дорогою в гори.",
+        "en": "A 19th-century neo-baroque palace in Skole — the former HQ of the Groedel timber empire. A striking photo stop en route."
+      }
+    },
+    {
+      "name": { "uk": "Еко-ферма «Плай»", "en": "Play eco-farm" },
+      "distance": "поруч",
+      "description": {
+        "uk": "Показує, як роблять фермерські продукти і як живуть тварини; з дегустацією. Чудова сімейна активність.",
+        "en": "Shows how farm products are made and how the animals live; with tastings. A great family activity."
+      }
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import services from '../data/site/services.json';
+import contacts from '../data/site/contacts.json';
+
+import terraceImg from '../assets/photos/cottage-3/terrace-01.jpg';
+import winterImg from '../assets/photos/cottage-2/exterior-02-winter.jpg';
+
+const title = 'Відпочинок і послуги — басейн, чан, сауна, риболовля | Карпатська садиба';
+const description =
+  'Що робити в Карпатській садибі: басейн з підігрівом і видом на гори, чан, сауна, риболовля у власному ставку, квадроцикли, спортивне поле, походи. Взимку — ГК «Плай» за 5 км.';
+
+const mainPhone = contacts.phones[0];
+const seasonLabel: Record<string, string> = {
+  summer: 'Літо',
+  winter: 'Зима',
+  all: 'Цілий рік',
+};
+const allServices = [...services.wellness, ...services.activities];
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <h1>Відпочинок на території та поруч</h1>
+      <p class="note">
+        Усе найважливіше — просто на садибі: басейн, чан і сауна, ставок з рибою, альтанки з
+        мангалами, дитячий майданчик і спортивне поле. А за 5 км — витяги ГК «Плай».
+      </p>
+
+      <div class="cards">
+        {allServices.map((service) => (
+          <article class="card">
+            <header class="card__head">
+              <h2>{service.name.uk}</h2>
+              <span class={`badge badge--${service.season}`}>{seasonLabel[service.season]}</span>
+            </header>
+            <p>{service.description.uk}</p>
+            <p class="card__price">{service.price.uk}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="seasons">
+        <figure>
+          <Image src={winterImg} alt="Котедж 2 взимку на тлі засніжених Карпат" width={800} />
+          <figcaption>Взимку: «Плай» за 5 км, прокат спорядження на території, чан після трас</figcaption>
+        </figure>
+        <figure>
+          <Image src={terraceImg} alt="Тераса з видом на гори влітку" width={800} />
+          <figcaption>Влітку: басейн, риболовля, походи до водоспадів і вершин — <a href="/lokatsiya">що поблизу</a></figcaption>
+        </figure>
+      </div>
+      <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>
+        Запитати про послуги: {mainPhone.display}
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .note {
+    max-width: 44rem;
+    color: var(--c-text-muted);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .card__head h2 {
+    font-size: var(--fs-h3);
+    margin: 0 0 var(--space-2);
+  }
+
+  .badge {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.2em 0.8em;
+    white-space: nowrap;
+  }
+
+  .badge--summer { background: var(--c-wood-100); color: var(--c-wood-700); }
+  .badge--winter { background: #e3edf5; color: #2f5d7a; }
+  .badge--all { background: var(--c-green-100); color: var(--c-green-800); }
+
+  .card__price {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-weight: 700;
+    color: var(--c-green-900);
+  }
+
+  .seasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .seasons figure {
+    margin: 0;
+    background: var(--c-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .seasons img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .seasons figcaption {
+    padding: var(--space-3) var(--space-4);
+  }
+</style>

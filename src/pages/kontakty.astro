@@ -1,0 +1,167 @@
+---
+import Base from '../layouts/Base.astro';
+import contacts from '../data/site/contacts.json';
+import policies from '../data/site/policies.json';
+
+const title = 'Контакти та бронювання — Карпатська садиба, с. Плав\'я';
+const description =
+  'Забронювати котедж у Карпатській садибі: телефони, Instagram, адреса та правила проживання. с. Плав\'я, 5 км від ГК «Плай».';
+
+const mapQuery = encodeURIComponent("вул. Вадрусівка 121, Плав'я, Львівська область");
+
+const steps = [
+  { n: 1, text: 'Телефонуєте нам або пишете в Instagram — підбираємо котедж і вільні дати' },
+  { n: 2, text: `Вносите завдаток ${policies.depositUah.toLocaleString('uk-UA')} грн банківським переказом — дати закріплені за вами` },
+  { n: 3, text: `Заїжджаєте з ${policies.checkIn}, решту оплачуєте готівкою на місці` },
+];
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <h1>Контакти</h1>
+      <div class="grid">
+        <div>
+          <h2>Бронювання</h2>
+          <ul class="phones">
+            {contacts.phones.map((phone) => (
+              <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
+            ))}
+          </ul>
+          <p>
+            📸 <a href={contacts.instagram.url} rel="noopener">Instagram {contacts.instagram.handle}</a>
+          </p>
+          <h2>Додаткові послуги</h2>
+          <ul class="phones phones--small">
+            <li>
+              <a href={`tel:${contacts.extraPhones.quadsAndTransfer.tel}`}>{contacts.extraPhones.quadsAndTransfer.display}</a>
+              — квадроцикли / трансфер
+            </li>
+            <li>
+              <a href={`tel:${contacts.extraPhones.food.tel}`}>{contacts.extraPhones.food.display}</a>
+              — харчування
+            </li>
+          </ul>
+          <h2>Адреса</h2>
+          <p>{contacts.address.uk}</p>
+        </div>
+
+        <div>
+          <h2>Як відбувається бронювання</h2>
+          <ol class="steps">
+            {steps.map((step) => (
+              <li>
+                <span class="steps__n">{step.n}</span>
+                {step.text}
+              </li>
+            ))}
+          </ol>
+          <h2>Правила</h2>
+          <ul class="rules">
+            {policies.rules.map((rule) => <li>{rule.uk}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <iframe
+        class="map"
+        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+        title="Карпатська садиба на карті"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-4);
+  }
+
+  .grid h2 {
+    font-size: var(--fs-h3);
+    margin-top: var(--space-4);
+  }
+
+  .grid h2:first-child {
+    margin-top: 0;
+  }
+
+  .phones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .phones--small {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .phones a {
+    text-decoration: none;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    max-width: 34rem;
+  }
+
+  .steps li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+
+  .steps__n {
+    flex-shrink: 0;
+    width: 1.8em;
+    height: 1.8em;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--c-green-700);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .rules {
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-2);
+    max-width: 34rem;
+  }
+
+  .map {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    min-height: 18rem;
+    border: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+</style>

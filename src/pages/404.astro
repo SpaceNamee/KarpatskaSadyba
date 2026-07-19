@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import contacts from '../data/site/contacts.json';
+
+const mainPhone = contacts.phones[0];
+---
+
+<Base
+  title="Сторінку не знайдено — Карпатська садиба"
+  description="Такої сторінки немає, але котеджі на місці."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Сторінку не знайдено</h1>
+      <p>Такої сторінки немає — але гори, басейн і котеджі нікуди не поділись.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">На головну</a>
+        <a class="btn btn--outline" href={`tel:${mainPhone.tel}`}>{mainPhone.display}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-6);
+    min-height: 50vh;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .btn--outline {
+    color: var(--c-green-700);
+    box-shadow: inset 0 0 0 2px currentColor;
+    background: transparent;
+  }
+</style>

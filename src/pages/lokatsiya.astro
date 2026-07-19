@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import attractions from '../data/site/attractions.json';
+import contacts from '../data/site/contacts.json';
+
+const title = 'Локація і що поблизу — с. Плав\'я, 5 км до ГК «Плай» | Карпатська садиба';
+const description =
+  'Як доїхати до Карпатської садиби у с. Плав\'я (Сколівські Бескиди) та що подивитись поруч: ГК «Плай», Звенів, Тростян, Захар Беркут, водоспади, Тустань, вершини Парашка й Пікуй.';
+
+const mapQuery = encodeURIComponent("вул. Вадрусівка 121, Плав'я, Львівська область");
+const groups = [
+  { title: 'Гірськолижні комплекси', icon: '🎿', items: attractions.ski },
+  { title: 'Водоспади', icon: '💧', items: attractions.waterfalls },
+  { title: 'Вершини для походів', icon: '⛰️', items: attractions.peaks },
+  { title: 'Історія, культура й для дітей', icon: '🏰', items: attractions.culture },
+];
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <h1>Де ми і як доїхати</h1>
+      <div class="location-grid">
+        <div>
+          <p><strong>{contacts.address.uk}</strong></p>
+          <ul>
+            <li>Сколівські Бескиди, національний парк — просто за парканом</li>
+            <li>До ГК «Плай» — ~5 км</li>
+            <li>Магазин — за ~100 м від садиби</li>
+            <li>Зі Львова — траса Київ–Чоп (E50/M06) до повороту на Плав'я, ~120 км</li>
+            <li>Потягом — до ст. Славське або Сколе, далі трансфер</li>
+          </ul>
+          <p>
+            🚐 Організуємо трансфер з вокзалу:
+            <a href={`tel:${contacts.extraPhones.quadsAndTransfer.tel}`}>
+              {contacts.extraPhones.quadsAndTransfer.display}
+            </a>
+          </p>
+        </div>
+        <iframe
+          class="map"
+          src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+          title="Карпатська садиба на карті"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <h2>Що подивитись і чим зайнятись поблизу</h2>
+      {groups.map((group) => (
+        <div class="group">
+          <h3>{group.icon} {group.title}</h3>
+          <div class="cards">
+            {group.items.map((item) => (
+              <article class="card">
+                <h4>{item.name.uk}</h4>
+                <p class="card__distance">{item.distance}</p>
+                <p>{item.description.uk}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 48rem) {
+    .location-grid {
+      grid-template-columns: 1fr 1.2fr;
+      align-items: start;
+    }
+  }
+
+  .location-grid ul {
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .group {
+    margin-top: var(--space-5);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+  }
+
+  .card h4 {
+    margin-bottom: var(--space-1);
+  }
+
+  .card__distance {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    color: var(--c-wood-700);
+  }
+</style>

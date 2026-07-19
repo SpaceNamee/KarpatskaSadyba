@@ -1,0 +1,32 @@
+{
+  "checkIn": "15:00",
+  "checkOut": "11:00",
+  "quietHours": "00:00–05:00",
+  "depositUah": 3000,
+  "rules": [
+    {
+      "uk": "Заїзд з 15:00 (попередьте про орієнтовний час), виїзд до 11:00",
+      "en": "Check-in from 3 p.m. (let us know your arrival time), check-out by 11 a.m."
+    },
+    {
+      "uk": "Тихі години: з 00:00 до 05:00",
+      "en": "Quiet hours: midnight to 5 a.m."
+    },
+    {
+      "uk": "Усі котеджі — для некурців",
+      "en": "All cottages are non-smoking"
+    },
+    {
+      "uk": "Діти будь-якого віку; дитячі ліжечка не надаються",
+      "en": "Children of any age are welcome; baby cots are not provided"
+    },
+    {
+      "uk": "Домашні тварини — за попереднім запитом (можлива додаткова плата)",
+      "en": "Pets on prior request (extra fee may apply)"
+    },
+    {
+      "uk": "Оплата готівкою; бронь підтверджується завдатком 3 000 грн банківським переказом",
+      "en": "Payment in cash; a UAH 3,000 bank-transfer deposit confirms your booking"
+    }
+  ]
+}

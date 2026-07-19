@@ -1,0 +1,264 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Gallery from '../../components/Gallery.astro';
+import contacts from '../../data/site/contacts.json';
+import policies from '../../data/site/policies.json';
+
+export async function getStaticPaths() {
+  const cottages = await getCollection('cottages');
+  return cottages.map((cottage) => ({
+    params: { slug: cottage.id },
+    props: { cottage },
+  }));
+}
+
+const { cottage } = Astro.props;
+const c = cottage.data;
+
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/photos/**/*.{jpg,png,JPG,PNG}',
+  { eager: true }
+);
+
+function photo(file: string): ImageMetadata {
+  const path = `../../assets/photos/${c.photosDir}/${file}`;
+  const mod = allPhotos[path];
+  if (!mod) throw new Error(`Фото не знайдено: ${path}`);
+  return mod.default;
+}
+
+const galleryPhotos = c.photos.map((p) => ({ src: photo(p.file), alt: p.alt.uk }));
+const heroPhoto = photo(c.cardPhoto);
+const mainPhone = contacts.phones[0];
+
+const title = `${c.name.uk} — ${c.areaM2} м², до ${c.capacityMax} осіб | Карпатська садиба, с. Плав'я`;
+const description = `${c.name.uk} у Карпатах біля ГК «Плай»: ${c.areaM2} м², ${c.bedroomsCount} спалень, до ${c.capacityMax} гостей. Від ${c.prices.twoPlusNights.toLocaleString('uk-UA')} грн/доба. ${c.summary.uk}`;
+
+const facts = [
+  { label: 'Площа', value: `${c.areaM2} м²` },
+  { label: 'Гостей', value: `до ${c.capacityMax} (${c.prices.includedGuests} включено у ціну)` },
+  { label: 'Спальні', value: String(c.bedroomsCount) },
+  { label: 'Санвузли', value: c.bathrooms.uk },
+  { label: 'Вид', value: c.view.uk },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Accommodation',
+  name: `${c.name.uk} — Карпатська садиба`,
+  description: c.summary.uk,
+  floorSize: { '@type': 'QuantitativeValue', value: c.areaM2, unitCode: 'MTK' },
+  occupancy: { '@type': 'QuantitativeValue', maxValue: c.capacityMax },
+  numberOfBedrooms: c.bedroomsCount,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'вул. Вадрусівка, 121',
+    addressLocality: "с. Плав'я",
+    addressRegion: 'Львівська область',
+    addressCountry: 'UA',
+  },
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="cottage-hero">
+    <Image
+      class="cottage-hero__img"
+      src={heroPhoto}
+      alt={c.photos.find((p) => p.file === c.cardPhoto)?.alt.uk ?? c.name.uk}
+      width={1600}
+      loading="eager"
+    />
+    <div class="cottage-hero__overlay">
+      <div class="container">
+        <h1>{c.name.uk}</h1>
+        <p class="cottage-hero__meta">
+          {c.areaM2} м² · до {c.capacityMax} осіб · {c.bedroomsCount} спалень
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cottage-grid">
+      <div>
+        <p class="cottage-summary">{c.summary.uk}</p>
+
+        <h2>Планування</h2>
+        <ul>
+          {c.floors.map((floor) => <li>{floor.uk}</li>)}
+        </ul>
+
+        <h2>Спальні місця</h2>
+        <ul>
+          {c.bedrooms.map((bedroom) => <li>{bedroom.uk}</li>)}
+        </ul>
+
+        <h2>Родзинки</h2>
+        <ul>
+          {c.features.map((feature) => <li>{feature.uk}</li>)}
+        </ul>
+
+        <h2>Кухня</h2>
+        <ul>
+          {c.kitchen.map((item) => <li>{item.uk}</li>)}
+        </ul>
+      </div>
+
+      <aside class="booking-card">
+        <h2>Ціни</h2>
+        <dl class="booking-card__prices">
+          <dt>Від 2 діб</dt>
+          <dd>
+            <strong>{c.prices.twoPlusNights.toLocaleString('uk-UA')} грн</strong> / доба
+            <small>до {c.prices.includedGuests} осіб, далі +{c.prices.extraPersonUah} грн/особа</small>
+          </dd>
+          <dt>1 доба</dt>
+          <dd><strong>{c.prices.oneNight.toLocaleString('uk-UA')} грн</strong></dd>
+        </dl>
+        <p class="booking-card__note">
+          Бронь підтверджується завдатком {policies.depositUah.toLocaleString('uk-UA')} грн.
+          Заїзд з {policies.checkIn}, виїзд до {policies.checkOut}.
+        </p>
+        <a class="btn btn--primary booking-card__cta" href={`tel:${mainPhone.tel}`}>
+          Забронювати: {mainPhone.display}
+        </a>
+        <table class="facts">
+          <tbody>
+            {facts.map((fact) => (
+              <tr>
+                <th scope="row">{fact.label}</th>
+                <td>{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Фото</h2>
+      <Gallery photos={galleryPhotos} id={cottage.id} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cottage-hero {
+    position: relative;
+  }
+
+  .cottage-hero__img {
+    width: 100%;
+    height: clamp(18rem, 50vh, 32rem);
+    object-fit: cover;
+  }
+
+  .cottage-hero__overlay {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding-block: var(--space-5) var(--space-4);
+    background: linear-gradient(transparent, rgb(29 53 36 / 0.85));
+    color: #fff;
+  }
+
+  .cottage-hero__overlay h1,
+  .cottage-hero__meta {
+    color: #fff;
+    margin: 0;
+  }
+
+  .cottage-hero__meta {
+    font-weight: 700;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .cottage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 64rem) {
+    .cottage-grid {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .cottage-summary {
+    font-size: 1.1rem;
+  }
+
+  .booking-card {
+    position: sticky;
+    top: 5rem;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .booking-card__prices dt {
+    font-weight: 700;
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .booking-card__prices dd {
+    margin: 0 0 var(--space-3);
+    font-size: 1.15rem;
+  }
+
+  .booking-card__prices small {
+    display: block;
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .booking-card__note {
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+  }
+
+  .booking-card__cta {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .facts {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+
+  .facts th,
+  .facts td {
+    text-align: left;
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+
+  .facts th {
+    color: var(--c-text-muted);
+    font-weight: 600;
+    padding-right: var(--space-3);
+    white-space: nowrap;
+  }
+</style>

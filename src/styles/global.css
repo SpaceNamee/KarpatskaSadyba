@@ -110,6 +110,13 @@ a:hover {
   border: 0;
 }
 
+/* Місце під плаваючу мобільну CTA-кнопку (MobileCta.astro) */
+@media (max-width: 47.9rem) {
+  body {
+    padding-bottom: 4.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

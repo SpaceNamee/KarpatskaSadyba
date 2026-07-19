@@ -1,0 +1,126 @@
+{
+  "wellness": [
+    {
+      "id": "pool",
+      "name": { "uk": "Басейн з підігрівом", "en": "Heated outdoor pool" },
+      "description": {
+        "uk": "Відкритий басейн 10×6 м (глибина 1,6 м) з підігрівом, нічною підсвіткою, шезлонгами та видом на гори. Працює влітку і в першій половині осені.",
+        "en": "10×6 m outdoor pool (1.6 m deep) with heating, night lights, sun loungers and a mountain view. Open in summer and early autumn."
+      },
+      "price": { "uk": "Безкоштовно для гостей", "en": "Free for guests" },
+      "season": "summer"
+    },
+    {
+      "id": "chan",
+      "name": { "uk": "Чан", "en": "Hot tub (chan)" },
+      "description": {
+        "uk": "Карпатський чан з підігрівом просто неба — найкраще після катання чи походу.",
+        "en": "Traditional Carpathian outdoor hot tub — best after skiing or hiking."
+      },
+      "price": { "uk": "3 000 грн / 2 год (разом із сауною — 5 000 грн)", "en": "UAH 3,000 / 2 h (with sauna — UAH 5,000)" },
+      "season": "all"
+    },
+    {
+      "id": "sauna",
+      "name": { "uk": "Сауна", "en": "Sauna" },
+      "description": {
+        "uk": "Фінська сауна на території садиби.",
+        "en": "Finnish sauna on the estate grounds."
+      },
+      "price": { "uk": "2 500 грн / 2 год (разом із чаном — 5 000 грн)", "en": "UAH 2,500 / 2 h (with hot tub — UAH 5,000)" },
+      "season": "all"
+    }
+  ],
+  "activities": [
+    {
+      "id": "fishing",
+      "name": { "uk": "Риболовля", "en": "Fishing" },
+      "description": {
+        "uk": "Власний ставок на території. Риболовля безкоштовна; якщо хочете забрати улов — 300 грн/кг.",
+        "en": "Our own stocked pond. Fishing is free; take your catch home for UAH 300/kg."
+      },
+      "price": { "uk": "Безкоштовно (улов — 300 грн/кг)", "en": "Free (catch — UAH 300/kg)" },
+      "season": "all"
+    },
+    {
+      "id": "quads",
+      "name": { "uk": "Квадроцикли", "en": "Quad bikes" },
+      "description": {
+        "uk": "Прогулянки на квадроциклах гірськими маршрутами. Бронювання за телефоном +38 068 101 45 45.",
+        "en": "Quad bike rides on mountain trails. Book by phone: +38 068 101 45 45."
+      },
+      "price": { "uk": "За домовленістю", "en": "On request" },
+      "season": "all"
+    },
+    {
+      "id": "sports-field",
+      "name": { "uk": "Спортивне поле", "en": "Sports field" },
+      "description": {
+        "uk": "Поле для волейболу та футболу з інвентарем — за 300 м від садиби, безкоштовно.",
+        "en": "Volleyball/football field with equipment, 300 m uphill from the estate, free."
+      },
+      "price": { "uk": "Безкоштовно", "en": "Free" },
+      "season": "summer"
+    },
+    {
+      "id": "bbq",
+      "name": { "uk": "Альтанки та мангал", "en": "Gazebos & BBQ" },
+      "description": {
+        "uk": "Альтанки з мангалами; надаємо шампури, сітки, казан і сковорідку. Дрова — 500 грн за тачку.",
+        "en": "Gazebos with BBQ; skewers, grill grates, cauldron and pan provided. Firewood — UAH 500 per barrow."
+      },
+      "price": { "uk": "Користування безкоштовне, дрова 500 грн", "en": "Free to use, firewood UAH 500" },
+      "season": "all"
+    },
+    {
+      "id": "playground",
+      "name": { "uk": "Дитячий майданчик", "en": "Children's playground" },
+      "description": {
+        "uk": "Майданчик для дітей на території садиби.",
+        "en": "Playground on the estate grounds."
+      },
+      "price": { "uk": "Безкоштовно", "en": "Free" },
+      "season": "all"
+    },
+    {
+      "id": "ski",
+      "name": { "uk": "Лижі та сноуборд", "en": "Ski & snowboard" },
+      "description": {
+        "uk": "ГК «Плай» за 5 км: 6 трас до 1200 м, крісельні витяги, прокат спорядження та лижна школа.",
+        "en": "Play ski resort 5 km away: 6 slopes up to 1,200 m, chairlifts, gear rental and ski school."
+      },
+      "price": { "uk": "Прокат спорядження — на території садиби", "en": "Gear rental available at the estate" },
+      "season": "winter"
+    },
+    {
+      "id": "hiking",
+      "name": { "uk": "Походи в гори", "en": "Hiking" },
+      "description": {
+        "uk": "Маршрути на Парашку, Лопату й Пікуй, до водоспадів Кам'янка, Гуркало, Сопіт; піші екскурсії.",
+        "en": "Trails to Parashka, Lopata and Pikui peaks, Kamianka, Hurkalo and Sopit waterfalls; guided hikes."
+      },
+      "price": { "uk": "Безкоштовно / екскурсії за домовленістю", "en": "Free / guided hikes on request" },
+      "season": "summer"
+    },
+    {
+      "id": "transfer",
+      "name": { "uk": "Трансфер", "en": "Transfer" },
+      "description": {
+        "uk": "Трансфер з/до вокзалу та по околицях: +38 068 101 45 45.",
+        "en": "Transfer to/from the railway station and around: +38 068 101 45 45."
+      },
+      "price": { "uk": "За домовленістю", "en": "On request" },
+      "season": "all"
+    },
+    {
+      "id": "meals",
+      "name": { "uk": "Харчування", "en": "Meals" },
+      "description": {
+        "uk": "Домашні обіди під замовлення: +38 097 052 36 78.",
+        "en": "Home-cooked meals to order: +38 097 052 36 78."
+      },
+      "price": { "uk": "За меню", "en": "Per menu" },
+      "season": "all"
+    }
+  ]
+}

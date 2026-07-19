@@ -1,0 +1,81 @@
+{
+  "order": 1,
+  "name": { "uk": "Котедж 1", "en": "Cottage 1" },
+  "areaM2": 260,
+  "capacityBase": 10,
+  "capacityMax": 16,
+  "summary": {
+    "uk": "Просторий двоповерховий котедж із каміном у великій залі та власною альтанкою. Ідеальний для компаній, які цінують свій простір: територія біля будиночка належить тільки вам.",
+    "en": "A spacious two-storey cottage with a fireplace in the big hall and its own gazebo. Perfect for groups that value privacy: the grounds around the house are yours alone."
+  },
+  "floors": [
+    {
+      "uk": "1-й поверх: двомісна та чотиримісна кімнати, велика зала з каміном, повністю обладнана кухня, санвузол з душем і санвузол без душу",
+      "en": "Ground floor: a double and a quadruple room, big hall with fireplace, fully equipped kitchen, one bathroom with shower and one without"
+    },
+    {
+      "uk": "2-й поверх: дві двомісні та дві тримісні кімнати, кухня з балконом, санвузол з душем",
+      "en": "First floor: two double and two triple rooms, kitchen with balcony, bathroom with shower"
+    }
+  ],
+  "bedroomsCount": 6,
+  "bedrooms": [
+    { "uk": "Спальня 1: широке двоспальне ліжко", "en": "Bedroom 1: wide double bed" },
+    { "uk": "Спальня 2: два дивани-ліжка", "en": "Bedroom 2: two sofa beds" },
+    { "uk": "Спальня 3: широке двоспальне ліжко", "en": "Bedroom 3: wide double bed" },
+    { "uk": "Спальня 4: широке двоспальне ліжко", "en": "Bedroom 4: wide double bed" },
+    { "uk": "Спальня 5: два односпальні ліжка", "en": "Bedroom 5: two single beds" },
+    { "uk": "Спальня 6: односпальне ліжко + диван-ліжко", "en": "Bedroom 6: single bed + sofa bed" },
+    { "uk": "Вітальня: диван-ліжко", "en": "Living room: sofa bed" }
+  ],
+  "bathrooms": {
+    "uk": "2 санвузли з ванною/душем + 1 без",
+    "en": "2 bathrooms with bath/shower + 1 toilet"
+  },
+  "features": [
+    { "uk": "Камін у великій залі", "en": "Fireplace in the big hall" },
+    { "uk": "Власна альтанка й територія тільки для вашої компанії", "en": "Private gazebo and grounds just for your group" },
+    { "uk": "Підлога з підігрівом", "en": "Underfloor heating" },
+    { "uk": "Зона барбекю", "en": "BBQ area" }
+  ],
+  "kitchen": [
+    { "uk": "Плита та духова шафа", "en": "Stove and oven" },
+    { "uk": "Холодильник і мікрохвильова піч", "en": "Fridge and microwave" },
+    { "uk": "Електрочайник і посуд", "en": "Kettle and tableware" },
+    { "uk": "Пральна машина", "en": "Washing machine" }
+  ],
+  "view": { "uk": "Вид на гори", "en": "Mountain view" },
+  "prices": {
+    "twoPlusNights": 9500,
+    "oneNight": 15000,
+    "includedGuests": 10,
+    "extraPersonUah": 500
+  },
+  "photosDir": "cottage-1",
+  "photos": [
+    { "file": "exterior-01.jpg", "alt": { "uk": "Котедж 1 із зеленим газоном та мощеним подвір'ям на тлі карпатських лісів", "en": "Cottage 1 with a green lawn and paved yard against Carpathian forests" } },
+    { "file": "exterior-02.jpg", "alt": { "uk": "Фасад Котеджу 1 з бруківкою на подвір'ї та гойдалкою на тлі гір", "en": "Cottage 1 facade with a paved yard and a swing against the mountains" } },
+    { "file": "living-01.jpg", "alt": { "uk": "Вітальня з каміном і великим обіднім столом у Котеджі 1", "en": "Living room with a fireplace and a large dining table in Cottage 1" } },
+    { "file": "living-02.jpg", "alt": { "uk": "Вітальня з диваном і телевізором у дерев'яному Котеджі 1", "en": "Living room with a sofa and TV in wooden Cottage 1" } },
+    { "file": "living-03.jpg", "alt": { "uk": "Кімната відпочинку з диваном і тахтою у Котеджі 1", "en": "Lounge with a sofa and daybed in Cottage 1" } },
+    { "file": "living-04.jpg", "alt": { "uk": "Кімната відпочинку з диваном і телевізором у Котеджі 1", "en": "Lounge with a sofa and TV in Cottage 1" } },
+    { "file": "bedroom-01.jpg", "alt": { "uk": "Мансардна спальня з двоспальним ліжком і телевізором у Котеджі 1", "en": "Attic bedroom with a double bed and TV in Cottage 1" } },
+    { "file": "bedroom-02.jpg", "alt": { "uk": "Спальня з двоспальним ліжком та шафою у дерев'яному Котеджі 1", "en": "Bedroom with a double bed and wardrobe in wooden Cottage 1" } },
+    { "file": "bedroom-03.jpg", "alt": { "uk": "Затишна дерев'яна спальня з телевізором у Котеджі 1", "en": "Cosy wooden bedroom with TV in Cottage 1" } },
+    { "file": "bedroom-04.jpg", "alt": { "uk": "Мансардна спальня з мансардним вікном у Котеджі 1", "en": "Attic bedroom with a skylight in Cottage 1" } },
+    { "file": "bedroom-05.jpg", "alt": { "uk": "Спальня з двома односпальними ліжками у Котеджі 1", "en": "Bedroom with two single beds in Cottage 1" } },
+    { "file": "bedroom-06.jpg", "alt": { "uk": "Спальня з двоспальним ліжком та бордовими шторами у Котеджі 1", "en": "Bedroom with a double bed and burgundy curtains in Cottage 1" } },
+    { "file": "bedroom-07.jpg", "alt": { "uk": "Простора спальня з двоспальним ліжком і люстрою у Котеджі 1", "en": "Spacious bedroom with a double bed and chandelier in Cottage 1" } },
+    { "file": "bedroom-08.jpg", "alt": { "uk": "Спальня з двоспальним ліжком і великою шафою у Котеджі 1", "en": "Bedroom with a double bed and large wardrobe in Cottage 1" } },
+    { "file": "kitchen-01.jpg", "alt": { "uk": "Кухня-їдальня з дерев'яним столом і лавою у Котеджі 1", "en": "Kitchen-dining room with a wooden table and bench in Cottage 1" } },
+    { "file": "kitchen-02.png", "alt": { "uk": "Кухня з барною стійкою, духовкою та холодильником у Котеджі 1", "en": "Kitchen with a bar counter, oven and fridge in Cottage 1" } },
+    { "file": "bathroom-01.jpg", "alt": { "uk": "Ванна кімната з умивальником і рушникосушкою у Котеджі 1", "en": "Bathroom with a washbasin and towel rail in Cottage 1" } },
+    { "file": "bathroom-02.jpg", "alt": { "uk": "Мансардний санвузол із душовою кабіною та біде у Котеджі 1", "en": "Attic bathroom with a shower cabin and bidet in Cottage 1" } },
+    { "file": "bathroom-03.png", "alt": { "uk": "Ванна кімната з кутовою ванною та пральною машиною у Котеджі 1", "en": "Bathroom with a corner bath and washing machine in Cottage 1" } },
+    { "file": "interior-01.jpg", "alt": { "uk": "Хол першого поверху з дерев'яними дверима та сходами у Котеджі 1", "en": "Ground-floor hall with wooden doors and stairs in Cottage 1" } },
+    { "file": "interior-02.jpg", "alt": { "uk": "Прихожа з вхідними дверима та вішалкою у Котеджі 1", "en": "Entrance hall with a coat rack in Cottage 1" } },
+    { "file": "interior-03.jpg", "alt": { "uk": "Дерев'яні сходи на другий поверх у Котеджі 1", "en": "Wooden staircase to the first floor in Cottage 1" } },
+    { "file": "interior-04.jpg", "alt": { "uk": "Коридор із вбудованими шафами-купе у Котеджі 1", "en": "Corridor with built-in wardrobes in Cottage 1" } }
+  ],
+  "cardPhoto": "exterior-01.jpg"
+}

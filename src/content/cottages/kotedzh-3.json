@@ -1,0 +1,78 @@
+{
+  "order": 3,
+  "name": { "uk": "Котедж 3", "en": "Cottage 3" },
+  "areaM2": 120,
+  "capacityBase": 14,
+  "capacityMax": 15,
+  "summary": {
+    "uk": "Затишний котедж із терасою та балконом з видом на гори. На другому поверсі — кімнати з власними санвузлами.",
+    "en": "A cosy cottage with a terrace and a mountain-view balcony. Upstairs rooms come with their own bathrooms."
+  },
+  "floors": [
+    {
+      "uk": "1-й поверх: кухня, два санвузли, дві двомісні кімнати та двомісна кімната з розкладним кріслом",
+      "en": "Ground floor: kitchen, two bathrooms, two double rooms and a double room with a fold-out chair"
+    },
+    {
+      "uk": "2-й поверх: дві двомісні кімнати з додатковими диванами, санвузол у кожній кімнаті",
+      "en": "First floor: two double rooms with extra sofas, en-suite bathroom in each room"
+    }
+  ],
+  "bedroomsCount": 5,
+  "bedrooms": [
+    { "uk": "Спальня 1: двоспальне ліжко", "en": "Bedroom 1: double bed" },
+    { "uk": "Спальня 2: двоспальне ліжко", "en": "Bedroom 2: double bed" },
+    { "uk": "Спальня 3: двоспальне + односпальне ліжко", "en": "Bedroom 3: double + single bed" },
+    { "uk": "Спальня 4: двоспальне ліжко + диван-ліжко", "en": "Bedroom 4: double bed + sofa bed" },
+    { "uk": "Спальня 5: двоспальне ліжко + диван-ліжко", "en": "Bedroom 5: double bed + sofa bed" }
+  ],
+  "bathrooms": {
+    "uk": "3 санвузли з душем + 1 без",
+    "en": "3 bathrooms with shower + 1 toilet"
+  },
+  "features": [
+    { "uk": "Тераса", "en": "Terrace" },
+    { "uk": "Балкон з видом на гори", "en": "Mountain-view balcony" },
+    { "uk": "Санвузли в кімнатах другого поверху", "en": "En-suite bathrooms upstairs" },
+    { "uk": "Зона барбекю", "en": "BBQ area" }
+  ],
+  "kitchen": [
+    { "uk": "Плита", "en": "Stove" },
+    { "uk": "Холодильник і мікрохвильова піч", "en": "Fridge and microwave" },
+    { "uk": "Посуд і пральна машина", "en": "Tableware and washing machine" }
+  ],
+  "view": { "uk": "Вид на гори", "en": "Mountain view" },
+  "prices": {
+    "twoPlusNights": 11000,
+    "oneNight": 15500,
+    "includedGuests": 14,
+    "extraPersonUah": 500
+  },
+  "photosDir": "cottage-3",
+  "photos": [
+    { "file": "exterior-01.jpg", "alt": { "uk": "Дерев'яний Котедж 3 з балконом і терасою на тлі блакитного неба", "en": "Wooden Cottage 3 with a balcony and terrace against a blue sky" } },
+    { "file": "terrace-01.jpg", "alt": { "uk": "Тераса з дерев'яними меблями та видом на гори у Котеджі 3", "en": "Terrace with wooden furniture and a mountain view in Cottage 3" } },
+    { "file": "living-01.jpg", "alt": { "uk": "Простора вітальня з дерев'яним столом, телевізором та сходами у Котеджі 3", "en": "Spacious living room with a wooden table, TV and stairs in Cottage 3" } },
+    { "file": "bedroom-01.jpg", "alt": { "uk": "Спальня з панорамним видом на гори та ставок у Котеджі 3", "en": "Bedroom with a panoramic view of the mountains and pond in Cottage 3" } },
+    { "file": "bedroom-02.jpg", "alt": { "uk": "Спальня з двоспальним ліжком та видом на гори у Котеджі 3", "en": "Bedroom with a double bed and mountain view in Cottage 3" } },
+    { "file": "bedroom-03.jpg", "alt": { "uk": "Спальня з двоспальним ліжком та вікном у двір у Котеджі 3", "en": "Bedroom with a double bed and courtyard window in Cottage 3" } },
+    { "file": "bedroom-04.jpg", "alt": { "uk": "Мансардна спальня з двома ліжками та виходом на балкон у Котеджі 3", "en": "Attic bedroom with two beds and balcony access in Cottage 3" } },
+    { "file": "bedroom-05.jpg", "alt": { "uk": "Мансардна спальня з двома ліжками та виходом на балкон у Котеджі 3", "en": "Attic bedroom with two beds and balcony access in Cottage 3" } },
+    { "file": "bedroom-06.jpg", "alt": { "uk": "Мансардна спальня з двома ліжками у Котеджі 3", "en": "Attic bedroom with two beds in Cottage 3" } },
+    { "file": "bedroom-07.jpg", "alt": { "uk": "Затишна спальня зі зрубу з вікном у сад у Котеджі 3", "en": "Cosy log-cabin bedroom with a garden window in Cottage 3" } },
+    { "file": "bedroom-08.jpg", "alt": { "uk": "Світла спальня зі зрубу з двоспальним ліжком у Котеджі 3", "en": "Bright log-cabin bedroom with a double bed in Cottage 3" } },
+    { "file": "bedroom-09.jpg", "alt": { "uk": "Спальня з шафою та кріслом у Котеджі 3", "en": "Bedroom with a wardrobe and armchair in Cottage 3" } },
+    { "file": "bedroom-10.jpg", "alt": { "uk": "Спальня з ліжком, кріслом та шафою у Котеджі 3", "en": "Bedroom with a bed, armchair and wardrobe in Cottage 3" } },
+    { "file": "lounge-01.jpg", "alt": { "uk": "Мансардна кімната відпочинку з журнальним столиком у Котеджі 3", "en": "Attic lounge with a coffee table in Cottage 3" } },
+    { "file": "kitchen-01.jpg", "alt": { "uk": "Кухня-їдальня з дерев'яними меблями та плитою у Котеджі 3", "en": "Kitchen-dining room with wooden furniture and a stove in Cottage 3" } },
+    { "file": "kitchen-02.jpg", "alt": { "uk": "Міні-кухня з холодильником і мікрохвильовою піччю під сходами у Котеджі 3", "en": "Mini-kitchen with a fridge and microwave under the stairs in Cottage 3" } },
+    { "file": "bathroom-01.jpg", "alt": { "uk": "Санвузол з умивальником та дзеркалом у Котеджі 3", "en": "Bathroom with a washbasin and mirror in Cottage 3" } },
+    { "file": "bathroom-02.jpg", "alt": { "uk": "Ванна кімната з умивальником та туалетом на другому поверсі Котеджу 3", "en": "First-floor bathroom with a washbasin and toilet in Cottage 3" } },
+    { "file": "bathroom-03.jpg", "alt": { "uk": "Ванна кімната з душем на другому поверсі Котеджу 3", "en": "First-floor bathroom with a shower in Cottage 3" } },
+    { "file": "bathroom-04.jpg", "alt": { "uk": "Душова кабіна з шторкою у Котеджі 3", "en": "Shower cabin with a curtain in Cottage 3" } },
+    { "file": "bathroom-05.jpg", "alt": { "uk": "Душова зона, облицьована плиткою, у Котеджі 3", "en": "Tiled shower area in Cottage 3" } },
+    { "file": "interior-01.jpg", "alt": { "uk": "Сходи на мансардний поверх з трикутним вікном у Котеджі 3", "en": "Stairs to the attic floor with a triangular window in Cottage 3" } },
+    { "file": "interior-02.jpg", "alt": { "uk": "Кімната з кріслом та дерев'яними дверима у Котеджі 3", "en": "Room with an armchair and wooden doors in Cottage 3" } }
+  ],
+  "cardPhoto": "exterior-01.jpg"
+}

@@ -1,0 +1,217 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import contacts from '../data/site/contacts.json';
+import policies from '../data/site/policies.json';
+import services from '../data/site/services.json';
+
+const title = 'Ціни на котеджі — Карпатська садиба, с. Плав\'я біля ГК «Плай»';
+const description =
+  'Актуальні ціни на оренду котеджів на 10–18 осіб у Карпатах: від 9 500 грн/доба за котедж. Чан, сауна, риболовля. Завдаток 3 000 грн підтверджує бронювання.';
+
+const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
+const mainPhone = contacts.phones[0];
+
+const extras = [
+  { name: 'Чан + сауна', price: '5 000 грн / 2 год' },
+  { name: 'Чан', price: '3 000 грн / 2 год (далі — за домовленістю)' },
+  { name: 'Сауна', price: '2 500 грн / 2 год (далі — за домовленістю)' },
+  { name: 'Дрова для мангалу', price: '500 грн / тачка' },
+  { name: 'Риболовля', price: 'безкоштовно; забрати улов — 300 грн/кг' },
+  { name: 'Квадроцикли, трансфер', price: `за домовленістю: ${contacts.extraPhones.quadsAndTransfer.display}` },
+  { name: 'Харчування (домашні обіди)', price: `за меню: ${contacts.extraPhones.food.display}` },
+];
+
+const faq = [
+  {
+    q: 'Як підтверджується бронювання?',
+    a: `Ви телефонуєте або залишаєте заявку, ми узгоджуємо дати й ви вносите завдаток ${policies.depositUah.toLocaleString('uk-UA')} грн банківським переказом. Решта — готівкою при заїзді.`,
+  },
+  {
+    q: 'Що входить у ціну котеджу?',
+    a: 'Весь котедж цілком із територією та альтанкою, постіль і рушники, кухня з посудом, Wi-Fi, парковка, мангал (дрова окремо), а влітку — басейн з підігрівом.',
+  },
+  {
+    q: 'Скільки коштує додаткове місце?',
+    a: 'У ціну кожного котеджу включена базова кількість гостей; кожен наступний гість — 500 грн/доба.',
+  },
+  {
+    q: 'Чи можна орендувати всю садибу?',
+    a: 'Так, усі три котеджі разом вміщують до 49 гостей — ідеально для корпоративів і великих свят. Телефонуйте, порахуємо індивідуально.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="section">
+    <div class="container">
+      <h1>Ціни</h1>
+      <p class="note">
+        Ціни вказані за <strong>весь котедж</strong>, а не за особу.
+        ❄️ Зимові ціни можуть відрізнятися — уточнюйте за телефоном.
+      </p>
+
+      <div class="table-wrap">
+        <table class="prices">
+          <thead>
+            <tr>
+              <th>Котедж</th>
+              <th>Гостей</th>
+              <th>Від 2 діб (за добу)</th>
+              <th>1 доба</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cottages.map((cottage) => (
+              <tr>
+                <td>
+                  <a href={`/kotedzhi/${cottage.id}`}>{cottage.data.name.uk}</a>
+                  <small>{cottage.data.areaM2} м² · {cottage.data.bedroomsCount} спалень</small>
+                </td>
+                <td>
+                  до {cottage.data.capacityMax}
+                  <small>{cottage.data.prices.includedGuests} включено, далі +{cottage.data.prices.extraPersonUah} грн/особа</small>
+                </td>
+                <td><strong>{cottage.data.prices.twoPlusNights.toLocaleString('uk-UA')} грн</strong></td>
+                <td>{cottage.data.prices.oneNight.toLocaleString('uk-UA')} грн</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="deposit">
+        💳 Бронь підтверджується завдатком <strong>{policies.depositUah.toLocaleString('uk-UA')} грн</strong>
+        (банківський переказ), решта — готівкою при заїзді.
+      </p>
+      <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>Дізнатись вільні дати: {mainPhone.display}</a>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <h2>Додаткові послуги</h2>
+      <div class="table-wrap">
+        <table class="prices">
+          <tbody>
+            {extras.map((extra) => (
+              <tr>
+                <td>{extra.name}</td>
+                <td>{extra.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        Басейн, дитячий майданчик, спортивне поле, Wi-Fi і парковка —
+        <a href="/vidpochynok">безкоштовні для гостей</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Часті питання</h2>
+      <div class="faq">
+        {faq.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .note {
+    max-width: 44rem;
+    color: var(--c-text-muted);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-4);
+  }
+
+  .prices {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--c-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .prices th,
+  .prices td {
+    text-align: left;
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+
+  .prices thead th {
+    background: var(--c-green-700);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .prices small {
+    display: block;
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .deposit {
+    margin-block: var(--space-4);
+  }
+
+  .faq {
+    max-width: 46rem;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .faq details {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+  }
+
+  .faq summary {
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--c-green-900);
+  }
+
+  .faq p {
+    margin: var(--space-2) 0 0;
+  }
+</style>

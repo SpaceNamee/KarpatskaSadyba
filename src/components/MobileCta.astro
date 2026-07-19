@@ -1,0 +1,41 @@
+---
+import contacts from '../data/site/contacts.json';
+import uk from '../i18n/uk.json';
+import en from '../i18n/en.json';
+
+interface Props {
+  lang?: 'uk' | 'en';
+}
+
+const { lang = 'uk' } = Astro.props;
+const t = lang === 'uk' ? uk : en;
+const mainPhone = contacts.phones[0];
+---
+
+<a class="mobile-cta" href={`tel:${mainPhone.tel}`}>
+  📞 {t.cta.book}
+</a>
+
+<style>
+  .mobile-cta {
+    display: none;
+  }
+
+  @media (max-width: 47.9rem) {
+    .mobile-cta {
+      display: block;
+      position: fixed;
+      z-index: 40;
+      inset-inline: var(--space-3);
+      bottom: var(--space-3);
+      text-align: center;
+      padding: 0.9em;
+      border-radius: var(--radius);
+      background: var(--c-wood-600);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgb(29 53 36 / 0.35);
+    }
+  }
+</style>

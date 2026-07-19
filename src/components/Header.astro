@@ -19,7 +19,10 @@ const t = lang === 'uk' ? uk : en;
 
 const links: NavLink[] = Astro.props.links ?? [
   { href: '/#kotedzhi', label: t.nav.cottages },
-  { href: '/#kontakty', label: t.nav.contacts },
+  { href: '/tsiny', label: t.nav.prices },
+  { href: '/vidpochynok', label: t.nav.activities },
+  { href: '/lokatsiya', label: t.nav.location },
+  { href: '/kontakty', label: t.nav.contacts },
 ];
 
 const mainPhone = contacts.phones[0];
