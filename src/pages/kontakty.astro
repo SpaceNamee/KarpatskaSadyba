@@ -1,5 +1,7 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import BookingForm from '../components/BookingForm.astro';
 import contacts from '../data/site/contacts.json';
 import policies from '../data/site/policies.json';
 
@@ -8,6 +10,10 @@ const description =
   'Забронювати котедж у Карпатській садибі: телефони, Instagram, адреса та правила проживання. с. Плав\'я, 5 км від ГК «Плай».';
 
 const mapQuery = encodeURIComponent("вул. Вадрусівка 121, Плав'я, Львівська область");
+
+const cottageNames = (await getCollection('cottages'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((cottage) => cottage.data.name.uk);
 
 const steps = [
   { n: 1, text: 'Телефонуєте нам або пишете в Instagram — підбираємо котедж і вільні дати' },
@@ -62,6 +68,12 @@ const steps = [
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <BookingForm cottageOptions={cottageNames} />
     </div>
   </section>
 

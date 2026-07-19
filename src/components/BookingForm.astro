@@ -1,0 +1,175 @@
+---
+interface Props {
+  /** Передвибраний котедж (сторінка котеджу); якщо не задано — показуємо select */
+  cottage?: string;
+  /** Варіанти для select, коли cottage не передано */
+  cottageOptions?: string[];
+}
+
+const { cottage, cottageOptions = [] } = Astro.props;
+---
+
+<form class="booking-form" data-booking-form>
+  <h2>Залишити заявку</h2>
+  <p class="booking-form__note">
+    Заповніть форму — ми зателефонуємо, підтвердимо вільні дати й розкажемо про завдаток.
+  </p>
+
+  {cottage ? (
+    <input type="hidden" name="cottage" value={cottage} />
+  ) : (
+    <label>
+      Котедж
+      <select name="cottage">
+        <option value="">Порадьте мені</option>
+        {cottageOptions.map((option) => <option value={option}>{option}</option>)}
+        <option value="Вся садиба">Вся садиба (до 49 гостей)</option>
+      </select>
+    </label>
+  )}
+
+  <div class="booking-form__row">
+    <label>
+      Заїзд
+      <input type="date" name="checkIn" required />
+    </label>
+    <label>
+      Виїзд
+      <input type="date" name="checkOut" required />
+    </label>
+    <label>
+      Гостей
+      <input type="number" name="guests" min="1" max="49" placeholder="10" />
+    </label>
+  </div>
+
+  <div class="booking-form__row">
+    <label>
+      Ім'я *
+      <input type="text" name="name" required maxlength="100" autocomplete="name" />
+    </label>
+    <label>
+      Телефон *
+      <input type="tel" name="phone" required maxlength="30" autocomplete="tel" placeholder="+38 0__ ___ __ __" />
+    </label>
+  </div>
+
+  <label>
+    Коментар
+    <textarea name="comment" rows="3" maxlength="500" placeholder="Наприклад: приїдемо з дітьми, потрібен чан на суботу"></textarea>
+  </label>
+
+  <!-- honeypot: приховане поле проти ботів -->
+  <input class="booking-form__hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <button class="btn btn--primary" type="submit">Надіслати заявку</button>
+  <p class="booking-form__result" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-booking-form]').forEach((form) => {
+    const result = form.querySelector<HTMLElement>('.booking-form__result')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      if (data.checkIn && data.checkOut && String(data.checkOut) <= String(data.checkIn)) {
+        result.textContent = 'Дата виїзду має бути після дати заїзду.';
+        return;
+      }
+
+      button.disabled = true;
+      result.textContent = 'Надсилаємо…';
+      try {
+        const res = await fetch('/api/booking-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const out = await res.json();
+        if (!out.ok) throw new Error(out.error);
+        form.reset();
+        result.textContent = '✅ Дякуємо! Ми передзвонимо вам протягом кількох годин.';
+        (window as any).gtag?.('event', 'booking_request_submitted');
+      } catch {
+        result.textContent =
+          '⚠️ Не вдалося надіслати. Зателефонуйте нам — номери внизу сторінки.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .booking-form {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+    max-width: 38rem;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .booking-form h2 {
+    margin: 0;
+  }
+
+  .booking-form__note {
+    margin: 0;
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .booking-form label {
+    display: grid;
+    gap: var(--space-1);
+    font-weight: 600;
+    font-size: var(--fs-small);
+  }
+
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    font: inherit;
+    padding: 0.6em 0.8em;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background: var(--c-bg);
+    color: var(--c-text);
+  }
+
+  .booking-form input:focus,
+  .booking-form select:focus,
+  .booking-form textarea:focus {
+    outline: 2px solid var(--c-green-500);
+    outline-offset: 1px;
+  }
+
+  .booking-form__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .booking-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .booking-form__result {
+    margin: 0;
+    font-weight: 600;
+    min-height: 1.5em;
+  }
+</style>

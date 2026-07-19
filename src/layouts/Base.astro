@@ -14,6 +14,8 @@ interface Props {
 
 const { title, description, lang = 'uk' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+/** GA4 вмикається, коли в змінних середовища збірки задано PUBLIC_GA4_ID (формат G-XXXXXXXXXX) */
+const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
 ---
 
 <!doctype html>
@@ -32,6 +34,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+        <script
+          is:inline
+          define:vars={{ ga4Id }}
+        >
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+          document.addEventListener('click', (e) => {
+            const tel = e.target instanceof Element && e.target.closest('a[href^="tel:"]');
+            if (tel) gtag('event', 'phone_click', { phone: tel.getAttribute('href') });
+          });
+        </script>
+      </>
+    )}
   </head>
   <body>
     <Header lang={lang} />

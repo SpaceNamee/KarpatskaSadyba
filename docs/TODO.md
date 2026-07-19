@@ -53,13 +53,14 @@
 
 ## Фаза 2 — Бронювання
 
-- [ ] **[М] Взяти в екстранеті Booking iCal-посилання 3 котеджів** (Календар → Синхронізація)
-- [ ] `/api/availability`: fetch iCal, кеш ~1 год, зайняті інтервали
-- [ ] Компонент календаря зайнятості на сторінках котеджів
-- [ ] **[М] Створити Telegram-бота** (через @BotFather, 5 хв — покажу як) і чат для заявок
-- [ ] `/api/booking-request`: валідація, honeypot, rate limit → Telegram
-- [ ] Форма заявки на сторінках котеджів і контактах; екран «дякуємо»
-- [ ] GA4 подія `booking_request_submitted`; тест повного циклу
+- [ ] **[М] Взяти в екстранеті Booking iCal-посилання 3 котеджів** (Календар → Синхронізація) → додати в Cloudflare env `ICAL_URL_COTTAGE_1..3`
+- [x] `/api/availability`: fetch iCal, кеш 1 год, зайняті інтервали (`functions/api/availability.ts`)
+- [x] Компонент календаря зайнятості на сторінках котеджів (з фолбеком, поки немає iCal)
+- [ ] **[М] Створити Telegram-бота** (через @BotFather, 5 хв — покажу як) → додати в Cloudflare env `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+- [x] `/api/booking-request`: валідація, honeypot → Telegram (`functions/api/booking-request.ts`)
+- [x] Форма заявки на сторінках котеджів і контактах; повідомлення «дякуємо»
+- [x] GA4: підключення через build-змінну `PUBLIC_GA4_ID`, події `phone_click` + `booking_request_submitted` — **[М] створити акаунт GA4 і дати ID потоку**
+- [ ] Тест повного циклу на живому сайті: заявка → Telegram → дзвінок
 
 ## Фаза 3 — EN + ШІ-помічник
 

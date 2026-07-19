@@ -4,6 +4,8 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Gallery from '../../components/Gallery.astro';
+import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
+import BookingForm from '../../components/BookingForm.astro';
 import contacts from '../../data/site/contacts.json';
 import policies from '../../data/site/policies.json';
 
@@ -128,6 +130,7 @@ const schema = {
         <a class="btn btn--primary booking-card__cta" href={`tel:${mainPhone.tel}`}>
           Забронювати: {mainPhone.display}
         </a>
+        <a class="booking-card__form-link" href="#zayavka">…або залишіть заявку — передзвонимо</a>
         <table class="facts">
           <tbody>
             {facts.map((fact) => (
@@ -138,6 +141,7 @@ const schema = {
             ))}
           </tbody>
         </table>
+        <AvailabilityCalendar cottageNumber={c.order} />
       </aside>
     </div>
   </section>
@@ -146,6 +150,12 @@ const schema = {
     <div class="container">
       <h2>Фото</h2>
       <Gallery photos={galleryPhotos} id={cottage.id} />
+    </div>
+  </section>
+
+  <section class="section" id="zayavka">
+    <div class="container">
+      <BookingForm cottage={c.name.uk} />
     </div>
   </section>
 </Base>
@@ -238,7 +248,13 @@ const schema = {
   .booking-card__cta {
     display: block;
     text-align: center;
-    margin-bottom: var(--space-3);
+  }
+
+  .booking-card__form-link {
+    display: block;
+    text-align: center;
+    font-size: var(--fs-small);
+    margin-block: var(--space-2) var(--space-3);
   }
 
   .facts {
