@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Карпатська садиба">
+  <circle cx="46" cy="17" r="8" fill="#b06f2e"/>
+  <path d="M2 54 L22 18 L34 39 L42 26 L62 54 Z" fill="#2f5d3a"/>
+  <path d="M22 18 L28 29 L25 33 L30 36 L34 39 L28 42 L14 54 L2 54 Z" fill="#254531" opacity=".55"/>
+  <path d="M22 18 L26 25 L23 27 L28 30 L30 33 L34 39 L31 34 L27 32 L24 29 L26 26 Z" fill="#faf7f0" opacity=".9"/>
+</svg>

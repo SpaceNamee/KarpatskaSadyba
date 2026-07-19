@@ -1,0 +1,23 @@
+{
+  "name": { "uk": "Карпатська садиба", "en": "Karpatska Sadyba — Carpathian Estate" },
+  "phones": [
+    { "display": "+38 098 773 31 03", "tel": "+380987733103" },
+    { "display": "+38 068 968 80 55", "tel": "+380689688055" },
+    { "display": "+38 098 904 33 32", "tel": "+380989043332" }
+  ],
+  "extraPhones": {
+    "quadsAndTransfer": { "display": "+38 068 101 45 45", "tel": "+380681014545" },
+    "food": { "display": "+38 097 052 36 78", "tel": "+380970523678" }
+  },
+  "instagram": {
+    "handle": "@karpatska_sadyba_plavie",
+    "url": "https://www.instagram.com/karpatska_sadyba_plavie/"
+  },
+  "address": {
+    "uk": "вул. Вадрусівка, 121, с. Плав'я, Стрийський р-н, Львівська обл.",
+    "en": "121 Vadrusivka St., Plavia village, Stryi district, Lviv region, Ukraine"
+  },
+  "coordinates": { "lat": 48.83, "lng": 23.28 },
+  "checkIn": "15:00",
+  "checkOut": "11:00"
+}

@@ -1,0 +1,116 @@
+---
+import contacts from '../data/site/contacts.json';
+import uk from '../i18n/uk.json';
+import en from '../i18n/en.json';
+
+interface Props {
+  lang?: 'uk' | 'en';
+}
+
+const { lang = 'uk' } = Astro.props;
+const t = lang === 'uk' ? uk : en;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__brand">
+        <img src="/logo.svg" alt="" width="36" height="36" />
+        {contacts.name.uk}
+      </p>
+      <p>{contacts.address[lang]}</p>
+    </div>
+
+    <div>
+      <h2 class="footer__title">{t.footer.booking}</h2>
+      <ul class="footer__list">
+        {contacts.phones.map((phone) => (
+          <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer__title">{t.footer.quadsAndTransfer} / {t.footer.food}</h2>
+      <ul class="footer__list">
+        <li>
+          <a href={`tel:${contacts.extraPhones.quadsAndTransfer.tel}`}>
+            {contacts.extraPhones.quadsAndTransfer.display}
+          </a>
+          — {t.footer.quadsAndTransfer.toLowerCase()}
+        </li>
+        <li>
+          <a href={`tel:${contacts.extraPhones.food.tel}`}>
+            {contacts.extraPhones.food.display}
+          </a>
+          — {t.footer.food.toLowerCase()}
+        </li>
+        <li>
+          <a href={contacts.instagram.url} rel="noopener">Instagram {contacts.instagram.handle}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <p>© {year} {t.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-6);
+    background: var(--c-green-900);
+    color: var(--c-text-inverse);
+    padding-block: var(--space-5) var(--space-3);
+  }
+
+  .footer a {
+    color: var(--c-text-inverse);
+  }
+
+  .footer a:hover {
+    color: var(--c-wood-100);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-5);
+  }
+
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .footer__title {
+    font-size: var(--fs-small);
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c-wood-100);
+    margin-bottom: var(--space-2);
+  }
+
+  .footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .footer__bottom {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid rgb(255 255 255 / 0.15);
+    font-size: var(--fs-small);
+    color: rgb(247 245 238 / 0.75);
+  }
+</style>

@@ -1,0 +1,182 @@
+---
+import Base from '../layouts/Base.astro';
+import contacts from '../data/site/contacts.json';
+
+const title = 'Карпатська садиба — котеджі на 10–18 осіб біля ГК «Плай», с. Плав\'я';
+const description =
+  'Три дерев\'яні котеджі для великих компаній та сімей у с. Плав\'я, за 5 км від гірськолижного комплексу «Плай». Басейн з підігрівом, чан, сауна, риболовля. Рейтинг 9.2 на Booking.com.';
+
+const cottages = [
+  {
+    name: 'Котедж 1',
+    area: '260 м²',
+    capacity: 'до 16 осіб',
+    highlights: 'Камін, власна альтанка, тепла підлога, 6 спалень',
+  },
+  {
+    name: 'Котедж 2',
+    area: '260 м²',
+    capacity: 'до 18 осіб',
+    highlights: 'Тераса з видом на басейн і гори, 7 спалень, 4 санвузли',
+  },
+  {
+    name: 'Котедж 3',
+    area: '120 м²',
+    capacity: 'до 15 осіб',
+    highlights: 'Тераса, балкон з видом на гори, 5 спалень',
+  },
+];
+
+const mainPhone = contacts.phones[0];
+---
+
+<Base title={title} description={description}>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Сколівські Бескиди · с. Плав'я · 5 км до ГК «Плай»</p>
+      <h1>Три дерев'яні котеджі на 10–18 осіб — для вашої компанії чи родини</h1>
+      <p class="hero__sub">
+        Басейн з підігрівом, чан, сауна, риболовля та гори навколо.
+        Уся садиба вміщує до 49 гостей. Оцінка гостей на Booking.com — 9.2.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>
+          Зателефонувати: {mainPhone.display}
+        </a>
+        <a class="btn btn--ghost" href={contacts.instagram.url} rel="noopener">
+          Instagram {contacts.instagram.handle}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="kotedzhi" class="section">
+    <div class="container">
+      <h2>Котеджі</h2>
+      <p class="section__note">
+        Детальні сторінки з фото, схемами спалень і календарем вільних дат — уже незабаром.
+        Поки що телефонуйте — з радістю все розкажемо.
+      </p>
+      <div class="cards">
+        {cottages.map((cottage) => (
+          <article class="card">
+            <h3>{cottage.name}</h3>
+            <p class="card__meta">{cottage.area} · {cottage.capacity}</p>
+            <p>{cottage.highlights}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakty" class="section section--tinted">
+    <div class="container">
+      <h2>Контакти</h2>
+      <div class="contacts">
+        <div>
+          <h3>Бронювання</h3>
+          <ul class="contacts__list">
+            {contacts.phones.map((phone) => (
+              <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Адреса</h3>
+          <p>{contacts.address.uk}</p>
+          <p>Заїзд з {contacts.checkIn} · виїзд до {contacts.checkOut}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(80rem 30rem at 110% -20%, rgb(176 111 46 / 0.25), transparent 60%),
+      linear-gradient(160deg, var(--c-green-900), var(--c-green-700));
+    color: var(--c-text-inverse);
+    padding-block: var(--space-6);
+  }
+
+  .hero__inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    color: #fff;
+  }
+
+  .hero__eyebrow {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-wood-100);
+  }
+
+  .hero__sub {
+    font-size: 1.125rem;
+    color: rgb(247 245 238 / 0.9);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .section {
+    padding-block: var(--space-6);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .section__note {
+    max-width: 40rem;
+    color: var(--c-text-muted);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+  }
+
+  .card__meta {
+    font-weight: 700;
+    color: var(--c-green-700);
+  }
+
+  .contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .contacts__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .contacts__list a {
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>

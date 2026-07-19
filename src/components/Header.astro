@@ -1,0 +1,182 @@
+---
+import contacts from '../data/site/contacts.json';
+import uk from '../i18n/uk.json';
+import en from '../i18n/en.json';
+
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  lang?: 'uk' | 'en';
+  /** Пункти меню; за замовчуванням — якорі головної (Фаза 0), у Фазі 1 стануть сторінками */
+  links?: NavLink[];
+}
+
+const { lang = 'uk' } = Astro.props;
+const t = lang === 'uk' ? uk : en;
+
+const links: NavLink[] = Astro.props.links ?? [
+  { href: '/#kotedzhi', label: t.nav.cottages },
+  { href: '/#kontakty', label: t.nav.contacts },
+];
+
+const mainPhone = contacts.phones[0];
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="header__brand" href={lang === 'uk' ? '/' : '/en'}>
+      <img src="/logo.svg" alt="" width="40" height="40" />
+      <span>{contacts.name.uk}</span>
+    </a>
+
+    <input class="header__toggle" type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label class="header__burger" for="nav-toggle">
+      <span class="visually-hidden">{t.menu.open}</span>
+      <span class="header__burger-line"></span>
+      <span class="header__burger-line"></span>
+      <span class="header__burger-line"></span>
+    </label>
+
+    <nav class="header__nav" aria-label={lang === 'uk' ? 'Головне меню' : 'Main menu'}>
+      <ul>
+        {links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+      <a class="btn btn--primary header__phone" href={`tel:${mainPhone.tel}`}>
+        {mainPhone.display}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--c-surface);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 4rem;
+  }
+
+  .header__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--c-green-900);
+    text-decoration: none;
+  }
+
+  .header__nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .header__nav a:not(.btn) {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--c-text);
+  }
+
+  .header__nav a:not(.btn):hover {
+    color: var(--c-green-700);
+  }
+
+  .header__phone {
+    white-space: nowrap;
+  }
+
+  .header__toggle,
+  .header__burger {
+    display: none;
+  }
+
+  @media (max-width: 47.9rem) {
+    .header__burger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: var(--space-2);
+      cursor: pointer;
+    }
+
+    .header__burger-line {
+      width: 24px;
+      height: 2.5px;
+      border-radius: 2px;
+      background: var(--c-green-900);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .header__nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      padding: var(--space-3);
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      box-shadow: var(--shadow);
+    }
+
+    .header__nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .header__nav ul a {
+      display: block;
+      padding: var(--space-3);
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .header__phone {
+      margin-top: var(--space-3);
+      text-align: center;
+    }
+
+    .header__toggle:checked ~ .header__nav {
+      display: flex;
+    }
+
+    .header__toggle:checked ~ .header__burger .header__burger-line:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .header__toggle:checked ~ .header__burger .header__burger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .header__toggle:checked ~ .header__burger .header__burger-line:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+  }
+</style>

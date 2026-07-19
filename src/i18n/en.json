@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "cottages": "Cottages",
+    "prices": "Prices",
+    "activities": "Activities",
+    "location": "Location",
+    "contacts": "Contacts"
+  },
+  "cta": {
+    "book": "Book now",
+    "checkDates": "Check dates",
+    "call": "Call us"
+  },
+  "footer": {
+    "booking": "Booking",
+    "quadsAndTransfer": "Quad bikes / transfer",
+    "food": "Meals",
+    "address": "Address",
+    "rights": "Karpatska Sadyba. All rights reserved."
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  }
+}

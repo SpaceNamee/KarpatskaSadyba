@@ -1,0 +1,48 @@
+/* Дизайн-токени «Карпатська садиба».
+   Палітра успадковує зелену гаму старого сайту, але приглушена:
+   глибокий лісовий зелений + теплі дерев'яні відтінки. */
+:root {
+  /* Кольори */
+  --c-green-900: #1d3524;
+  --c-green-800: #254531;
+  --c-green-700: #2f5d3a; /* основний бренд-колір */
+  --c-green-500: #4a7d58;
+  --c-green-100: #e3ecdf;
+
+  --c-wood-600: #b06f2e; /* акцент CTA — тепле дерево/бурштин */
+  --c-wood-700: #96581f; /* hover CTA */
+  --c-wood-100: #f3e7d3;
+
+  --c-bg: #faf7f0;       /* теплий папір */
+  --c-surface: #ffffff;
+  --c-border: #e5dfd2;
+
+  --c-text: #26251f;
+  --c-text-muted: #676e60;
+  --c-text-inverse: #f7f5ee;
+
+  /* Типографіка */
+  --font-heading: 'Philosopher', 'Georgia', serif;
+  --font-body: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --fs-h1: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem);
+  --fs-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+  --fs-h3: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Відступи */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  /* Інше */
+  --radius: 10px;
+  --radius-lg: 18px;
+  --shadow: 0 2px 12px rgb(29 53 36 / 0.08);
+  --container: 72rem;
+  --transition: 180ms ease;
+}
