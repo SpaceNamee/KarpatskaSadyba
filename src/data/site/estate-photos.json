@@ -34,6 +34,44 @@
       }
     },
     {
+      "file": "pool-05.jpg",
+      "service": "Басейн з підігрівом",
+      "alt": {
+        "uk": "Басейн і шезлонги ясного дня, за ним — ліс і гори",
+        "en": "The pool and loungers on a clear day, forest and mountains behind"
+      }
+    },
+    {
+      "file": "chan-01.jpg",
+      "service": "Чан",
+      "alt": {
+        "uk": "Карпатський чан з підігрівом на заході сонця, пара над водою й кам'яна стіна",
+        "en": "The Carpathian hot tub steaming at sunset beside a stone wall"
+      }
+    },
+    {
+      "file": "sauna-01.jpg",
+      "service": "Сауна",
+      "alt": {
+        "uk": "Фінська сауна на території: піч з камінням і дерев'яний полок",
+        "en": "The on-site Finnish sauna: a stone-filled heater and wooden benches"
+      }
+    },
+    {
+      "file": "terrace-01.jpg",
+      "alt": {
+        "uk": "Крита тераса зрубаного з колод котеджу зі сходами й видом на гори",
+        "en": "The covered terrace of a log cottage with steps and a mountain view"
+      }
+    },
+    {
+      "file": "interior-01.jpg",
+      "alt": {
+        "uk": "Простора їдальня в котеджі: довгий дерев'яний стіл, сходи на другий поверх",
+        "en": "A spacious cottage dining area: a long wooden table and stairs to the upper floor"
+      }
+    },
+    {
       "file": "pond-01.jpg",
       "service": "Риболовля",
       "alt": {
