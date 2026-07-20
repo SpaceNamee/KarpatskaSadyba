@@ -6,6 +6,7 @@ import Gallery from '../components/Gallery.astro';
 import services from '../data/site/services.json';
 import contacts from '../data/site/contacts.json';
 import estate from '../data/site/estate-photos.json';
+import play from '../data/site/play.json';
 
 import terraceImg from '../assets/photos/cottage-3/terrace-01.jpg';
 import winterImg from '../assets/photos/cottage-2/exterior-02-winter.jpg';
@@ -96,7 +97,69 @@ const allServices = [...services.wellness, ...services.activities];
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="play">
+    <div class="container">
+      <h2>Поруч — курорт «Плай» (5 км)</h2>
+      <p class="note">
+        За 5 км від садиби — великий гірськолижний і рекреаційний комплекс «Плай». Гості їздять
+        туди на день: узимку — на лижі, влітку — на байк-парк і канатну дорогу, цілий рік —
+        у СПА, боулінг чи ресторани.
+      </p>
+
+      <div class="play-groups">
+        <div class="play-group">
+          <h3>❄️ Взимку</h3>
+          <ul>{play.services.winter.map((s) => <li>{s}</li>)}</ul>
+        </div>
+        <div class="play-group">
+          <h3>☀️ Влітку</h3>
+          <ul>{play.services.summer.map((s) => <li>{s}</li>)}</ul>
+        </div>
+        <div class="play-group">
+          <h3>🗓️ Цілий рік</h3>
+          <ul>{play.services.year.map((s) => <li>{s}</li>)}</ul>
+        </div>
+      </div>
+
+      <h3 class="play-prices-title">Ски-паси й підйомники «Плаю»</h3>
+      <p class="note">{play.passes.seasonsNote}</p>
+      <div class="table-wrap">
+        <table class="play-prices">
+          <thead>
+            <tr>
+              <th>Ски-пас</th>
+              {play.passes.columns.map((c) => <th>{c.label}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {play.passes.time.map((row) => (
+              <tr>
+                <td>{row.label}</td>
+                <td>{row.low} грн</td>
+                <td>{row.holiday} грн</td>
+                <td>{row.winter} грн</td>
+              </tr>
+            ))}
+            {play.passes.lifts.map((row) => (
+              <tr class="play-prices__lift">
+                <td>{row.label}</td>
+                <td>{row.low} грн</td>
+                <td>{row.holiday} грн</td>
+                <td>{row.winter} грн</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        {play.passes.multiDayNote} Ціни курорту на сезон 2025/26 — орієнтовні, уточнюйте актуальні
+        перед поїздкою. Забронювати житло й трансфер до трас можна в нас:
+        <a href={`tel:${mainPhone.tel}`}>{mainPhone.display}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
     <div class="container">
       <div class="seasons">
         <figure>
@@ -216,6 +279,82 @@ const allServices = [...services.wellness, ...services.activities];
 
   .estate-gallery {
     margin-top: var(--space-4);
+  }
+
+  /* Курорт «Плай» */
+  .play-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-4) 0 var(--space-5);
+  }
+
+  .play-group {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .play-group h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--fs-h3);
+  }
+
+  .play-group ul {
+    margin: 0;
+    padding-left: 1.1em;
+    display: grid;
+    gap: var(--space-1);
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .play-prices-title {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-2);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-3);
+  }
+
+  .play-prices {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--c-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-width: 30rem;
+  }
+
+  .play-prices th,
+  .play-prices td {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .play-prices thead th {
+    background: var(--c-green-700);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .play-prices td:not(:first-child) {
+    font-weight: 700;
+    color: var(--c-green-900);
+    white-space: nowrap;
+  }
+
+  .play-prices__lift td {
+    background: var(--c-green-100);
   }
 
   /* більші мініатюри, ніж у галереї котеджу: 20 фото лягають по 5 у ряд */
