@@ -4,6 +4,8 @@
       "name": { "uk": "ГК «Плай»", "en": "Play ski resort" },
       "distance": "5 км",
       "photo": "play.jpg",
+      "link": "/vidpochynok#play",
+      "linkText": "Послуги й ціни курорту →",
       "description": {
         "uk": "Найближчий до нас комплекс: 6 трас до 1200 м (сині, червоні, чорні та навчальні), 2 крісельні витяги, мультиліфт і бебі-ліфт. Працює і влітку.",
         "en": "The closest resort: 6 slopes up to 1,200 m (blue, red, black and training runs), 2 chairlifts, multi-lift and baby lift. Open in summer too."

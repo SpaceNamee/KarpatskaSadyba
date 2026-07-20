@@ -93,6 +93,8 @@
     {
       "id": "ski",
       "photo": "attractions/play.jpg",
+      "link": "/vidpochynok#play",
+      "linkText": "Послуги курорту «Плай» →",
       "name": { "uk": "Лижі та сноуборд", "en": "Ski & snowboard" },
       "description": {
         "uk": "ГК «Плай» за 5 км: 6 трас до 1200 м, крісельні витяги, прокат спорядження та лижна школа.",
@@ -126,6 +128,7 @@
       "id": "meals",
       "photo": "estate/bbq-01.jpg",
       "link": "/menu",
+      "linkText": "Переглянути меню →",
       "name": { "uk": "Харчування", "en": "Meals" },
       "description": {
         "uk": "Домашні обіди під замовлення: +38 097 052 36 78.",

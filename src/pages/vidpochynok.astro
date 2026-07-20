@@ -49,7 +49,7 @@ const allServices = [...services.wellness, ...services.activities];
       <h1>Відпочинок на території та поруч</h1>
       <p class="note">
         Усе найважливіше — просто на садибі: басейн, чан і сауна, ставок з рибою, альтанки з
-        мангалами, дитячий майданчик і спортивне поле. А за 5 км — витяги ГК «Плай».
+        мангалами, дитячий майданчик і спортивне поле. А за 5 км — <a href="#play">витяги ГК «Плай»</a>.
       </p>
 
       <div class="cards">
@@ -74,7 +74,9 @@ const allServices = [...services.wellness, ...services.activities];
                 <p>{service.description.uk}</p>
                 <p class="card__price">{service.price.uk}</p>
                 {(service as { link?: string }).link && (
-                  <a class="card__link" href={(service as { link?: string }).link}>Переглянути меню →</a>
+                  <a class="card__link" href={(service as { link?: string }).link}>
+                    {(service as { linkText?: string }).linkText ?? 'Детальніше →'}
+                  </a>
                 )}
               </div>
             </article>
@@ -164,7 +166,7 @@ const allServices = [...services.wellness, ...services.activities];
       <div class="seasons">
         <figure>
           <Image src={winterImg} alt="Котедж 2 взимку на тлі засніжених Карпат" width={800} />
-          <figcaption>Взимку: «Плай» за 5 км, прокат спорядження на території, чан після трас</figcaption>
+          <figcaption>Взимку: <a href="#play">«Плай» за 5 км</a>, прокат спорядження на території, чан після трас</figcaption>
         </figure>
         <figure>
           <Image src={terraceImg} alt="Тераса з видом на гори влітку" width={800} />
