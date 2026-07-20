@@ -36,7 +36,7 @@
     { "uk": "Камін у великій залі", "en": "Fireplace in the big hall" },
     { "uk": "Власна альтанка й територія тільки для вашої компанії", "en": "Private gazebo and grounds just for your group" },
     { "uk": "Підлога з підігрівом", "en": "Underfloor heating" },
-    { "uk": "Зона барбекю", "en": "BBQ area" }
+    { "uk": "Зона барбекю з інвентарем (шампури, сітки, казан, сковорідка)", "en": "BBQ area with equipment (skewers, grates, cauldron, pan)" }
   ],
   "kitchen": [
     { "uk": "Плита та духова шафа", "en": "Stove and oven" },

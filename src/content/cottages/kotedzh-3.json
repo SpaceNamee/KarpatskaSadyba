@@ -34,7 +34,7 @@
     { "uk": "Тераса", "en": "Terrace" },
     { "uk": "Балкон з видом на гори", "en": "Mountain-view balcony" },
     { "uk": "Санвузли в кімнатах другого поверху", "en": "En-suite bathrooms upstairs" },
-    { "uk": "Зона барбекю", "en": "BBQ area" }
+    { "uk": "Зона барбекю з інвентарем (шампури, сітки, казан, сковорідка)", "en": "BBQ area with equipment (skewers, grates, cauldron, pan)" }
   ],
   "kitchen": [
     { "uk": "Плита", "en": "Stove" },

@@ -73,10 +73,10 @@
       "photo": "estate/gazebo-01.jpg",
       "name": { "uk": "Альтанки та мангал", "en": "Gazebos & BBQ" },
       "description": {
-        "uk": "Альтанки з мангалами; надаємо шампури, сітки, казан і сковорідку. Дрова — 500 грн за тачку.",
-        "en": "Gazebos with BBQ; skewers, grill grates, cauldron and pan provided. Firewood — UAH 500 per barrow."
+        "uk": "Альтанки з мангалами. Шампури, сітки, казан і сковорідку надаємо безкоштовно — усе входить у вартість котеджу. Окремо оплачуються лише дрова — 500 грн за тачку.",
+        "en": "Gazebos with BBQ. Skewers, grill grates, cauldron and pan are provided free — all included in the cottage price. Only firewood is extra — UAH 500 per barrow."
       },
-      "price": { "uk": "Користування безкоштовне, дрова 500 грн", "en": "Free to use, firewood UAH 500" },
+      "price": { "uk": "Інвентар входить у вартість; дрова — 500 грн/тачка", "en": "Equipment included; firewood UAH 500/barrow" },
       "season": "all"
     },
     {
