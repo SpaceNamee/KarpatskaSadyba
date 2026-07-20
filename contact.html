@@ -1,106 +1,15 @@
-<!DOCTYPE html>
-<html lang="ua">
-   <head>
-      <title>Контакти</title>
-      <link rel="stylesheet" href="css/style.css" />
-      <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-      <link rel="icon" href="img/home-icon.png">
-   </head>
-   <body>
-      <div class = wrapper>
-         <header class="header "> <!--Верхня частина сторінки Header-->
-            <div class="header_wrappe">
-               <div class="header_container container"> <!--Контейнер-->
-                  <div class="header_body">
-                     <div class="header_main">
-                        <div class="header_menu menu">
-							<button class="burger-menu" onclick="toggleMenu()">☰</button> <!-- Бургер-кнопка -->
-							<a href="index.html" class="header_logo_mobile"><img class = "logo_img" src="img/Estate_black.svg" alt=""></a>
-                           <nav class="menu_body">	
-                              <ul class="menu_list list1">
-                                 <li class="menu_item item1"><a href="location.html" class="menu_link">Розташування</a></li>
-                                 <li class="menu_item item2"><a href="cost.html" class="menu_link">Ціни</a></li>
-                                 <li class="menu_item item3"><a href="contact.html" class="menu_link">Контакти</a></li>
-                              </ul>
-                              <a href="index.html" class="header_logo"><img style="width: 150px; height: auto;" class = "logo_img" src="img/Estate_black.svg" alt=""></a>
-                              <ul class="menu_list list2">
-                                 <li class="menu_item item4"><a href="enjoq.html" class="menu_link">Розваги</a></li>
-                                 <li class="menu_item item5"><a href="food.html" class="menu_link">Харчування</a></li>
-                                 <li class="menu_item item6"><a href="cotagge.html" class="menu_link">Котеджі</a></li>
-                              </ul>
-                           </nav>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </header> <!--Верхня частина сторінки Header-->
-         <main class="content">
-            <div class="contacts">
-               <div class="contacts_container container">
-                  <div class="contacts_social_and_contact">
-                     <div class="contacts_social contacts_block">
-                        <div class="social_contacts_title contacts_title">Соцмережі</div>
-                        <div class="social_contacts_subtitle contacts_subtitle">Підписуйся на наш інстаграм щоб не пропустити акції</div>
-                        <div class="contacts_inst"><a href="https://www.instagram.com/karpatska_sadyba_plavie/" ><img style="width: 80px;" src="img/icons8-instagram-48.png" alt=""></a></div>
-                     </div>
-                     <div class="contacts_contact contacts_block">
-                        <div class="contacts_contact_title contacts_title">Контакти</div>
-                        <div class="contacts_contact_subtitle contacts_subtitle">
-                           <div class="owner1 owner"><a href="tel:+380689688055" class="num">+38 (068) 968 80 55</a></div>
-                           <div class="owner2 owner"><a href="tel:+380989043332" class="num">+38 (098) 904 33 32</a></div>
-                           <div class="owner3 owner"><a href="tel:+380987733103" class="num">+38 (098) 773 31 03</a></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="contacts_book contacts_block">
-                     <div class="contacts_book_title contacts_title">Бронювання</div>
-                     <div class="contacts_book_subtitle contacts_subtitle">Бронювання котеджу здійснюється по телефону або в інстаграмі. Бронювання підтверджується завдатком</div>
-                  </div>
-               </div>
-            </div>
-         </main>
-         <footer class="footer">
-            <div class="container">
-               <div class="footer_body">
-                  <div class="footer_logo"><a href="index.html"><img class="footer_img" src="img/Estate1.png" alt="Carpation Estate"></a></div>
-                  <div class="footer_services service">
-                     <div class="service_title footer_title">Сервіси</div>
-                     <div class="service_list">
-                        <ul>
-                           <li class="service_item item1"><a href="cotagge.html" class="service_link">Котеджі</a></li>
-                           <li class="service_item item2"><a href="cost.html" class="service_link">Ціни</a></li>
-                           <li class="service_item item3"><a href="enjoq.html" class="service_link">Розваги</a></li>
-                           <li class="service_item item4"><a href="food.html" class="service_link">Харчування</a></li>
-                           <li class="service_item item5"><a href="location.html" class="service_link">Розташування</a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="footer_contact">
-                     <div class="footer_tel">
-                        <div class="footer_tel_title footer_title">Контакти</div>
-                        <ul>
-                           <li><a href="tel:380987733103" class="footer_tel_item">+38 098 77 33 103</a></li>
-                           <li><a href="tel:380689688055" class="footer_tel_item">+38 068 96 88 055</a></li>
-                        </ul>
-                     </div>
-                     <div class="footer_inst ">
-                        <a href="https://www.instagram.com/karpatska_sadyba_plavie/" class="footer_inst_link"><img src="img/icons8-instagram-48.png" alt="" class="footer_inst_img"></a>
-                     </div>
-                  </div>
-                  <div class="footer_adress">
-                     <div class="footer_adress_title footer_title">Адреса</div>
-                     <div class="footer_adress_subtitle">Львівська обл. Сколівський район, с. Плав’я, вулиця Вадрусівка</div>
-                  </div>
-               </div>
-            </div>
-         </footer>
-      </div>
-	<script>
-		function toggleMenu() {
-   			const menuBody = document.querySelector('.menu_body');
-   			menuBody.classList.toggle('active');
-		}
-	</script>
-   </body>
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Карпатська садиба переїхала</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://karpatska-sadyba.com.ua/kontakty">
+  <meta http-equiv="refresh" content="0; url=https://karpatska-sadyba.com.ua/kontakty">
+  <script>location.replace('https://karpatska-sadyba.com.ua/kontakty');</script>
+</head>
+<body>
+  <p>Сайт «Карпатська садиба» переїхав на <a href="https://karpatska-sadyba.com.ua/kontakty">karpatska-sadyba.com.ua</a>.</p>
+  <p>Якщо перехід не спрацював автоматично, відкрийте сторінку вручну: <a href="https://karpatska-sadyba.com.ua/kontakty">Контакти</a>.</p>
+</body>
 </html>

@@ -67,8 +67,13 @@ src/
 Telegram-бота й GA4, доробити SEO і прибрати старі HTML-файли з кореня репозиторію.
 Актуальний чекліст — [`docs/TODO.md`](docs/TODO.md), плани по фазах — [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
-## Застаріле
+## Старий сайт
 
-Файли в корені (`index.html`, `cotagge.html`, `cost.html`, `enjoq.html`, `food.html`,
-`location.html`, `contact.html`, `css/`, `img/`) — попередня статична версія сайту.
-Будуть видалені після запуску нового.
+HTML-файли в корені (`index.html`, `cotagge.html`, `cost.html`, `enjoq.html`, `food.html`,
+`location.html`, `contact.html`) — це вже не сайт, а заглушки-редіректи зі старого
+`spacenamee.github.io/KarpatskaSadyba/` на відповідні сторінки нового домену.
+GitHub Pages не вміє віддавати 301, тому редірект зроблено через `meta refresh` + `location.replace`
+і `noindex`, щоб старі адреси не конкурували в пошуку. Стару розмітку, `css/` та `img/` видалено.
+
+Заглушки можна прибрати, коли Google перенесе всі старі адреси на новий домен (кілька місяців
+після запуску, видно в Search Console).
