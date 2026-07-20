@@ -1,11 +1,25 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import Gallery from '../components/Gallery.astro';
 import services from '../data/site/services.json';
 import contacts from '../data/site/contacts.json';
+import estate from '../data/site/estate-photos.json';
 
 import terraceImg from '../assets/photos/cottage-3/terrace-01.jpg';
 import winterImg from '../assets/photos/cottage-2/exterior-02-winter.jpg';
+
+const estateFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/photos/estate/*.jpg',
+  { eager: true }
+);
+
+const estatePhotos = estate.photos.map((p) => {
+  const mod = estateFiles[`../assets/photos/estate/${p.file}`];
+  if (!mod) throw new Error(`Фото території не знайдено: ${p.file}`);
+  return { src: mod.default, alt: p.alt.uk };
+});
 
 const title = 'Відпочинок і послуги — басейн, чан, сауна, риболовля | Карпатська садиба';
 const description =
@@ -45,6 +59,19 @@ const allServices = [...services.wellness, ...services.activities];
   </section>
 
   <section class="section section--tinted">
+    <div class="container">
+      <h2>Територія садиби</h2>
+      <p class="note">
+        Басейн, ставок, альтанки з мангалами, дитячий майданчик і спортивне поле — усе на одній
+        огородженій території. Натисніть на фото, щоб роздивитись більше.
+      </p>
+      <div class="estate-gallery">
+        <Gallery photos={estatePhotos} id="estate" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="seasons">
         <figure>
@@ -124,6 +151,15 @@ const allServices = [...services.wellness, ...services.activities];
     padding-top: var(--space-2);
     font-weight: 700;
     color: var(--c-green-900);
+  }
+
+  .estate-gallery {
+    margin-top: var(--space-4);
+  }
+
+  /* більші мініатюри, ніж у галереї котеджу: 20 фото лягають по 5 у ряд */
+  .estate-gallery :global(.gallery) {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   }
 
   .seasons {

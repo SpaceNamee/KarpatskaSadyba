@@ -1,0 +1,152 @@
+{
+  "note": "Фото території садиби (не окремих котеджів). Файли — у src/assets/photos/estate/. Поле service збігається з назвою послуги в services.json там, де фото ілюструє конкретну послугу.",
+  "photos": [
+    {
+      "file": "pool-01.jpg",
+      "service": "Басейн з підігрівом",
+      "alt": {
+        "uk": "Відкритий басейн з підігрівом на території садиби, за ним — лісисті схили Карпат",
+        "en": "Heated outdoor pool on the grounds, with wooded Carpathian slopes behind"
+      }
+    },
+    {
+      "file": "pool-02.jpg",
+      "service": "Басейн з підігрівом",
+      "alt": {
+        "uk": "Басейн і дерев'яний настил із шезлонгами, попереду — вид на гори",
+        "en": "The pool and its wooden deck with sun loungers, mountains ahead"
+      }
+    },
+    {
+      "file": "pool-03.jpg",
+      "service": "Басейн з підігрівом",
+      "alt": {
+        "uk": "Басейн перед дерев'яним котеджем із балконом, навколо — зелений газон",
+        "en": "The pool in front of a wooden cottage with a balcony, surrounded by lawn"
+      }
+    },
+    {
+      "file": "pool-04.jpg",
+      "service": "Басейн з підігрівом",
+      "alt": {
+        "uk": "Куточок біля басейну з видом на котеджі та пагорб за садибою",
+        "en": "A corner by the pool overlooking the cottages and the hill behind the estate"
+      }
+    },
+    {
+      "file": "pond-01.jpg",
+      "service": "Риболовля",
+      "alt": {
+        "uk": "Власний ставок для риболовлі на тлі гір",
+        "en": "The estate's own fishing pond against the mountains"
+      }
+    },
+    {
+      "file": "pond-02.jpg",
+      "service": "Риболовля",
+      "alt": {
+        "uk": "Дерев'яна лавка біля ставка — місце для риболовлі",
+        "en": "A wooden bench by the pond — the spot for fishing"
+      }
+    },
+    {
+      "file": "gazebo-01.jpg",
+      "service": "Альтанки та мангал",
+      "alt": {
+        "uk": "Простора альтанка з довгими дерев'яними столами, мангалом і мийкою",
+        "en": "A spacious gazebo with long wooden tables, a barbecue and a sink"
+      }
+    },
+    {
+      "file": "gazebo-02.jpg",
+      "service": "Альтанки та мангал",
+      "alt": {
+        "uk": "Накритий стіл в альтанці з видом на гори у вечірньому світлі",
+        "en": "A laid table in the gazebo overlooking the mountains in evening light"
+      }
+    },
+    {
+      "file": "bbq-01.jpg",
+      "service": "Альтанки та мангал",
+      "alt": {
+        "uk": "Шашлик на дерев'яній дошці зі свіжими овочами та зеленню",
+        "en": "Grilled meat on a wooden board with fresh vegetables and herbs"
+      }
+    },
+    {
+      "file": "sport-field-01.jpg",
+      "service": "Спортивне поле",
+      "alt": {
+        "uk": "Спортивне поле зі штучним покриттям і воротами, довкола — гори",
+        "en": "The sports field with artificial turf and goals, mountains all around"
+      }
+    },
+    {
+      "file": "atv-01.jpg",
+      "service": "Квадроцикли",
+      "alt": {
+        "uk": "Квадроцикл на вершині гори з панорамою на долину та села",
+        "en": "A quad bike on a hilltop overlooking the valley and villages"
+      }
+    },
+    {
+      "file": "playground-01.jpg",
+      "service": "Дитячий майданчик",
+      "alt": {
+        "uk": "Дитячий майданчик з будиночком і гіркою перед котеджем",
+        "en": "The playground with a playhouse and slide in front of a cottage"
+      }
+    },
+    {
+      "file": "playground-02.jpg",
+      "service": "Дитячий майданчик",
+      "alt": {
+        "uk": "Гірка та ігровий будиночок на газоні біля дерев'яного котеджу",
+        "en": "A slide and playhouse on the lawn beside a wooden cottage"
+      }
+    },
+    {
+      "file": "playground-03.jpg",
+      "service": "Дитячий майданчик",
+      "alt": {
+        "uk": "Гойдалка на газоні садиби, за нею — гори й сусідні будинки",
+        "en": "A swing on the estate lawn, with mountains and neighbouring houses behind"
+      }
+    },
+    {
+      "file": "grounds-01.jpg",
+      "alt": {
+        "uk": "Дерев'яний котедж із балконом, кам'яна альпійська гірка й басейн збоку",
+        "en": "A wooden cottage with a balcony, a rock garden and the pool to one side"
+      }
+    },
+    {
+      "file": "grounds-02.jpg",
+      "alt": {
+        "uk": "Доглянутий газон і клумба з каменями перед котеджем, за ними — гори",
+        "en": "A tended lawn and rock flowerbed in front of a cottage, mountains beyond"
+      }
+    },
+    {
+      "file": "grounds-03.jpg",
+      "alt": {
+        "uk": "Територія садиби між котеджами: газон, хвойні дерева й альпійська гірка",
+        "en": "The grounds between the cottages: lawn, conifers and a rock garden"
+      }
+    },
+    {
+      "file": "grounds-04.jpg",
+      "alt": {
+        "uk": "Зрубаний з колод котедж із ґанком і терасою",
+        "en": "A log-built cottage with a porch and terrace"
+      }
+    },
+    {
+      "file": "grounds-05.jpg",
+      "alt": {
+        "uk": "Мурований будинок садиби з бруківкою перед входом",
+        "en": "The estate's brick house with a paved forecourt"
+      }
+    }
+  ]
+}

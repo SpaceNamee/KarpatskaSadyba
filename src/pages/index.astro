@@ -6,6 +6,7 @@ import Base from '../layouts/Base.astro';
 import CottageCard from '../components/CottageCard.astro';
 import contacts from '../data/site/contacts.json';
 import services from '../data/site/services.json';
+import estate from '../data/site/estate-photos.json';
 
 import heroImg from '../assets/photos/cottage-2/exterior-01.jpg';
 import winterImg from '../assets/photos/cottage-2/exterior-02-winter.jpg';
@@ -34,6 +35,21 @@ const amenities = [
   'Дитячий майданчик',
   'Безкоштовний Wi-Fi і парковка',
 ];
+
+/** Витяг із галереї території: по одному фото на ключову зону, підписи — короткі */
+const estateHighlights = [
+  { file: 'pool-01.jpg', caption: 'Басейн з підігрівом' },
+  { file: 'pond-01.jpg', caption: 'Ставок з рибою' },
+  { file: 'gazebo-01.jpg', caption: 'Альтанки з мангалом' },
+  { file: 'sport-field-01.jpg', caption: 'Спортивне поле' },
+  { file: 'playground-01.jpg', caption: 'Дитячий майданчик' },
+  { file: 'grounds-03.jpg', caption: 'Доглянута територія' },
+].map((h) => {
+  const meta = estate.photos.find((p) => p.file === h.file);
+  const src = cardImage('estate', h.file);
+  if (!meta || !src) throw new Error(`Фото території не знайдено: ${h.file}`);
+  return { ...h, src, alt: meta.alt.uk };
+});
 
 const praises = [
   'Дуже привітні господарі — допоможуть з раннім заїздом, розпалять камін, підкажуть маршрути',
@@ -123,6 +139,19 @@ const schema = {
       <ul class="amenities">
         {amenities.map((amenity) => <li>{amenity}</li>)}
       </ul>
+
+      <ul class="estate">
+        {estateHighlights.map((item) => (
+          <li class="estate__item">
+            <Image src={item.src} alt={item.alt} width={520} height={390} loading="lazy" />
+            <span class="estate__caption">{item.caption}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="estate__more">
+        <a href="/vidpochynok">Уся територія у фото — на сторінці «Відпочинок» →</a>
+      </p>
+
       <div class="seasons">
         <article class="season">
           <Image src={winterImg} alt="Котедж 2 взимку на тлі засніжених Карпат" width={800} />
@@ -261,10 +290,56 @@ const schema = {
     margin-top: var(--space-4);
   }
 
+  .estate {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-3);
+    display: grid;
+    /* фіксовані 3 колонки: 6 фото лягають рівно у два ряди, без «сироти» в кінці */
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 48rem) {
+    .estate {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .estate__item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .estate__item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .estate__caption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: var(--space-4) var(--space-3) var(--space-2);
+    color: #fff;
+    font-weight: 700;
+    font-size: var(--fs-small);
+    background: linear-gradient(to top, rgb(20 28 22 / 0.85), transparent);
+  }
+
+  .estate__more {
+    margin: 0 0 var(--space-5);
+    font-weight: 600;
+  }
+
   .amenities {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--space-5);
+    margin: 0 0 var(--space-4);
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
