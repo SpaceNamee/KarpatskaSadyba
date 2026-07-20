@@ -18,22 +18,25 @@ const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '
 
 <article class="cottage-card hover-lift">
   {image && (
-    <a href={href} tabindex="-1" aria-hidden="true">
-      <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} />
-    </a>
+    <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} loading="lazy" />
   )}
   <div class="cottage-card__body">
-    <h3><a href={href}>{name}</a></h3>
+    <h3 class="cottage-card__title">{name}</h3>
     <p class="cottage-card__meta">{areaM2} м² · до {capacityMax} осіб</p>
     <p>{summary}</p>
     <p class="cottage-card__price">
       від <strong>{priceFrom.toLocaleString('uk-UA')} грн</strong> / доба
     </p>
+    <!-- Розтягнутий лінк: клік по будь-якій частині картки веде на сторінку котеджу -->
+    <a class="btn btn--primary cottage-card__cta" href={href} aria-label={`Детальніше про «${name}»`}>
+      Детальніше
+    </a>
   </div>
 </article>
 
 <style>
   .cottage-card {
+    position: relative;
     background: var(--c-surface);
     border: 1px solid var(--c-border);
     border-radius: var(--radius-lg);
@@ -56,12 +59,12 @@ const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '
     flex: 1;
   }
 
-  .cottage-card__body h3 a {
-    text-decoration: none;
+  .cottage-card__title {
     color: var(--c-green-900);
+    transition: color var(--transition);
   }
 
-  .cottage-card__body h3 a:hover {
+  .cottage-card:hover .cottage-card__title {
     color: var(--c-green-700);
   }
 
@@ -75,5 +78,17 @@ const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '
     padding-top: var(--space-2);
     font-size: 1.1rem;
     color: var(--c-green-900);
+  }
+
+  .cottage-card__cta {
+    margin-top: var(--space-3);
+    text-align: center;
+  }
+
+  /* робить усю картку клікабельною, зберігаючи видиму кнопку */
+  .cottage-card__cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
 </style>
