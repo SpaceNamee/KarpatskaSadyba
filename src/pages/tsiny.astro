@@ -12,6 +12,17 @@ const description =
 const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
 const mainPhone = contacts.phones[0];
 
+/** Дані для калькулятора вартості (читаються клієнтським скриптом) */
+const pricing = cottages.map((c) => ({
+  id: c.id,
+  name: c.data.name.uk,
+  oneNight: c.data.prices.oneNight,
+  twoPlusNights: c.data.prices.twoPlusNights,
+  includedGuests: c.data.prices.includedGuests,
+  extraPersonUah: c.data.prices.extraPersonUah,
+  capacityMax: c.data.capacityMax,
+}));
+
 const extras = [
   { name: 'Чан + сауна', price: '5 000 грн / 2 год' },
   { name: 'Чан', price: '3 000 грн / 2 год (далі — за домовленістю)' },
@@ -97,8 +108,129 @@ const faqSchema = {
         (банківський переказ), решта — готівкою при заїзді.
       </p>
       <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>Дізнатись вільні дати: {mainPhone.display}</a>
+
+      <div class="calc" data-calc>
+        <h2>Калькулятор вартості</h2>
+        <p class="note">
+          Порахуйте орієнтовну вартість — за весь період і з однієї особи за ніч.
+        </p>
+        <div class="calc__controls">
+          <label>
+            Котедж
+            <select data-calc-cottage>
+              {pricing.map((p) => <option value={p.id}>{p.name}</option>)}
+            </select>
+          </label>
+          <label>
+            Ночей
+            <input type="number" min="1" max="30" value="2" data-calc-nights />
+          </label>
+          <label>
+            Гостей
+            <input type="number" min="1" max="49" value="10" data-calc-guests />
+          </label>
+        </div>
+
+        <div class="calc__result">
+          <div class="calc__figure calc__figure--main">
+            <span class="calc__value" data-calc-total>—</span>
+            <span class="calc__label" data-calc-total-label>за весь період</span>
+          </div>
+          <div class="calc__figure">
+            <span class="calc__value" data-calc-night>—</span>
+            <span class="calc__label">за добу (весь котедж)</span>
+          </div>
+          <div class="calc__figure">
+            <span class="calc__value" data-calc-person>—</span>
+            <span class="calc__label">з однієї особи за ніч</span>
+          </div>
+        </div>
+
+        <p class="calc__hint" data-calc-hint></p>
+        <p class="calc__note">
+          Розрахунок орієнтовний; ❄️ зимові ціни можуть відрізнятися.
+          Бронь підтверджується завдатком {policies.depositUah.toLocaleString('uk-UA')} грн.
+        </p>
+      </div>
     </div>
   </section>
+
+  <script type="application/json" data-calc-pricing set:html={JSON.stringify(pricing)} />
+  <script>
+    type Plan = {
+      id: string;
+      name: string;
+      oneNight: number;
+      twoPlusNights: number;
+      includedGuests: number;
+      extraPersonUah: number;
+      capacityMax: number;
+    };
+
+    const root = document.querySelector<HTMLElement>('[data-calc]');
+    const dataEl = document.querySelector<HTMLScriptElement>('[data-calc-pricing]');
+
+    if (root && dataEl) {
+      const plans: Plan[] = JSON.parse(dataEl.textContent || '[]');
+      const byId = new Map(plans.map((p) => [p.id, p]));
+
+      const cottageSel = root.querySelector<HTMLSelectElement>('[data-calc-cottage]')!;
+      const nightsInp = root.querySelector<HTMLInputElement>('[data-calc-nights]')!;
+      const guestsInp = root.querySelector<HTMLInputElement>('[data-calc-guests]')!;
+      const totalEl = root.querySelector<HTMLElement>('[data-calc-total]')!;
+      const totalLabelEl = root.querySelector<HTMLElement>('[data-calc-total-label]')!;
+      const nightEl = root.querySelector<HTMLElement>('[data-calc-night]')!;
+      const personEl = root.querySelector<HTMLElement>('[data-calc-person]')!;
+      const hintEl = root.querySelector<HTMLElement>('[data-calc-hint]')!;
+
+      const uah = (n: number) => `${Math.round(n).toLocaleString('uk-UA')} грн`;
+
+      function update() {
+        const plan = byId.get(cottageSel.value);
+        if (!plan) return;
+
+        let nights = Math.max(1, Math.floor(Number(nightsInp.value) || 1));
+        let guests = Math.max(1, Math.floor(Number(guestsInp.value) || 1));
+
+        // не даємо перевищити місткість котеджу
+        if (guests > plan.capacityMax) {
+          guests = plan.capacityMax;
+          guestsInp.value = String(guests);
+        }
+
+        const nightlyBase = nights === 1 ? plan.oneNight : plan.twoPlusNights;
+        const extraGuests = Math.max(0, guests - plan.includedGuests);
+        const perNight = nightlyBase + extraGuests * plan.extraPersonUah;
+        const total = perNight * nights;
+        const perPerson = perNight / guests;
+
+        totalEl.textContent = uah(total);
+        totalLabelEl.textContent = `за ${nights} ${nightWord(nights)}`;
+        nightEl.textContent = uah(perNight);
+        personEl.textContent = uah(perPerson);
+
+        const bits: string[] = [];
+        if (nights === 1) bits.push('ціна за 1 добу вища, ніж за 2+ діб');
+        if (extraGuests > 0)
+          bits.push(`${plan.includedGuests} гостей у базовій ціні, +${extraGuests} × ${plan.extraPersonUah} грн/ніч`);
+        if (guests >= plan.capacityMax) bits.push(`максимум для цього котеджу — ${plan.capacityMax} гостей`);
+        hintEl.textContent = bits.join(' · ');
+      }
+
+      function nightWord(n: number) {
+        const mod10 = n % 10;
+        const mod100 = n % 100;
+        if (mod10 === 1 && mod100 !== 11) return 'ніч';
+        if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'ночі';
+        return 'ночей';
+      }
+
+      [cottageSel, nightsInp, guestsInp].forEach((el) =>
+        el.addEventListener('input', update)
+      );
+      update();
+    }
+  </script>
 
   <section class="section section--tinted">
     <div class="container">
@@ -190,6 +322,98 @@ const faqSchema = {
 
   .deposit {
     margin-block: var(--space-4);
+  }
+
+  /* Калькулятор вартості */
+  .calc {
+    margin-top: var(--space-5);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-top: 4px solid var(--c-wood-600);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .calc h2 {
+    margin-top: 0;
+  }
+
+  .calc__controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .calc__controls label {
+    display: grid;
+    gap: var(--space-1);
+    font-weight: 600;
+    font-size: var(--fs-small);
+  }
+
+  .calc__controls select,
+  .calc__controls input {
+    font: inherit;
+    padding: 0.6em 0.8em;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background: var(--c-bg);
+    color: var(--c-text);
+  }
+
+  .calc__result {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  .calc__figure {
+    background: var(--c-green-100);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    text-align: center;
+  }
+
+  .calc__figure--main {
+    background: var(--c-green-700);
+  }
+
+  .calc__value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    color: var(--c-green-900);
+  }
+
+  .calc__figure--main .calc__value {
+    color: #fff;
+  }
+
+  .calc__label {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+  }
+
+  .calc__figure--main .calc__label {
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .calc__hint {
+    margin: var(--space-3) 0 0;
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+    min-height: 1.2em;
+  }
+
+  .calc__note {
+    margin: var(--space-2) 0 0;
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
   }
 
   .faq {
