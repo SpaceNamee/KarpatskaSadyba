@@ -30,7 +30,7 @@ const extras = [
   { name: 'Дрова для мангалу', price: '500 грн / тачка' },
   { name: 'Риболовля', price: 'безкоштовно; забрати улов — 300 грн/кг' },
   { name: 'Квадроцикли, трансфер', price: `за домовленістю: ${contacts.extraPhones.quadsAndTransfer.display}` },
-  { name: 'Харчування (домашні обіди)', price: `за меню: ${contacts.extraPhones.food.display}` },
+  { name: 'Харчування (домашні обіди)', price: `за меню: ${contacts.extraPhones.food.display}`, link: '/menu' },
 ];
 
 const faq = [
@@ -240,7 +240,11 @@ const faqSchema = {
           <tbody>
             {extras.map((extra) => (
               <tr>
-                <td>{extra.name}</td>
+                <td>
+                  {(extra as { link?: string }).link
+                    ? <a href={(extra as { link?: string }).link}>{extra.name}</a>
+                    : extra.name}
+                </td>
                 <td>{extra.price}</td>
               </tr>
             ))}
