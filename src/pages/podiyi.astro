@@ -1,0 +1,245 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import BookingSection from '../components/BookingSection.astro';
+import contacts from '../data/site/contacts.json';
+import heroImg from '../assets/photos/estate/pool-03.jpg';
+
+const title = 'Оренда всієї садиби для події — до 49 гостей | Карпатська садиба';
+const description =
+  'Орендуйте всю Карпатську садибу під корпоратив, весілля чи велике свято: 3 котеджі, 18 спалень, до 49 гостей, басейн, чан, сауна, альтанки з мангалом і домашня кухня. с. Плав\'я, 5 км від ГК «Плай».';
+
+const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
+const totals = cottages.reduce(
+  (acc, c) => ({
+    cap: acc.cap + c.data.capacityMax,
+    bed: acc.bed + c.data.bedroomsCount,
+    area: acc.area + c.data.areaM2,
+  }),
+  { cap: 0, bed: 0, area: 0 }
+);
+const mainPhone = contacts.phones[0];
+
+const stats = [
+  { value: String(cottages.length), label: 'окремі котеджі' },
+  { value: String(totals.bed), label: 'спалень разом' },
+  { value: `до ${totals.cap}`, label: 'гостей' },
+  { value: `${totals.area} м²`, label: 'житлової площі' },
+];
+
+const events = [
+  { icon: '🏢', title: 'Корпоративи й тимбілдинги', text: 'Простір для всієї команди з ночівлею, залами й територією лише для вас.' },
+  { icon: '💍', title: 'Весілля та річниці', text: 'Гості ночують на місці, святкування в альтанках, банкет із домашньою кухнею.' },
+  { icon: '🎂', title: 'Дні народження', text: 'Велика компанія, басейн, чан, мангал і казан — усе поруч.' },
+  { icon: '🎓', title: 'Випускні та зустрічі друзів', text: 'Активний відпочинок: спортивне поле, квадроцикли, походи, взимку — лижі.' },
+  { icon: '👨‍👩‍👧‍👦', title: 'Сімейні свята', text: 'Кілька родин разом: окремі котеджі, дитячий майданчик, тиха територія.' },
+  { icon: '🧘', title: 'Ретрити та збори', text: 'Гори, тиша, простір для груп — далеко від міського шуму.' },
+];
+
+const included = [
+  `${cottages.length} окремі дерев'яні котеджі — разом ${totals.bed} спалень, до ${totals.cap} гостей`,
+  'Уся огороджена територія тільки для вашої компанії',
+  'Басейн з підігрівом (влітку), чан і сауна з купіллю',
+  'Альтанки з мангалом, казаном і сковорідкою — інвентар безкоштовно',
+  'Спортивне поле, дитячий майданчик, ставок з рибою',
+  'Обладнані кухні, постіль і рушники, Wi-Fi та парковка',
+];
+---
+
+<Base title={title} description={description} ogImage="/og/kotedzh-2.jpg">
+  <section class="hero">
+    <Image class="hero__img" src={heroImg} alt="" width={1920} quality={65} loading="eager" />
+    <div class="hero__content">
+      <div class="container">
+        <p class="hero__eyebrow">Вся садиба в оренду · с. Плав'я · 5 км до ГК «Плай»</p>
+        <h1>Вся садиба для вашої події — до {totals.cap} гостей</h1>
+        <p class="hero__sub">
+          Корпоратив, весілля, велике свято чи збори? Орендуйте всі {cottages.length} котеджі
+          з територією цілком — гості ночують на місці, а святкування нікому не заважає.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>Порахувати: {mainPhone.display}</a>
+          <a class="btn btn--ghost" href="#zayavka">Залишити заявку</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="stats">
+        {stats.map((s) => (
+          <li class="stat">
+            <span class="stat__value">{s.value}</span>
+            <span class="stat__label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <h2>Для яких подій</h2>
+      <div class="events">
+        {events.map((e) => (
+          <article class="event">
+            <span class="event__icon" aria-hidden="true">{e.icon}</span>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Що отримуєте, орендуючи всю садибу</h2>
+      <ul class="included">
+        {included.map((item) => <li>{item}</li>)}
+      </ul>
+      <p class="note">
+        Харчування для компанії — домашня кухня з доставкою в котеджі, дошки-закуски на 6–8 осіб
+        і гриль-меню на мангалі. <a href="/menu">Переглянути меню →</a>
+      </p>
+      <p class="note">
+        Ціна за всю садибу — індивідуальна, залежить від дат, кількості гостей і сезону.
+        Телефонуйте — порахуємо й підкажемо вільні дати:
+        <a href={`tel:${mainPhone.tel}`}>{mainPhone.display}</a>.
+      </p>
+    </div>
+  </section>
+
+  <BookingSection cottage={`Вся садиба (до ${totals.cap} гостей)`} />
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: clamp(24rem, 62vh, 38rem);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+  .hero__content {
+    position: relative;
+    width: 100%;
+    padding-block: var(--space-5);
+    background: linear-gradient(to top, rgb(20 28 22 / 0.82), rgb(20 28 22 / 0.15));
+    color: #fff;
+  }
+
+  .hero__content h1 {
+    color: #fff;
+    max-width: 20ch;
+  }
+
+  .hero__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--fs-small);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .hero__sub {
+    max-width: 44rem;
+    font-size: 1.1rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat__value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--c-green-700);
+  }
+
+  .stat__label {
+    display: block;
+    margin-top: var(--space-1);
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .events {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .event {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .event__icon {
+    font-size: 1.8rem;
+  }
+
+  .event h3 {
+    font-size: var(--fs-h3);
+    margin: var(--space-2) 0;
+  }
+
+  .event p {
+    margin: 0;
+    color: var(--c-text-muted);
+  }
+
+  .included {
+    max-width: 48rem;
+    margin: var(--space-4) 0;
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .note {
+    max-width: 46rem;
+    color: var(--c-text-muted);
+  }
+</style>
