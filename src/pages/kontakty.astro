@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import BookingSection from '../components/BookingSection.astro';
 import contacts from '../data/site/contacts.json';
 import policies from '../data/site/policies.json';
+import booking from '../data/site/booking.json';
 
 const title = 'Контакти та бронювання — Карпатська садиба, с. Плав\'я';
 const description =
@@ -62,6 +63,11 @@ const steps = [
               </li>
             ))}
           </ol>
+          <h2>Оплата та скасування</h2>
+          <ul class="rules">
+            {booking.payment.map((line) => <li>{line}</li>)}
+            {booking.cancellation.map((line) => <li>{line}</li>)}
+          </ul>
           <h2>Правила</h2>
           <ul class="rules">
             {policies.rules.map((rule) => <li>{rule.uk}</li>)}

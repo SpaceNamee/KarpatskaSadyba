@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import contacts from '../data/site/contacts.json';
 import policies from '../data/site/policies.json';
 import services from '../data/site/services.json';
+import booking from '../data/site/booking.json';
 
 const title = 'Ціни на котеджі — Карпатська садиба, с. Плав\'я біля ГК «Плай»';
 const description =
@@ -39,12 +40,32 @@ const faq = [
     a: `Ви телефонуєте або залишаєте заявку, ми узгоджуємо дати й ви вносите завдаток ${policies.depositUah.toLocaleString('uk-UA')} грн банківським переказом. Решта — готівкою при заїзді.`,
   },
   {
-    q: 'Що входить у ціну котеджу?',
-    a: 'Весь котедж цілком із територією та альтанкою, постіль і рушники, кухня з посудом, Wi-Fi, парковка, мангал (дрова окремо), а влітку — басейн з підігрівом.',
+    q: 'Що буде із завдатком, якщо скасувати бронь?',
+    a: 'При скасуванні або перенесенні за 14 і більше днів до заїзду завдаток повертаємо повністю або зараховуємо на інші дати. Пізніше ніж за 14 днів або при неприїзді — завдаток не повертається.',
   },
   {
     q: 'Скільки коштує додаткове місце?',
     a: 'У ціну кожного котеджу включена базова кількість гостей; кожен наступний гість — 500 грн/доба.',
+  },
+  {
+    q: 'Чи опалюються котеджі взимку?',
+    a: 'Так, котеджі опалюються, у деяких є каміни — тепло навіть у морози. Гаряча вода цілий рік.',
+  },
+  {
+    q: 'Чи можна з домашніми тваринами?',
+    a: 'За попереднім запитом; можлива додаткова плата. Попередьте, будь ласка, ще під час бронювання.',
+  },
+  {
+    q: 'Що вже є в котеджі, а що взяти з собою?',
+    a: 'Постіль, рушники, посуд і кухонна техніка, Wi-Fi — усе на місці. Беріть лише особисті речі та, за бажанням, продукти — або замовте домашню кухню з доставкою.',
+  },
+  {
+    q: 'Де найближчі магазин і банкомат?',
+    a: 'Продуктовий магазин — за ~100 м від садиби. Банкомат, аптека й заправка — у сусідніх селах та Славську, за кілька кілометрів.',
+  },
+  {
+    q: 'Чи можна ранній заїзд або пізній виїзд?',
+    a: `За можливості так — узгоджуйте заздалегідь. Стандартно заїзд з ${policies.checkIn}, виїзд до ${policies.checkOut}.`,
   },
   {
     q: 'Чи можна орендувати всю садибу?',
@@ -107,6 +128,18 @@ const faqSchema = {
         💳 Бронь підтверджується завдатком <strong>{policies.depositUah.toLocaleString('uk-UA')} грн</strong>
         (банківський переказ), решта — готівкою при заїзді.
       </p>
+
+      <div class="included">
+        <h2>Що входить у ціну</h2>
+        <ul class="included__list">
+          {booking.included.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="included__extra">
+          Окремо оплачуються чан, сауна, дрова, харчування та інші послуги —
+          <a href="#dodatkovi">див. нижче</a>.
+        </p>
+      </div>
+
       <a class="btn btn--primary" href={`tel:${mainPhone.tel}`}>Дізнатись вільні дати: {mainPhone.display}</a>
 
       <div class="calc" data-calc>
@@ -232,7 +265,7 @@ const faqSchema = {
     }
   </script>
 
-  <section class="section section--tinted">
+  <section class="section section--tinted" id="dodatkovi">
     <div class="container">
       <h2>Додаткові послуги</h2>
       <div class="table-wrap">
@@ -326,6 +359,39 @@ const faqSchema = {
 
   .deposit {
     margin-block: var(--space-4);
+  }
+
+  .included {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-left: 4px solid var(--c-green-700);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+    margin-block: var(--space-4);
+  }
+
+  .included h2 {
+    margin-top: 0;
+    font-size: var(--fs-h3);
+  }
+
+  .included__list {
+    columns: 2 16rem;
+    column-gap: var(--space-4);
+    margin: 0 0 var(--space-3);
+    padding-left: 1.2em;
+  }
+
+  .included__list li {
+    margin-bottom: var(--space-1);
+    break-inside: avoid;
+  }
+
+  .included__extra {
+    margin: 0;
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
   }
 
   /* Калькулятор вартості */
