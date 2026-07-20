@@ -120,7 +120,7 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <section class="hero">
-    <Image class="hero__img" src={heroImg} alt="" width={1920} loading="eager" />
+    <Image class="hero__img" src={heroImg} alt="" width={1920} quality={65} loading="eager" />
     <div class="hero__content">
       <div class="container">
         <p class="hero__eyebrow">Сколівські Бескиди · с. Плав'я · 5 км до ГК «Плай»</p>
@@ -206,7 +206,7 @@ const schema = {
         {estateHighlights.map((item) => (
           <li>
             <a class="estate__item hover-lift" href="/vidpochynok#tereny" aria-label={`${item.caption} — усі фото й послуги`}>
-              <Image src={item.src} alt={item.alt} width={520} height={390} loading="lazy" />
+              <Image src={item.src} alt={item.alt} width={520} height={390} quality={72} loading="lazy" />
               <span class="estate__caption">{item.caption}</span>
             </a>
           </li>

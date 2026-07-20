@@ -24,6 +24,7 @@ const { photos, id = 'gallery' } = Astro.props;
         alt={photo.alt}
         width={480}
         height={360}
+        quality={72}
         loading={i < 3 ? 'eager' : 'lazy'}
       />
     </button>
@@ -36,7 +37,7 @@ const { photos, id = 'gallery' } = Astro.props;
   <div class="lightbox__stage">
     {photos.map((photo, i) => (
       <figure class="lightbox__slide" data-slide={i} hidden>
-        <Image src={photo.src} alt={photo.alt} width={1600} loading="lazy" />
+        <Image src={photo.src} alt={photo.alt} width={1600} quality={70} loading="lazy" />
         <figcaption>{photo.alt}</figcaption>
       </figure>
     ))}

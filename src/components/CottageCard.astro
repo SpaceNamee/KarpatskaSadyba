@@ -18,7 +18,7 @@ const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '
 
 <article class="cottage-card hover-lift">
   {image && (
-    <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} loading="lazy" />
+    <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} quality={74} loading="lazy" />
   )}
   <div class="cottage-card__body">
     <h3 class="cottage-card__title">{name}</h3>

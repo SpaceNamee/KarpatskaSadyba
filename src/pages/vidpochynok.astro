@@ -59,7 +59,7 @@ const allServices = [...services.wellness, ...services.activities];
             <article class="card">
               {img && (
                 <div class="card__media">
-                  <Image class="card__img" src={img} alt={service.name.uk} width={520} height={360} loading="lazy" />
+                  <Image class="card__img" src={img} alt={service.name.uk} width={520} height={360} quality={72} loading="lazy" />
                   <span class={`badge badge--${service.season}`}>{seasonLabel[service.season]}</span>
                 </div>
               )}
