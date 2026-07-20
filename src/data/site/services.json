@@ -125,6 +125,7 @@
     {
       "id": "meals",
       "photo": "estate/bbq-01.jpg",
+      "link": "/menu",
       "name": { "uk": "Харчування", "en": "Meals" },
       "description": {
         "uk": "Домашні обіди під замовлення: +38 097 052 36 78.",

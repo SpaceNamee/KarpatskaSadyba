@@ -72,6 +72,9 @@ const allServices = [...services.wellness, ...services.activities];
                 {img && <h2>{service.name.uk}</h2>}
                 <p>{service.description.uk}</p>
                 <p class="card__price">{service.price.uk}</p>
+                {(service as { link?: string }).link && (
+                  <a class="card__link" href={(service as { link?: string }).link}>Переглянути меню →</a>
+                )}
               </div>
             </article>
           );
@@ -204,6 +207,11 @@ const allServices = [...services.wellness, ...services.activities];
     padding-top: var(--space-2);
     font-weight: 700;
     color: var(--c-green-900);
+  }
+
+  .card__link {
+    margin-top: var(--space-2);
+    font-weight: 600;
   }
 
   .estate-gallery {

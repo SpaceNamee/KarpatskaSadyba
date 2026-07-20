@@ -1,0 +1,170 @@
+---
+import Base from '../layouts/Base.astro';
+import menu from '../data/site/menu.json';
+import contacts from '../data/site/contacts.json';
+
+const title = 'Меню доставки їжі — Карпатська садиба, с. Плав\'я';
+const description =
+  'Домашня кухня з доставкою в котеджі: сніданки, перші та другі страви, салати, страви на мангалі, дошки для компанії, напої. Замовлення у Viber або Telegram.';
+
+const foodPhone = contacts.extraPhones.food;
+---
+
+<Base title={title} description={description} ogImage="/og/kotedzh-2.jpg">
+  <section class="section">
+    <div class="container">
+      <h1>Меню «Домашня кухня»</h1>
+      <p class="lead">
+        Домашні страви з доставкою просто в котедж — від сніданку до дошок на всю компанію.
+        Замовлення приймає {menu.intro.contactName}:
+        <a href={`tel:${foodPhone.tel}`}>{foodPhone.display}</a> (Viber / Telegram).
+      </p>
+
+      <ul class="rules">
+        {menu.intro.rules.map((rule) => <li>{rule}</li>)}
+      </ul>
+
+      <a class="btn btn--primary" href={`tel:${foodPhone.tel}`}>Замовити: {foodPhone.display}</a>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="menu">
+        {menu.sections.map((section) => (
+          <section class="menu-section">
+            <header class="menu-section__head">
+              <h2>{section.title}</h2>
+              {section.note && <span class="menu-section__note">{section.note}</span>}
+            </header>
+            <ul class="dishes">
+              {section.items.map((item) => (
+                <li class="dish">
+                  <div class="dish__info">
+                    <span class="dish__name">{item.name}</span>
+                    {item.note && <span class="dish__note">{item.note}</span>}
+                  </div>
+                  <span class="dish__dots" aria-hidden="true"></span>
+                  <span class="dish__price">{item.price}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+      <p class="foot-note">
+        Ціни орієнтовні й можуть змінюватися — уточнюйте під час замовлення.
+        Актуальне меню й наявність страв підкаже {menu.intro.contactName}:
+        <a href={`tel:${foodPhone.tel}`}>{foodPhone.display}</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .lead {
+    max-width: 46rem;
+    color: var(--c-text-muted);
+  }
+
+  .rules {
+    max-width: 46rem;
+    margin: var(--space-4) 0;
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-1);
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .menu {
+    columns: 2 22rem;
+    column-gap: var(--space-6);
+  }
+
+  .menu-section {
+    break-inside: avoid;
+    margin-bottom: var(--space-5);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .menu-section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--c-green-100);
+  }
+
+  .menu-section__head h2 {
+    margin: 0;
+    font-size: var(--fs-h3);
+  }
+
+  .menu-section__note {
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+    text-align: right;
+  }
+
+  .dishes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .dish {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .dish__info {
+    min-width: 0;
+  }
+
+  .dish__name {
+    display: block;
+  }
+
+  .dish__note {
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+  }
+
+  .dish__dots {
+    display: none;
+  }
+
+  .dish__price {
+    font-weight: 700;
+    color: var(--c-green-900);
+    white-space: nowrap;
+  }
+
+  .foot-note {
+    max-width: 46rem;
+    margin-top: var(--space-4);
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+  }
+</style>
