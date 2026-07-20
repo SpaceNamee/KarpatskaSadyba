@@ -54,7 +54,8 @@ export const onRequestGet = async (context: { request: Request; env: Env }) => {
     if (!startMatch || !endMatch) continue;
     const start = toIso(startMatch[1]);
     const end = toIso(endMatch[1]);
-    if (start && end) busy.push({ start, end });
+    // пропускаємо некоректні або нульові інтервали (DTEND ексклюзивний, тож має бути > DTSTART)
+    if (start && end && start < end) busy.push({ start, end });
   }
 
   busy.sort((a, b) => a.start.localeCompare(b.start));

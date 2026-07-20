@@ -60,6 +60,11 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
     return json({ ok: false, error: 'validation' }, 422);
   }
 
+  // Серверна перевірка дат (захист, окрім клієнтської): виїзд має бути після заїзду
+  if (checkIn && checkOut && checkOut <= checkIn) {
+    return json({ ok: false, error: 'validation' }, 422);
+  }
+
   const lines = [
     '🏠 <b>Нова заявка з сайту</b>',
     cottage && `Котедж: <b>${esc(cottage)}</b>`,
