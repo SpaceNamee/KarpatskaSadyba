@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import CottageCard from '../components/CottageCard.astro';
+import BookingSection from '../components/BookingSection.astro';
 import contacts from '../data/site/contacts.json';
 import services from '../data/site/services.json';
 import estate from '../data/site/estate-photos.json';
@@ -17,6 +18,7 @@ const description =
   'Три дерев\'яні котеджі для великих компаній та сімей у с. Плав\'я, за 5 км від гірськолижного комплексу «Плай». Басейн з підігрівом, чан, сауна, риболовля. Рейтинг 9.2 на Booking.com.';
 
 const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
+const cottageNames = cottages.map((c) => c.data.name.uk);
 
 const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/photos/**/*.{jpg,png,JPG,PNG}',
@@ -244,26 +246,7 @@ const schema = {
     </div>
   </section>
 
-  <section id="kontakty" class="section section--tinted">
-    <div class="container">
-      <h2>Контакти</h2>
-      <div class="contacts">
-        <div>
-          <h3>Бронювання</h3>
-          <ul class="contacts__list">
-            {contacts.phones.map((phone) => (
-              <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3>Адреса</h3>
-          <p>{contacts.address.uk}</p>
-          <p>Заїзд з {contacts.checkIn} · виїзд до {contacts.checkOut}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <BookingSection cottageOptions={cottageNames} id="bronyuvannya" />
 </Base>
 
 <style>
