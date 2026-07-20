@@ -16,7 +16,7 @@ interface Props {
 const { href, name, areaM2, capacityMax, summary, priceFrom, image, imageAlt = '' } = Astro.props;
 ---
 
-<article class="cottage-card">
+<article class="cottage-card hover-lift">
   {image && (
     <a href={href} tabindex="-1" aria-hidden="true">
       <Image class="cottage-card__img" src={image} alt={imageAlt} width={720} height={480} />

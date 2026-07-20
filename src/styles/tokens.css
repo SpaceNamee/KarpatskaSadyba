@@ -43,6 +43,7 @@
   --radius: 10px;
   --radius-lg: 18px;
   --shadow: 0 2px 12px rgb(29 53 36 / 0.08);
+  --shadow-lg: 0 14px 32px rgb(29 53 36 / 0.16); /* картки/фото при наведенні */
   --container: 72rem;
   --transition: 180ms ease;
 }

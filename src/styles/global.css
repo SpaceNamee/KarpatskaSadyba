@@ -98,6 +98,28 @@ a:hover {
   color: var(--c-text-inverse);
 }
 
+/* Наведення на клікабельні картки й фото: легке підняття + тінь.
+   Вимикається за prefers-reduced-motion (див. блок нижче). */
+.hover-lift {
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Плавне збільшення фото всередині картки з класом .hover-lift */
+  .hover-lift img {
+    transition: transform var(--transition);
+  }
+
+  .hover-lift:hover img {
+    transform: scale(1.04);
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -127,5 +149,10 @@ a:hover {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hover-lift:hover,
+  .hover-lift:hover img {
+    transform: none;
   }
 }

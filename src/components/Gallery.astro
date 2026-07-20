@@ -14,7 +14,7 @@ const { photos, id = 'gallery' } = Astro.props;
 <div class="gallery" data-gallery={id}>
   {photos.map((photo, i) => (
     <button
-      class="gallery__thumb"
+      class="gallery__thumb hover-lift"
       type="button"
       data-index={i}
       aria-label={`Відкрити фото: ${photo.alt}`}
@@ -99,11 +99,6 @@ const { photos, id = 'gallery' } = Astro.props;
     height: 100%;
     object-fit: cover;
     aspect-ratio: 4 / 3;
-    transition: transform var(--transition);
-  }
-
-  .gallery__thumb:hover img {
-    transform: scale(1.04);
   }
 
   .lightbox {
