@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import BookingForm from '../components/BookingForm.astro';
+import BookingSection from '../components/BookingSection.astro';
 import contacts from '../data/site/contacts.json';
 import policies from '../data/site/policies.json';
 
@@ -71,11 +71,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <BookingForm cottageOptions={cottageNames} />
-    </div>
-  </section>
+  <BookingSection cottageOptions={cottageNames} />
 
   <section class="section section--tinted">
     <div class="container">

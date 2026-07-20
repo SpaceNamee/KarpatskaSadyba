@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Gallery from '../../components/Gallery.astro';
 import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
-import BookingForm from '../../components/BookingForm.astro';
+import BookingSection from '../../components/BookingSection.astro';
 import contacts from '../../data/site/contacts.json';
 import policies from '../../data/site/policies.json';
 
@@ -169,11 +169,7 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <section class="section" id="zayavka">
-    <div class="container">
-      <BookingForm cottage={c.name.uk} />
-    </div>
-  </section>
+  <BookingSection cottage={c.name.uk} />
 </Base>
 
 <style>

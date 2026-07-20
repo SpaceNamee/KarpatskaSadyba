@@ -1,0 +1,130 @@
+---
+import BookingForm from './BookingForm.astro';
+import contacts from '../data/site/contacts.json';
+import policies from '../data/site/policies.json';
+
+interface Props {
+  /** Передвибраний котедж (сторінка котеджу); інакше у формі буде select */
+  cottage?: string;
+  /** Варіанти котеджів для select, коли cottage не передано */
+  cottageOptions?: string[];
+  /** id секції для якоря (за замовчуванням zayavka) */
+  id?: string;
+}
+
+const { cottage, cottageOptions = [], id = 'zayavka' } = Astro.props;
+const phones = contacts.phones;
+const deposit = policies.depositUah.toLocaleString('uk-UA');
+---
+
+<section class="booking" id={id}>
+  <div class="container booking__grid">
+    <div class="booking__intro">
+      <h2>Бронювання</h2>
+      <p class="booking__lead">Залиште запит — ми передзвонимо</p>
+      <p class="booking__text">
+        Або телефонуйте одразу — так найшвидше. Бронювання підтверджується завдатком
+        {deposit} грн банківським переказом.
+      </p>
+      <ul class="booking__phones">
+        {phones.map((phone) => (
+          <li>
+            <a class="booking__phone" href={`tel:${phone.tel}`}>
+              <span class="booking__phone-icon" aria-hidden="true">📞</span>
+              {phone.display}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="booking__insta">
+        <a href={contacts.instagram.url} target="_blank" rel="noopener">
+          Instagram {contacts.instagram.handle}
+        </a>
+      </p>
+    </div>
+
+    <div class="booking__form">
+      <BookingForm cottage={cottage} cottageOptions={cottageOptions} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking {
+    padding-block: var(--space-5);
+    background: var(--c-green-100);
+  }
+
+  .booking__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  /* На широких екранах — інфо-панель ліворуч, форма праворуч (не «висить» сама) */
+  @media (min-width: 52rem) {
+    .booking__grid {
+      grid-template-columns: 0.85fr 1fr;
+      gap: var(--space-6);
+    }
+
+    .booking__intro {
+      position: sticky;
+      top: var(--space-4);
+    }
+  }
+
+  .booking__intro h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  .booking__lead {
+    font-size: var(--fs-h3);
+    font-family: var(--font-heading);
+    color: var(--c-green-800);
+    margin-bottom: var(--space-2);
+  }
+
+  .booking__text {
+    color: var(--c-text-muted);
+    max-width: 30rem;
+  }
+
+  .booking__phones {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .booking__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--c-green-900);
+  }
+
+  .booking__phone:hover {
+    color: var(--c-green-700);
+  }
+
+  .booking__phone-icon {
+    font-size: 1rem;
+  }
+
+  .booking__insta {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* Форма розтягується на всю колонку — прибираємо її власний max-width */
+  .booking__form :global(.booking-form) {
+    max-width: none;
+  }
+</style>
