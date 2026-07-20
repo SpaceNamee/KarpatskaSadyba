@@ -12,5 +12,11 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // 404 у мапу сайту не потрапляє
+      filter: (page) => !page.includes('/404'),
+      changefreq: 'weekly',
+    }),
+  ],
 });

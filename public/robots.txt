@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://karpatska-sadyba.com.ua/sitemap-index.xml

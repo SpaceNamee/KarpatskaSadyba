@@ -10,10 +10,15 @@ interface Props {
   title: string;
   description: string;
   lang?: 'uk' | 'en';
+  /** Картинка для соцмереж (шлях від кореня сайту); за замовчуванням — загальне фото садиби */
+  ogImage?: string;
+  /** Прибрати сторінку з пошукової видачі (наприклад, 404) */
+  noindex?: boolean;
 }
 
-const { title, description, lang = 'uk' } = Astro.props;
+const { title, description, lang = 'uk', ogImage = '/og-image.jpg', noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
 /** GA4 вмикається, коли в змінних середовища збірки задано PUBLIC_GA4_ID (формат G-XXXXXXXXXX) */
 const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
 ---
@@ -26,13 +31,23 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#2f5d3a" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Карпатська садиба" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Котедж «Карпатської садиби» серед гір" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {ga4Id && (
       <>

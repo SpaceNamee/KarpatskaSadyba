@@ -47,11 +47,17 @@ const facts = [
   { label: 'Вид', value: c.view.uk },
 ];
 
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+/** Превʼю для соцмереж, згенероване `npm run og` з обкладинки котеджу */
+const ogImage = `/og/${cottage.id}.jpg`;
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Accommodation',
   name: `${c.name.uk} — Карпатська садиба`,
   description: c.summary.uk,
+  url: pageUrl,
+  image: new URL(ogImage, Astro.site).href,
   floorSize: { '@type': 'QuantitativeValue', value: c.areaM2, unitCode: 'MTK' },
   occupancy: { '@type': 'QuantitativeValue', maxValue: c.capacityMax },
   numberOfBedrooms: c.bedroomsCount,
@@ -63,10 +69,20 @@ const schema = {
     addressCountry: 'UA',
   },
 };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Головна', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: c.name.uk, item: pageUrl },
+  ],
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} ogImage={ogImage}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <section class="cottage-hero">
     <Image
