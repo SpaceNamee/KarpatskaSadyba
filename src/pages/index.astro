@@ -51,6 +51,13 @@ const estateHighlights = [
   return { ...h, src, alt: meta.alt.uk };
 });
 
+const aboutStats = [
+  { value: '3', label: 'окремі котеджі' },
+  { value: '49', label: 'гостей максимум' },
+  { value: '5 км', label: 'до курорту «Плай»' },
+  { value: '9.2', label: 'оцінка на Booking' },
+];
+
 const praises = [
   'Дуже привітні господарі — допоможуть з раннім заїздом, розпалять камін, підкажуть маршрути',
   'Нові дерев\'яні будинки з неперевершеним запахом дерева',
@@ -106,6 +113,33 @@ const schema = {
         </div>
         <p class="hero__rating">★ 9.2 — оцінка гостей на Booking.com</p>
       </div>
+    </div>
+  </section>
+
+  <section class="about section">
+    <div class="container about__grid">
+      <div class="about__text">
+        <h2>Запах дерева, тиша гір і місце для всієї компанії</h2>
+        <p>
+          Садиба стоїть у селі Плав'я на Львівщині — серед пагорбів Сколівських Бескидів.
+          Три окремі дерев'яні котеджі здаються повністю: кожен зі своєю кухнею, санвузлами,
+          балконом з видом на гори та альтанкою. Для великих подій можна орендувати всю
+          садибу цілком.
+        </p>
+        <blockquote class="about__quote">
+          «У стінах наших будиночків можна забути про всі турботи і насолодитись краєвидами
+          високих і мальовничих гір»
+          <cite>— Михайло, господар</cite>
+        </blockquote>
+      </div>
+      <ul class="about__stats">
+        {aboutStats.map((stat) => (
+          <li class="about__stat">
+            <span class="about__stat-value">{stat.value}</span>
+            <span class="about__stat-label">{stat.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -276,6 +310,76 @@ const schema = {
 
   .section--tinted {
     background: var(--c-green-100);
+  }
+
+  /* Про садибу */
+  .about {
+    background: var(--c-green-100);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  @media (min-width: 52rem) {
+    .about__grid {
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .about__quote {
+    margin: var(--space-4) 0 0;
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--c-wood-600);
+    font-family: var(--font-heading);
+    font-size: var(--fs-h3);
+    line-height: 1.4;
+    color: var(--c-green-900);
+  }
+
+  .about__quote cite {
+    display: block;
+    margin-top: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    font-style: normal;
+    color: var(--c-text-muted);
+  }
+
+  .about__stats {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .about__stat {
+    background: var(--c-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  .about__stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--c-green-700);
+  }
+
+  .about__stat-label {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
   }
 
   .section__note {
