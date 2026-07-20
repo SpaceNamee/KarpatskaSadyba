@@ -6,19 +6,22 @@ import Base from '../../layouts/Base.astro';
 import Gallery from '../../components/Gallery.astro';
 import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
 import BookingSection from '../../components/BookingSection.astro';
+import CottageCard from '../../components/CottageCard.astro';
 import contacts from '../../data/site/contacts.json';
 import policies from '../../data/site/policies.json';
 
 export async function getStaticPaths() {
-  const cottages = await getCollection('cottages');
+  const cottages = (await getCollection('cottages')).sort((a, b) => a.data.order - b.data.order);
   return cottages.map((cottage) => ({
     params: { slug: cottage.id },
-    props: { cottage },
+    props: { cottage, cottages },
   }));
 }
 
-const { cottage } = Astro.props;
+const { cottage, cottages } = Astro.props;
 const c = cottage.data;
+
+const others = cottages.filter((item) => item.id !== cottage.id);
 
 const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/photos/**/*.{jpg,png,JPG,PNG}',
@@ -31,6 +34,10 @@ function photo(file: string): ImageMetadata {
   if (!mod) throw new Error(`Фото не знайдено: ${path}`);
   return mod.default;
 }
+
+/** Фото-обкладинка для картки іншого котеджу (інша тека, ніж поточний) */
+const cardImage = (dir: string, file: string): ImageMetadata | undefined =>
+  allPhotos[`../../assets/photos/${dir}/${file}`]?.default;
 
 const galleryPhotos = c.photos.map((p) => ({ src: photo(p.file), alt: p.alt.uk }));
 const heroPhoto = photo(c.cardPhoto);
@@ -169,6 +176,26 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  <section class="section section--tinted">
+    <div class="container">
+      <h2>Інші котеджі</h2>
+      <div class="others">
+        {others.map((item) => (
+          <CottageCard
+            href={`/kotedzhi/${item.id}`}
+            name={item.data.name.uk}
+            areaM2={item.data.areaM2}
+            capacityMax={item.data.capacityMax}
+            summary={item.data.summary.uk}
+            priceFrom={item.data.prices.twoPlusNights}
+            image={cardImage(item.data.photosDir, item.data.cardPhoto)}
+            imageAlt={item.data.photos.find((p) => p.file === item.data.cardPhoto)?.alt.uk}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
   <BookingSection cottage={c.name.uk} />
 </Base>
 
@@ -204,6 +231,17 @@ const breadcrumbSchema = {
 
   .section {
     padding-block: var(--space-5);
+  }
+
+  .section--tinted {
+    background: var(--c-green-100);
+  }
+
+  .others {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
   }
 
   .cottage-grid {
