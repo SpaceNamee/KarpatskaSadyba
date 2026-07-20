@@ -45,10 +45,11 @@
 - [x] Контакти (кроки бронювання, правила) + 404; мобільна плаваюча CTA
 
 **Запуск:**
-- [ ] SEO: title/description на кожну сторінку, schema.org VacationRental, sitemap, robots
-- [ ] GA4 + подія `phone_click`; Search Console
+- [x] SEO: title/description на кожну сторінку, schema.org (LodgingBusiness / Accommodation / FAQPage / BreadcrumbList), sitemap без 404, robots без noindex, OG/Twitter-превʼю (`npm run og`)
+- [x] GA4 + подія `phone_click` — код готовий; **[М] дати ID потоку GA4**
+- [ ] **[М] Підтвердити сайт у Google Search Console** (після підключення домену) і надіслати sitemap
 - [ ] Перевірка: Lighthouse ≥90 (mobile), контраст, клавіатура, alt-тексти
-- [ ] Редірект з spacenamee.github.io; видалити старі HTML/CSS з репозиторію
+- [x] Редірект з spacenamee.github.io (meta refresh + noindex у старих HTML); старі CSS/зображення видалено
 - [ ] **[М] Створити Google Business Profile** (картка в Google Maps)
 
 ## Фаза 2 — Бронювання
