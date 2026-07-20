@@ -59,10 +59,18 @@ const aboutStats = [
 ];
 
 const praises = [
-  'Дуже привітні господарі — допоможуть з раннім заїздом, розпалять камін, підкажуть маршрути',
-  'Нові дерев\'яні будинки з неперевершеним запахом дерева',
-  'Тепла вода в басейні та гарна підсвітка ввечері',
-  'Велика доглянута територія — місця вистачає навіть великій компанії',
+  {
+    title: 'Привітні господарі',
+    text: 'Ранній заїзд і пізній виїзд за можливості, допомога з каміном — гості відзначають, що господарі завжди йдуть назустріч.',
+  },
+  {
+    title: 'Теплі дерев\'яні будинки',
+    text: 'Просторі, нещодавно збудовані котеджі з «неперевершеним запахом дерева» — тепло навіть у морози.',
+  },
+  {
+    title: 'Територія і басейн',
+    text: 'Велика доглянута територія, тепла вода в басейні з вечірньою підсвіткою, шикарні альтанки з мангалом і казаном.',
+  },
 ];
 
 const schema = {
@@ -222,7 +230,12 @@ const schema = {
       <h2>За що нас люблять гості</h2>
       <p class="rating-badge">★ 9.2 <span>на Booking.com</span></p>
       <ul class="praises">
-        {praises.map((praise) => <li>{praise}</li>)}
+        {praises.map((praise) => (
+          <li class="praise">
+            <h3 class="praise__title">{praise.title}</h3>
+            <p class="praise__text">{praise.text}</p>
+          </li>
+        ))}
       </ul>
       <p>
         Більше фото й відгуків —
@@ -504,10 +517,31 @@ const schema = {
   }
 
   .praises {
-    max-width: 44rem;
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0;
     display: grid;
-    gap: var(--space-2);
-    padding-left: 1.2em;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+  }
+
+  .praise {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-4);
+  }
+
+  .praise__title {
+    font-size: var(--fs-h3);
+    margin: 0 0 var(--space-2);
+    color: var(--c-green-800);
+  }
+
+  .praise__text {
+    margin: 0;
+    color: var(--c-text-muted);
   }
 
   .contacts {
