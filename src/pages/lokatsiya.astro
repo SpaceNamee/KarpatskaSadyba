@@ -1,7 +1,16 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import attractions from '../data/site/attractions.json';
 import contacts from '../data/site/contacts.json';
+
+const attractionPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/photos/attractions/*.jpg',
+  { eager: true }
+);
+const attractionImage = (file?: string): ImageMetadata | undefined =>
+  file ? attractionPhotos[`../assets/photos/attractions/${file}`]?.default : undefined;
 
 const title = 'Локація і що поблизу — с. Плав\'я, 5 км до ГК «Плай» | Карпатська садиба';
 const description =
@@ -55,13 +64,21 @@ const groups = [
         <div class="group">
           <h3>{group.icon} {group.title}</h3>
           <div class="cards">
-            {group.items.map((item) => (
-              <article class="card">
-                <h4>{item.name.uk}</h4>
-                <p class="card__distance">{item.distance}</p>
-                <p>{item.description.uk}</p>
-              </article>
-            ))}
+            {group.items.map((item) => {
+              const img = attractionImage(item.photo);
+              return (
+                <article class="card">
+                  {img && (
+                    <Image class="card__img" src={img} alt={item.name.uk} width={520} height={390} loading="lazy" />
+                  )}
+                  <div class="card__body">
+                    <h4>{item.name.uk}</h4>
+                    <p class="card__distance">{item.distance}</p>
+                    <p>{item.description.uk}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       ))}
@@ -121,11 +138,27 @@ const groups = [
     background: var(--c-surface);
     border: 1px solid var(--c-border);
     border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .card__body {
     padding: var(--space-3);
   }
 
   .card h4 {
     margin-bottom: var(--space-1);
+  }
+
+  .card__body p:last-child {
+    margin-bottom: 0;
   }
 
   .card__distance {
