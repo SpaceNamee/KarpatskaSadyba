@@ -120,6 +120,25 @@ a:hover {
   }
 }
 
+/* Посилання «перейти до вмісту» — зʼявляється лише при фокусі з клавіатури */
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  z-index: 100;
+  background: var(--c-green-900);
+  color: var(--c-text-inverse);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+  color: var(--c-text-inverse);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

@@ -109,7 +109,18 @@ const schema = {
     addressCountry: 'UA',
   },
   geo: { '@type': 'GeoCoordinates', latitude: contacts.coordinates.lat, longitude: contacts.coordinates.lng },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: 9.2, bestRating: 10, reviewCount: 100 },
+  // aggregateRating додаємо лише коли є РЕАЛЬНА кількість відгуків (contacts.rating.count),
+  // інакше Google може покарати за вигадані дані. Оцінку 9.2 показуємо як текст на сторінці.
+  ...(contacts.rating.count
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: contacts.rating.value,
+          bestRating: 10,
+          reviewCount: contacts.rating.count,
+        },
+      }
+    : {}),
   checkinTime: contacts.checkIn,
   checkoutTime: contacts.checkOut,
   amenityFeature: amenities.map((name) => ({ '@type': 'LocationFeatureSpecification', name })),

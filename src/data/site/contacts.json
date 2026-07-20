@@ -19,5 +19,11 @@
   },
   "coordinates": { "lat": 48.83, "lng": 23.28 },
   "checkIn": "15:00",
-  "checkOut": "11:00"
+  "checkOut": "11:00",
+  "rating": {
+    "value": 9.2,
+    "source": "Booking.com",
+    "count": null,
+    "note": "[М] Вкажіть реальну кількість відгуків із Booking — тоді в schema.org додасться aggregateRating (зірки в Google). Поки count=null, щоб не публікувати вигаданого числа."
+  }
 }
