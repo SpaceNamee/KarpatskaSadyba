@@ -2,6 +2,7 @@
   "wellness": [
     {
       "id": "pool",
+      "photo": "estate/pool-01.jpg",
       "name": { "uk": "Басейн з підігрівом", "en": "Heated outdoor pool" },
       "description": {
         "uk": "Відкритий басейн 10×6 м (глибина 1,6 м) з підігрівом, нічною підсвіткою, шезлонгами та видом на гори. Працює влітку і в першій половині осені.",
@@ -12,6 +13,7 @@
     },
     {
       "id": "chan",
+      "photo": "estate/chan-01.jpg",
       "name": { "uk": "Чан", "en": "Hot tub (chan)" },
       "description": {
         "uk": "Карпатський чан з підігрівом просто неба — найкраще після катання чи походу.",
@@ -22,6 +24,7 @@
     },
     {
       "id": "sauna",
+      "photo": "estate/sauna-01.jpg",
       "name": { "uk": "Сауна", "en": "Sauna" },
       "description": {
         "uk": "Фінська сауна на території садиби.",
@@ -34,6 +37,7 @@
   "activities": [
     {
       "id": "fishing",
+      "photo": "estate/pond-01.jpg",
       "name": { "uk": "Риболовля", "en": "Fishing" },
       "description": {
         "uk": "Власний ставок на території. Риболовля безкоштовна; якщо хочете забрати улов — 300 грн/кг.",
@@ -44,6 +48,7 @@
     },
     {
       "id": "quads",
+      "photo": "estate/atv-01.jpg",
       "name": { "uk": "Квадроцикли", "en": "Quad bikes" },
       "description": {
         "uk": "Прогулянки на квадроциклах гірськими маршрутами. Бронювання за телефоном +38 068 101 45 45.",
@@ -54,6 +59,7 @@
     },
     {
       "id": "sports-field",
+      "photo": "estate/sport-field-01.jpg",
       "name": { "uk": "Спортивне поле", "en": "Sports field" },
       "description": {
         "uk": "Поле для волейболу та футболу з інвентарем — за 300 м від садиби, безкоштовно.",
@@ -64,6 +70,7 @@
     },
     {
       "id": "bbq",
+      "photo": "estate/gazebo-01.jpg",
       "name": { "uk": "Альтанки та мангал", "en": "Gazebos & BBQ" },
       "description": {
         "uk": "Альтанки з мангалами; надаємо шампури, сітки, казан і сковорідку. Дрова — 500 грн за тачку.",
@@ -74,6 +81,7 @@
     },
     {
       "id": "playground",
+      "photo": "estate/playground-01.jpg",
       "name": { "uk": "Дитячий майданчик", "en": "Children's playground" },
       "description": {
         "uk": "Майданчик для дітей на території садиби.",
@@ -84,6 +92,7 @@
     },
     {
       "id": "ski",
+      "photo": "attractions/play.jpg",
       "name": { "uk": "Лижі та сноуборд", "en": "Ski & snowboard" },
       "description": {
         "uk": "ГК «Плай» за 5 км: 6 трас до 1200 м, крісельні витяги, прокат спорядження та лижна школа.",
@@ -94,6 +103,7 @@
     },
     {
       "id": "hiking",
+      "photo": "attractions/parashka.jpg",
       "name": { "uk": "Походи в гори", "en": "Hiking" },
       "description": {
         "uk": "Маршрути на Парашку, Лопату й Пікуй, до водоспадів Кам'янка, Гуркало, Сопіт; піші екскурсії.",
@@ -114,6 +124,7 @@
     },
     {
       "id": "meals",
+      "photo": "estate/bbq-01.jpg",
       "name": { "uk": "Харчування", "en": "Meals" },
       "description": {
         "uk": "Домашні обіди під замовлення: +38 097 052 36 78.",

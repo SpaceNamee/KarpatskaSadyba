@@ -21,6 +21,14 @@ const estatePhotos = estate.photos.map((p) => {
   return { src: mod.default, alt: p.alt.uk };
 });
 
+/** Фото для карток послуг: шлях у services.json (напр. "estate/pool-01.jpg") */
+const servicePhotoFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/photos/**/*.jpg',
+  { eager: true }
+);
+const servicePhoto = (path?: string): ImageMetadata | undefined =>
+  path ? servicePhotoFiles[`../assets/photos/${path}`]?.default : undefined;
+
 const title = 'Відпочинок і послуги — басейн, чан, сауна, риболовля | Карпатська садиба';
 const description =
   'Що робити в Карпатській садибі: басейн з підігрівом і видом на гори, чан, сауна, риболовля у власному ставку, квадроцикли, спортивне поле, походи. Взимку — ГК «Плай» за 5 км.';
@@ -44,16 +52,30 @@ const allServices = [...services.wellness, ...services.activities];
       </p>
 
       <div class="cards">
-        {allServices.map((service) => (
-          <article class="card">
-            <header class="card__head">
-              <h2>{service.name.uk}</h2>
-              <span class={`badge badge--${service.season}`}>{seasonLabel[service.season]}</span>
-            </header>
-            <p>{service.description.uk}</p>
-            <p class="card__price">{service.price.uk}</p>
-          </article>
-        ))}
+        {allServices.map((service) => {
+          const img = servicePhoto((service as { photo?: string }).photo);
+          return (
+            <article class="card">
+              {img && (
+                <div class="card__media">
+                  <Image class="card__img" src={img} alt={service.name.uk} width={520} height={360} loading="lazy" />
+                  <span class={`badge badge--${service.season}`}>{seasonLabel[service.season]}</span>
+                </div>
+              )}
+              <div class="card__body">
+                {!img && (
+                  <header class="card__head">
+                    <h2>{service.name.uk}</h2>
+                    <span class={`badge badge--${service.season}`}>{seasonLabel[service.season]}</span>
+                  </header>
+                )}
+                {img && <h2>{service.name.uk}</h2>}
+                <p>{service.description.uk}</p>
+                <p class="card__price">{service.price.uk}</p>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -115,10 +137,41 @@ const allServices = [...services.wellness, ...services.activities];
     background: var(--c-surface);
     border: 1px solid var(--c-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-4);
+    overflow: hidden;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
+  }
+
+  .card__media {
+    position: relative;
+  }
+
+  .card__img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* бейдж сезону поверх фото */
+  .card__media .badge {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    box-shadow: 0 1px 4px rgb(29 53 36 / 0.25);
+  }
+
+  .card__body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card__body h2 {
+    font-size: var(--fs-h3);
+    margin: 0 0 var(--space-2);
   }
 
   .card__head {
