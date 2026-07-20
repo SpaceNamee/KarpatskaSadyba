@@ -39,10 +39,10 @@ const amenities = [
 /** Витяг із галереї території: по одному фото на ключову зону, підписи — короткі */
 const estateHighlights = [
   { file: 'pool-01.jpg', caption: 'Басейн з підігрівом' },
+  { file: 'chan-01.jpg', caption: 'Карпатський чан' },
+  { file: 'sauna-01.jpg', caption: 'Сауна' },
   { file: 'pond-01.jpg', caption: 'Ставок з рибою' },
   { file: 'gazebo-01.jpg', caption: 'Альтанки з мангалом' },
-  { file: 'sport-field-01.jpg', caption: 'Спортивне поле' },
-  { file: 'playground-01.jpg', caption: 'Дитячий майданчик' },
   { file: 'grounds-03.jpg', caption: 'Доглянута територія' },
 ].map((h) => {
   const meta = estate.photos.find((p) => p.file === h.file);
@@ -170,21 +170,27 @@ const schema = {
   <section class="section section--tinted">
     <div class="container">
       <h2>Відпочинок на території</h2>
+      <p class="section__note">
+        Басейн, чан і сауна, ставок з рибою, альтанки з мангалом, спортивне поле й дитячий
+        майданчик — усе на одній огородженій території. Взимку — ГК «Плай» за 5 км.
+      </p>
       <ul class="amenities">
         {amenities.map((amenity) => <li>{amenity}</li>)}
       </ul>
 
       <ul class="estate">
         {estateHighlights.map((item) => (
-          <li class="estate__item hover-lift">
-            <Image src={item.src} alt={item.alt} width={520} height={390} loading="lazy" />
-            <span class="estate__caption">{item.caption}</span>
+          <li>
+            <a class="estate__item hover-lift" href="/vidpochynok#tereny" aria-label={`${item.caption} — усі фото й послуги`}>
+              <Image src={item.src} alt={item.alt} width={520} height={390} loading="lazy" />
+              <span class="estate__caption">{item.caption}</span>
+            </a>
           </li>
         ))}
       </ul>
-      <p class="estate__more">
-        <a href="/vidpochynok">Уся територія у фото — на сторінці «Відпочинок» →</a>
-      </p>
+      <div class="estate__actions">
+        <a class="btn btn--primary" href="/vidpochynok">Усі можливості та фото території →</a>
+      </div>
 
       <div class="seasons">
         <article class="season">
@@ -412,9 +418,11 @@ const schema = {
 
   .estate__item {
     position: relative;
+    display: block;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow);
+    text-decoration: none;
   }
 
   .estate__item img {
@@ -435,9 +443,8 @@ const schema = {
     background: linear-gradient(to top, rgb(20 28 22 / 0.85), transparent);
   }
 
-  .estate__more {
+  .estate__actions {
     margin: 0 0 var(--space-5);
-    font-weight: 600;
   }
 
   .amenities {
