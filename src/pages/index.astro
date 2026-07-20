@@ -7,6 +7,7 @@ import CottageCard from '../components/CottageCard.astro';
 import BookingSection from '../components/BookingSection.astro';
 import contacts from '../data/site/contacts.json';
 import services from '../data/site/services.json';
+import policies from '../data/site/policies.json';
 import estate from '../data/site/estate-photos.json';
 
 import heroImg from '../assets/photos/cottage-2/exterior-01.jpg';
@@ -52,6 +53,19 @@ const estateHighlights = [
   if (!meta || !src) throw new Error(`Фото території не знайдено: ${h.file}`);
   return { ...h, src, alt: meta.alt.uk };
 });
+
+const checkinRules = [
+  { label: 'Заїзд', value: `з ${policies.checkIn} (попередьте про час)` },
+  { label: 'Виїзд', value: `до ${policies.checkOut}` },
+  { label: 'Тихі години', value: policies.quietHours },
+  { label: 'Куріння', value: 'заборонено в котеджах' },
+  { label: 'Діти', value: 'будь-якого віку (ліжечка не надаються)' },
+  { label: 'Домашні тварини', value: 'за попереднім запитом' },
+  { label: 'Оплата', value: `готівка · завдаток ${policies.depositUah.toLocaleString('uk-UA')} грн переказом` },
+];
+
+const mapQuery = encodeURIComponent("Карпатська садиба Плав'я");
+const transferPhone = contacts.extraPhones.quadsAndTransfer;
 
 const aboutStats = [
   { value: '3', label: 'окремі котеджі' },
@@ -247,6 +261,46 @@ const schema = {
   </section>
 
   <BookingSection cottageOptions={cottageNames} id="bronyuvannya" />
+
+  <section class="section">
+    <div class="container info__grid">
+      <div>
+        <h2>Правила заселення</h2>
+        <dl class="rules-grid">
+          {checkinRules.map((rule) => (
+            <div class="rules-grid__row">
+              <dt>{rule.label}</dt>
+              <dd>{rule.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div>
+        <h2>Як нас знайти</h2>
+        <p class="find__address">
+          {contacts.address.uk}<br />
+          Сколівські Бескиди, Карпати
+        </p>
+        <p>
+          <a
+            class="btn btn--primary"
+            href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+            target="_blank"
+            rel="noopener"
+          >
+            Відкрити в Google Maps →
+          </a>
+        </p>
+        <p class="find__note">
+          Дорога: траса Київ–Чоп, поворот на с. Плав'я біля курорту «Плай». Магазин — за 100 м
+          від садиби. Замовляйте трансфер з вокзалу за номером
+          <a href={`tel:${transferPhone.tel}`}>{transferPhone.display}</a>.
+        </p>
+        <p class="find__note">Мови: українська, англійська.</p>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
@@ -527,22 +581,59 @@ const schema = {
     color: var(--c-text-muted);
   }
 
-  .contacts {
+  /* Правила заселення + Як нас знайти */
+  .info__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
   }
 
-  .contacts__list {
-    list-style: none;
+  @media (min-width: 52rem) {
+    .info__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .rules-grid {
     margin: 0;
-    padding: 0;
     display: grid;
     gap: var(--space-2);
   }
 
-  .contacts__list a {
-    font-weight: 700;
-    text-decoration: none;
+  .rules-grid__row {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--c-border);
   }
+
+  .rules-grid dt {
+    font-weight: 700;
+    color: var(--c-green-800);
+  }
+
+  .rules-grid dd {
+    margin: 0;
+    color: var(--c-text-muted);
+  }
+
+  @media (max-width: 30rem) {
+    .rules-grid__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+  }
+
+  .find__address {
+    font-weight: 600;
+    color: var(--c-green-900);
+  }
+
+  .find__note {
+    color: var(--c-text-muted);
+    font-size: var(--fs-small);
+  }
+
 </style>
