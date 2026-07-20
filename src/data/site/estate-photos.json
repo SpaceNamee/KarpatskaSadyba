@@ -53,8 +53,16 @@
       "file": "sauna-01.jpg",
       "service": "Сауна",
       "alt": {
-        "uk": "Фінська сауна на території: піч з камінням і дерев'яний полок",
-        "en": "The on-site Finnish sauna: a stone-filled heater and wooden benches"
+        "uk": "Парна сауни: дерев'яний полок, піч з камінням і запарювальна шайка",
+        "en": "The sauna's steam room: wooden benches, a stone heater and a steaming pail"
+      }
+    },
+    {
+      "file": "banya-01.jpg",
+      "service": "Сауна",
+      "alt": {
+        "uk": "Лазня з купіллю-басейном для охолодження, душем і банними шапками",
+        "en": "The bathhouse with a cold plunge pool, shower and traditional felt hats"
       }
     },
     {

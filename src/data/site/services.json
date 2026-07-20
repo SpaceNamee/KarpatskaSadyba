@@ -27,8 +27,8 @@
       "photo": "estate/sauna-01.jpg",
       "name": { "uk": "Сауна", "en": "Sauna" },
       "description": {
-        "uk": "Фінська сауна на території садиби.",
-        "en": "Finnish sauna on the estate grounds."
+        "uk": "Фінська сауна на території садиби, з купіллю-басейном для охолодження та душем.",
+        "en": "Finnish sauna on the estate grounds, with a cold plunge pool and shower."
       },
       "price": { "uk": "2 500 грн / 2 год (разом із чаном — 5 000 грн)", "en": "UAH 2,500 / 2 h (with hot tub — UAH 5,000)" },
       "season": "all"
