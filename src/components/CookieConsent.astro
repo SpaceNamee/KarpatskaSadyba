@@ -1,0 +1,166 @@
+---
+/**
+ * Банер згоди на cookie + завантаження Google Analytics лише після згоди.
+ * GA4 (gtag.js) НЕ вантажиться і не ставить cookie, доки користувач не натисне «Прийняти».
+ * Вибір зберігається в localStorage (ks-cookie-consent: 'granted' | 'denied').
+ * Рендериться лише коли задано PUBLIC_GA4_ID (див. Base.astro).
+ */
+interface Props {
+  ga4Id: string;
+  lang?: 'uk' | 'en';
+}
+
+const { ga4Id, lang = 'uk' } = Astro.props;
+
+const t =
+  lang === 'uk'
+    ? {
+        label: 'Згода на використання cookie',
+        text: 'Ми використовуємо Google Analytics, щоб розуміти, як гості користуються сайтом. Аналітичні cookie вмикаються лише з вашої згоди.',
+        accept: 'Прийняти',
+        decline: 'Відхилити',
+        more: 'Докладніше',
+      }
+    : {
+        label: 'Cookie consent',
+        text: 'We use Google Analytics to understand how visitors use the site. Analytics cookies are enabled only with your consent.',
+        accept: 'Accept',
+        decline: 'Decline',
+        more: 'Learn more',
+      };
+
+const privacyHref = '/polityka-konfidentsiynosti';
+---
+
+<div class="cc" id="cookie-consent" role="dialog" aria-label={t.label} hidden>
+  <p class="cc__text">
+    {t.text} <a href={privacyHref}>{t.more} →</a>
+  </p>
+  <div class="cc__actions">
+    <button class="btn btn--primary cc__btn" id="cc-accept" type="button">{t.accept}</button>
+    <button class="cc__decline" id="cc-decline" type="button">{t.decline}</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ ga4Id }}>
+  (function () {
+    var KEY = 'ks-cookie-consent';
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = window.gtag || gtag;
+
+    // За замовчуванням усе заборонено — сигнал Consent Mode v2 для будь-яких тегів Google.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+    });
+
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', ga4Id);
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+
+    // Клік по номеру телефону → подія (лише коли аналітику дозволено).
+    document.addEventListener('click', function (e) {
+      var el = e.target;
+      var tel = el && el.closest ? el.closest('a[href^="tel:"]') : null;
+      if (tel && loaded) gtag('event', 'phone_click', { phone: tel.getAttribute('href') });
+    });
+
+    var banner = document.getElementById('cookie-consent');
+    var choice = null;
+    try {
+      choice = localStorage.getItem(KEY);
+    } catch (e) {}
+
+    if (choice === 'granted') {
+      loadGA();
+    } else if (choice !== 'denied' && banner) {
+      banner.hidden = false;
+    }
+
+    function decide(value) {
+      try {
+        localStorage.setItem(KEY, value);
+      } catch (e) {}
+      if (value === 'granted') loadGA();
+      if (banner) banner.hidden = true;
+    }
+
+    var accept = document.getElementById('cc-accept');
+    var decline = document.getElementById('cc-decline');
+    if (accept) accept.addEventListener('click', function () { decide('granted'); });
+    if (decline) decline.addEventListener('click', function () { decide('denied'); });
+  })();
+</script>
+
+<style>
+  .cc {
+    position: fixed;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+    z-index: 60;
+    max-width: 40rem;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg, var(--shadow));
+  }
+
+  .cc[hidden] {
+    display: none;
+  }
+
+  .cc__text {
+    margin: 0;
+    flex: 1 1 18rem;
+    font-size: var(--fs-small);
+    color: var(--c-text);
+  }
+
+  .cc__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .cc__btn {
+    padding: 0.55em 1.3em;
+  }
+
+  .cc__decline {
+    background: none;
+    border: 0;
+    padding: 0.4em 0.2em;
+    font: inherit;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--c-text-muted);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .cc__decline:hover {
+    color: var(--c-text);
+  }
+</style>

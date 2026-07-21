@@ -5,6 +5,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileCta from '../components/MobileCta.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title: string;
@@ -51,24 +52,6 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    {ga4Id && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
-        <script
-          is:inline
-          define:vars={{ ga4Id }}
-        >
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', ga4Id);
-          document.addEventListener('click', (e) => {
-            const tel = e.target instanceof Element && e.target.closest('a[href^="tel:"]');
-            if (tel) gtag('event', 'phone_click', { phone: tel.getAttribute('href') });
-          });
-        </script>
-      </>
-    )}
   </head>
   <body>
     <a class="skip-link" href="#main">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
@@ -78,5 +61,6 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
     </main>
     <Footer lang={lang} />
     <MobileCta lang={lang} />
+    {ga4Id && <CookieConsent ga4Id={ga4Id} lang={lang} />}
   </body>
 </html>
