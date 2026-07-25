@@ -14,7 +14,8 @@
   },
   "footer": {
     "booking": "Booking",
-    "quadsAndTransfer": "Quad bikes / transfer",
+    "quads": "Quad bikes",
+    "transfer": "Transfer",
     "food": "Meals",
     "menu": "Food menu",
     "address": "Address",

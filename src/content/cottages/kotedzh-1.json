@@ -21,12 +21,11 @@
   "bedroomsCount": 6,
   "bedrooms": [
     { "uk": "Спальня 1: широке двоспальне ліжко", "en": "Bedroom 1: wide double bed" },
-    { "uk": "Спальня 2: два дивани-ліжка", "en": "Bedroom 2: two sofa beds" },
+    { "uk": "Спальня 2: два двоспальні дивани-ліжка", "en": "Bedroom 2: two double sofa beds" },
     { "uk": "Спальня 3: широке двоспальне ліжко", "en": "Bedroom 3: wide double bed" },
     { "uk": "Спальня 4: широке двоспальне ліжко", "en": "Bedroom 4: wide double bed" },
-    { "uk": "Спальня 5: два односпальні ліжка", "en": "Bedroom 5: two single beds" },
-    { "uk": "Спальня 6: односпальне ліжко + диван-ліжко", "en": "Bedroom 6: single bed + sofa bed" },
-    { "uk": "Вітальня: диван-ліжко", "en": "Living room: sofa bed" }
+    { "uk": "Спальня 5: два односпальні ліжка + односпальне диван-ліжко", "en": "Bedroom 5: two single beds + single sofa bed" },
+    { "uk": "Спальня 6: двоспальне диван-ліжко + односпальне диван-ліжко", "en": "Bedroom 6: double sofa bed + single sofa bed" }
   ],
   "bathrooms": {
     "uk": "2 санвузли з ванною/душем + 1 без",
@@ -36,12 +35,13 @@
     { "uk": "Камін у великій залі", "en": "Fireplace in the big hall" },
     { "uk": "Власна альтанка й територія тільки для вашої компанії", "en": "Private gazebo and grounds just for your group" },
     { "uk": "Підлога з підігрівом", "en": "Underfloor heating" },
-    { "uk": "Зона барбекю з інвентарем (шампури, сітки, казан, сковорідка)", "en": "BBQ area with equipment (skewers, grates, cauldron, pan)" }
+    { "uk": "Зона барбекю з інвентарем (шампури, казан, сковорідка)", "en": "BBQ area with equipment (skewers, cauldron, pan)" }
   ],
   "kitchen": [
+    { "uk": "Дві кухні — на кожному поверсі", "en": "Two kitchens — one per floor" },
     { "uk": "Плита та духова шафа", "en": "Stove and oven" },
     { "uk": "Холодильник і мікрохвильова піч", "en": "Fridge and microwave" },
-    { "uk": "Електрочайник і посуд", "en": "Kettle and tableware" },
+    { "uk": "Чайник і посуд", "en": "Kettle and tableware" },
     { "uk": "Пральна машина", "en": "Washing machine" }
   ],
   "view": { "uk": "Вид на гори", "en": "Mountain view" },

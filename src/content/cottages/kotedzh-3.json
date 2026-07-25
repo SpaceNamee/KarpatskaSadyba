@@ -5,8 +5,8 @@
   "capacityBase": 14,
   "capacityMax": 15,
   "summary": {
-    "uk": "Затишний котедж із терасою та балконом з видом на гори. На другому поверсі — кімнати з власними санвузлами.",
-    "en": "A cosy cottage with a terrace and a mountain-view balcony. Upstairs rooms come with their own bathrooms."
+    "uk": "Затишний котедж із прибудинковою альтанкою та балконом з видом на гори. На другому поверсі — кімнати з власними санвузлами.",
+    "en": "A cosy cottage with its own gazebo by the house and a mountain-view balcony. Upstairs rooms come with their own bathrooms."
   },
   "floors": [
     {
@@ -31,10 +31,10 @@
     "en": "3 bathrooms with shower + 1 toilet"
   },
   "features": [
-    { "uk": "Тераса", "en": "Terrace" },
+    { "uk": "Прибудинкова альтанка", "en": "Own gazebo by the house" },
     { "uk": "Балкон з видом на гори", "en": "Mountain-view balcony" },
     { "uk": "Санвузли в кімнатах другого поверху", "en": "En-suite bathrooms upstairs" },
-    { "uk": "Зона барбекю з інвентарем (шампури, сітки, казан, сковорідка)", "en": "BBQ area with equipment (skewers, grates, cauldron, pan)" }
+    { "uk": "Мангал з інвентарем (шампури, казан, сковорідка)", "en": "BBQ with equipment (skewers, cauldron, pan)" }
   ],
   "kitchen": [
     { "uk": "Плита", "en": "Stove" },
@@ -51,7 +51,7 @@
   "photosDir": "cottage-3",
   "photos": [
     { "file": "exterior-01.jpg", "alt": { "uk": "Дерев'яний Котедж 3 з балконом і терасою на тлі блакитного неба", "en": "Wooden Cottage 3 with a balcony and terrace against a blue sky" } },
-    { "file": "terrace-01.jpg", "alt": { "uk": "Тераса з дерев'яними меблями та видом на гори у Котеджі 3", "en": "Terrace with wooden furniture and a mountain view in Cottage 3" } },
+    { "file": "terrace-01.jpg", "alt": { "uk": "Прибудинкова альтанка з дерев'яними меблями та видом на гори у Котеджі 3", "en": "Gazebo by the house with wooden furniture and a mountain view in Cottage 3" } },
     { "file": "living-01.jpg", "alt": { "uk": "Простора вітальня з дерев'яним столом, телевізором та сходами у Котеджі 3", "en": "Spacious living room with a wooden table, TV and stairs in Cottage 3" } },
     { "file": "bedroom-01.jpg", "alt": { "uk": "Спальня з панорамним видом на гори та ставок у Котеджі 3", "en": "Bedroom with a panoramic view of the mountains and pond in Cottage 3" } },
     { "file": "bedroom-02.jpg", "alt": { "uk": "Спальня з двоспальним ліжком та видом на гори у Котеджі 3", "en": "Bedroom with a double bed and mountain view in Cottage 3" } },

@@ -1,12 +1,12 @@
 {
   "name": { "uk": "Карпатська садиба", "en": "Karpatska Sadyba — Carpathian Estate" },
   "phones": [
-    { "display": "+38 098 773 31 03", "tel": "+380987733103" },
     { "display": "+38 068 968 80 55", "tel": "+380689688055" },
     { "display": "+38 098 904 33 32", "tel": "+380989043332" }
   ],
   "extraPhones": {
-    "quadsAndTransfer": { "display": "+38 068 101 45 45", "tel": "+380681014545" },
+    "quads": { "display": "+38 068 101 45 45", "tel": "+380681014545" },
+    "transfer": { "display": "+38 067 766 01 19", "tel": "+380677660119" },
     "food": { "display": "+38 097 052 36 78", "tel": "+380970523678" }
   },
   "instagram": {

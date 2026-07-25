@@ -40,10 +40,10 @@
       "photo": "estate/pond-01.jpg",
       "name": { "uk": "Риболовля", "en": "Fishing" },
       "description": {
-        "uk": "Власний ставок на території. Риболовля безкоштовна; якщо хочете забрати улов — 300 грн/кг.",
-        "en": "Our own stocked pond. Fishing is free; take your catch home for UAH 300/kg."
+        "uk": "Власний ставок на території. Риболовля безкоштовна; забрати улов — за домовленістю: +38 098 904 33 32.",
+        "en": "Our own stocked pond. Fishing is free; take your catch home by arrangement: +38 098 904 33 32."
       },
-      "price": { "uk": "Безкоштовно (улов — 300 грн/кг)", "en": "Free (catch — UAH 300/kg)" },
+      "price": { "uk": "Безкоштовно (улов — за домовленістю)", "en": "Free (catch — on request)" },
       "season": "all"
     },
     {
@@ -73,8 +73,8 @@
       "photo": "estate/gazebo-01.jpg",
       "name": { "uk": "Альтанки та мангал", "en": "Gazebos & BBQ" },
       "description": {
-        "uk": "Альтанки з мангалами. Шампури, сітки, казан і сковорідку надаємо безкоштовно — усе входить у вартість котеджу. Окремо оплачуються лише дрова — 500 грн за тачку.",
-        "en": "Gazebos with BBQ. Skewers, grill grates, cauldron and pan are provided free — all included in the cottage price. Only firewood is extra — UAH 500 per barrow."
+        "uk": "Альтанки з мангалами. Шампури, казан і сковорідку надаємо безкоштовно — усе входить у вартість котеджу. Окремо оплачуються лише дрова — 500 грн за тачку.",
+        "en": "Gazebos with BBQ. Skewers, cauldron and pan are provided free — all included in the cottage price. Only firewood is extra — UAH 500 per barrow."
       },
       "price": { "uk": "Інвентар входить у вартість; дрова — 500 грн/тачка", "en": "Equipment included; firewood UAH 500/barrow" },
       "season": "all"
@@ -118,8 +118,8 @@
       "id": "transfer",
       "name": { "uk": "Трансфер", "en": "Transfer" },
       "description": {
-        "uk": "Трансфер з/до вокзалу та по околицях: +38 068 101 45 45.",
-        "en": "Transfer to/from the railway station and around: +38 068 101 45 45."
+        "uk": "Трансфер з/до вокзалу та по околицях: +38 067 766 01 19.",
+        "en": "Transfer to/from the railway station and around: +38 067 766 01 19."
       },
       "price": { "uk": "За домовленістю", "en": "On request" },
       "season": "all"

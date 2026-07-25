@@ -32,13 +32,19 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h2 class="footer__title">{t.footer.quadsAndTransfer} / {t.footer.food}</h2>
+      <h2 class="footer__title">{t.footer.quads} / {t.footer.transfer} / {t.footer.food}</h2>
       <ul class="footer__list">
         <li>
-          <a href={`tel:${contacts.extraPhones.quadsAndTransfer.tel}`}>
-            {contacts.extraPhones.quadsAndTransfer.display}
+          <a href={`tel:${contacts.extraPhones.quads.tel}`}>
+            {contacts.extraPhones.quads.display}
           </a>
-          — {t.footer.quadsAndTransfer.toLowerCase()}
+          — {t.footer.quads.toLowerCase()}
+        </li>
+        <li>
+          <a href={`tel:${contacts.extraPhones.transfer.tel}`}>
+            {contacts.extraPhones.transfer.display}
+          </a>
+          — {t.footer.transfer.toLowerCase()}
         </li>
         <li>
           <a href={`tel:${contacts.extraPhones.food.tel}`}>

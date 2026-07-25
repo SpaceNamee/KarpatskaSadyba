@@ -5,8 +5,8 @@
   "capacityBase": 14,
   "capacityMax": 18,
   "summary": {
-    "uk": "Найбільший за місткістю котедж садиби — 7 спалень і 4 санвузли на двох поверхах. Тераса з видом на басейн і гори та прибудинкова альтанка.",
-    "en": "The highest-capacity cottage of the estate — 7 bedrooms and 4 bathrooms over two floors. A terrace overlooking the pool and mountains, plus its own gazebo."
+    "uk": "Найбільший за місткістю котедж садиби — 7 спалень і 4 санвузли на двох поверхах. Прибудинкова альтанка з видом на басейн і гори.",
+    "en": "The highest-capacity cottage of the estate — 7 bedrooms and 4 bathrooms over two floors. Its own gazebo by the house overlooks the pool and mountains."
   },
   "floors": [
     {
@@ -33,14 +33,13 @@
     "en": "4 bathrooms (two with shower)"
   },
   "features": [
-    { "uk": "Тераса з видом на басейн і гори", "en": "Terrace overlooking the pool and mountains" },
-    { "uk": "Прибудинкова альтанка", "en": "Own gazebo by the house" },
-    { "uk": "Шафа-гардероб", "en": "Wardrobe" },
-    { "uk": "Зона барбекю з інвентарем (шампури, сітки, казан, сковорідка)", "en": "BBQ area with equipment (skewers, grates, cauldron, pan)" }
+    { "uk": "Прибудинкова альтанка з видом на басейн і гори", "en": "Own gazebo by the house overlooking the pool and mountains" },
+    { "uk": "Великі ліжка 180×200", "en": "Large 180×200 beds" },
+    { "uk": "Мангал з інвентарем (шампури, казан, сковорідка)", "en": "BBQ with equipment (skewers, cauldron, pan)" }
   ],
   "kitchen": [
     { "uk": "Дві кухні — на кожному поверсі", "en": "Two kitchens — one per floor" },
-    { "uk": "Плита та духова шафа", "en": "Stove and oven" },
+    { "uk": "Плита", "en": "Stove" },
     { "uk": "Холодильник і мікрохвильова піч", "en": "Fridge and microwave" },
     { "uk": "Посуд і пральна машина", "en": "Tableware and washing machine" }
   ],
